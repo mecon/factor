@@ -81,17 +81,17 @@ verify-load-locations ] unit-test
 ! SYMBOL: acset
 ! SYMBOL: sbio
 ! SYMBOL: ssl
-! 
+!
 ! : is-set ( seq -- newseq )
 !     <enum> >alist [ nip ] assoc-subset >hashtable keys ;
-! 
+!
 ! ! 1234 server-socket sock set
 ! "127.0.0.1" 1234 <inet4> SOCK_STREAM server-fd sock set
-! 
+!
 ! FD_SETSIZE 8 * <bit-array> fdset set
-! 
+!
 ! FD_SETSIZE 8 * <bit-array> t 8 rot [ set-nth ] keep fdset set
-! 
+!
 ! fdset get is-set .
 
 ! : loop ( -- )
@@ -103,27 +103,27 @@ verify-load-locations ] unit-test
 !         ssl get swap set-ssl-fd
 !         ! ssl get sbio get dup set-ssl-bio
 !         ! ssl get ssl-accept
-!         ! dup 0 <= [ 
-!         !     ssl get swap ssl-get-error 
+!         ! dup 0 <= [
+!         !     ssl get swap ssl-get-error
 !         ! ] [ drop ] if
 !     ] if
 !     loop ;
 
 ! { } acset set
-! 
+!
 ! : loop ( -- )
 !     ! FD_SETSIZE fdset get f f f select . flush
-!     FD_SETSIZE fdset get f f 10000 make-timeval select 
+!     FD_SETSIZE fdset get f f 10000 make-timeval select
 !     0 <= [ acset get [ close ] each "timeout" print ] [
-!         fdset get is-set sock get swap member? [ 
-!              sock get f f accept dup . flush 
+!         fdset get is-set sock get swap member? [
+!              sock get f f accept dup . flush
 !              acset get swap add acset set
 !     ] [ ] if
 !         loop
 !     ] if ;
-! 
+!
 ! loop
-! 
+!
 ! sock get close
 
 ! =========================================================

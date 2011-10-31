@@ -64,7 +64,7 @@ TUPLE: tax-table single married ;
     [ adjust-allowances ] 2keep marriage-table tax ;
 
 ! http://www.irs.gov/pub/irs-pdf/p15.pdf
-! Table 7 ANNUAL Payroll Period 
+! Table 7 ANNUAL Payroll Period
 
 : federal-single ( -- triples )
     {

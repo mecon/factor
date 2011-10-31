@@ -8,7 +8,7 @@ IN: bake
 
 TUPLE: insert-quot expr ;
 
-C: <insert-quot> insert-quot 
+C: <insert-quot> insert-quot
 
 : ,[ \ ] [ >quotation <insert-quot> ] parse-literal ; parsing
 

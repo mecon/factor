@@ -117,7 +117,7 @@ the following two commands:
 
   ui
   [ ui ] in-thread
-  
+
 The latter keeps the terminal listener running.
 
 * Running Factor on Mac OS X - Cocoa UI

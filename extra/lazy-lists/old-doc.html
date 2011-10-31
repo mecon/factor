@@ -9,7 +9,7 @@
     ability to describe infinite structures, and to delay execution of
     expressions until they are actually used.</p>
 <p>Lazy lists, like normal lists, are composed of a head and tail. In
-    a lazy list the head and tail are something called a 'promise'. 
+    a lazy list the head and tail are something called a 'promise'.
     To convert a
     'promise' into its actual value a word called 'force' is used. To
     convert a value into a 'promise' the word to use is 'delay'.</p>
@@ -82,12 +82,12 @@ that contains the same elements as the normal list.</td></tr>
    possible to delay a promise. The example below shows what happens
    in this case.
 </p>
-<pre class="code">       
+<pre class="code">
   ( 1 ) [ 42 ] <a href="#delay">delay</a> dup .
        => &lt;&lt; promise [ ] [ 42 ] [ ] [ ] &gt;&gt;
   ( 2 ) <a href="#force">force</a> .
        => 42
-       
+
         #! Multiple forces on a promise returns cached value
   ( 3 ) [ "hello" print 42 ] <a href="#delay">delay</a> dup .
        => << promise [ ] [ "hello" print 42 ] [ ] [ ] >>
@@ -117,7 +117,7 @@ that contains the same elements as the normal list.</td></tr>
 <!-- lnil description -->
 <a name="lnilp">
 <h3>lnil? ( lcons -- bool )</h3>
-<p>Returns true if the given lazy cons is the value representing 
+<p>Returns true if the given lazy cons is the value representing
    the empty lazy list.</p>
 <pre class="code">
   ( 1 ) <a href="#lnil">lnil</a> <a href="#lnilp">lnil?</a> .
@@ -131,7 +131,7 @@ that contains the same elements as the normal list.</td></tr>
 <!-- lcons description -->
 <a name="lcons">
 <h3>lcons ( car-promise cdr-promise -- lcons )</h3>
-<p>Provides the same effect as 'cons' does for normal lists. 
+<p>Provides the same effect as 'cons' does for normal lists.
    Both values provided must be promises (ie. expressions that have
    had <a href="#delay">delay</a> called on them).
 </p>
@@ -146,7 +146,7 @@ that contains the same elements as the normal list.</td></tr>
   ( 3 ) dup <a href="#lcdr">lcdr</a> .
        => "cdr"
 </pre>
-  
+
 <!-- lunit description -->
 <a name="lunit">
 <h3>lunit ( value-promise -- llist )</h3>
@@ -281,7 +281,7 @@ never return unless the quotation escapes out by calling a continuation.</p>
        => < infinite list of incrementing numbers >
   ( 2 ) [ 2 mod 1 = ] <a href="#lsubset">lsubset</a>
        => < infinite list of odd numbers >
-  ( 3 ) [ . ] <a href="#leach">leach</a> 
+  ( 3 ) [ . ] <a href="#leach">leach</a>
        => 1
           3
           5
@@ -325,8 +325,8 @@ matter how large the list.</p>
 lazy fashion. The actual appending is done lazily on iteration rather
 than immediately so it works very fast no matter how large the lists.</p>
 <pre class="code">
-  ( 1 ) [ 1 2 3 ] <a href="#list2>llist">list&gt;llist</a> 
-  ( 2 ) [ 4 5 6 ] <a href="#list2llist">list&gt;llist</a> 
+  ( 1 ) [ 1 2 3 ] <a href="#list2>llist">list&gt;llist</a>
+  ( 2 ) [ 4 5 6 ] <a href="#list2llist">list&gt;llist</a>
   ( 3 ) [ 7 8 9 ] <a href="#list2llist">list&gt;llist</a>
   ( 4 ) 3list <a href="#list2llist">list&gt;llist</a> <a href="#lappendstar">lappend*</a>
   ( 5 ) [ . ] <a href="#leach">leach</a>
@@ -347,7 +347,7 @@ than immediately so it works very fast no matter how large the lists.</p>
 <p>Converts a normal list into a lazy list. This is done lazily so the
 initial list is not iterated through immediately.</p>
 <pre class="code">
-  ( 1 ) [ 1 2 3 ] <a href="#list2llist">list&gt;llist</a> 
+  ( 1 ) [ 1 2 3 ] <a href="#list2llist">list&gt;llist</a>
   ( 2 ) [ . ] <a href="#leach">leach</a>
        => 1
           2

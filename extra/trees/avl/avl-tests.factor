@@ -100,8 +100,8 @@ IN: trees.avl.tests
     AVL{
         { 7 "seven" }
         { 9 "nine" }
-        { 4 "four" } 
-        { 4 "replaced four" } 
+        { 4 "four" }
+        { 4 "replaced four" }
         { 7 "replaced seven" }
     } clone ;
 

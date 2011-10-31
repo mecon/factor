@@ -33,7 +33,7 @@ IN: webapps.fjsc
 
 : render-page* ( model body-template head-template -- )
   [
-      [ render-component ] [ f rot render-component ] html-document 
+      [ render-component ] [ f rot render-component ] html-document
   ] serve-html ;
 
 : repl ( -- )

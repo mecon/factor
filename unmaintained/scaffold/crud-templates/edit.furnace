@@ -15,7 +15,7 @@ generic sequences parser ; %>
 
 <% dup tuple-slots swap class "slot-names" word-prop [ %> <tr><td><% dup write %>:</td>
     <td><input type="text" name="<% write %>" value="<% write %>"/></td></tr><% ] 2each %>
-    
+
 </table>
 <input type="submit" name="submit" value="submit"/>
 </form>

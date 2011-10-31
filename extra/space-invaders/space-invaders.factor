@@ -27,12 +27,12 @@ TUPLE: space-invaders port1 port2i port2o port3o port4lo port4hi port5o bitmap s
   [ third ] dipd [ 2 + ] dip set-uchar-nth ;
 
 : get-bitmap-pixel ( point array -- color )
-  #! Point is a {x y}. color is a {r g b} 
+  #! Point is a {x y}. color is a {r g b}
   [ bitmap-index ] dip
   [ uint-nth ] 2keep
   [ [ 1 + ] dip uchar-nth ] 2keep
   [ 2 + ] dip uchar-nth 3array ;
-  
+
 : SOUND-SHOT         ( -- number ) 0 ;
 : SOUND-UFO          ( -- number ) 1 ;
 : SOUND-BASE-HIT     ( -- number ) 2 ;
@@ -44,21 +44,21 @@ TUPLE: space-invaders port1 port2i port2o port3o port4lo port4hi port5o bitmap s
 : SOUND-UFO-HIT      ( -- number ) 8 ;
 
 : init-sound ( index cpu filename  -- )
-  swapd >r space-invaders-sounds nth AL_BUFFER r> 
-  resource-path create-buffer-from-wav set-source-param ; 
+  swapd >r space-invaders-sounds nth AL_BUFFER r>
+  resource-path create-buffer-from-wav set-source-param ;
 
 : init-sounds ( cpu -- )
   init-openal
   [ 9 gen-sources swap set-space-invaders-sounds ] keep
-  [ SOUND-SHOT        "extra/space-invaders/resources/Shot.wav" init-sound ] keep 
-  [ SOUND-UFO         "extra/space-invaders/resources/Ufo.wav" init-sound ] keep 
+  [ SOUND-SHOT        "extra/space-invaders/resources/Shot.wav" init-sound ] keep
+  [ SOUND-UFO         "extra/space-invaders/resources/Ufo.wav" init-sound ] keep
   [ space-invaders-sounds SOUND-UFO swap nth AL_LOOPING AL_TRUE set-source-param ] keep
-  [ SOUND-BASE-HIT    "extra/space-invaders/resources/BaseHit.wav" init-sound ] keep 
-  [ SOUND-INVADER-HIT "extra/space-invaders/resources/InvHit.wav" init-sound ] keep 
-  [ SOUND-WALK1       "extra/space-invaders/resources/Walk1.wav" init-sound ] keep 
-  [ SOUND-WALK2       "extra/space-invaders/resources/Walk2.wav" init-sound ] keep 
-  [ SOUND-WALK3       "extra/space-invaders/resources/Walk3.wav" init-sound ] keep 
-  [ SOUND-WALK4       "extra/space-invaders/resources/Walk4.wav" init-sound ] keep 
+  [ SOUND-BASE-HIT    "extra/space-invaders/resources/BaseHit.wav" init-sound ] keep
+  [ SOUND-INVADER-HIT "extra/space-invaders/resources/InvHit.wav" init-sound ] keep
+  [ SOUND-WALK1       "extra/space-invaders/resources/Walk1.wav" init-sound ] keep
+  [ SOUND-WALK2       "extra/space-invaders/resources/Walk2.wav" init-sound ] keep
+  [ SOUND-WALK3       "extra/space-invaders/resources/Walk3.wav" init-sound ] keep
+  [ SOUND-WALK4       "extra/space-invaders/resources/Walk4.wav" init-sound ] keep
   [ SOUND-UFO-HIT    "extra/space-invaders/resources/UfoHit.wav" init-sound ] keep
   f swap set-space-invaders-looping? ;
 
@@ -82,7 +82,7 @@ TUPLE: space-invaders port1 port2i port2o port3o port4lo port4hi port5o bitmap s
   #! Bit 4 = player one fire
   #! Bit 5 = player one left
   #! Bit 6 = player one right
-  [ space-invaders-port1 dup HEX: FE bitand ] keep 
+  [ space-invaders-port1 dup HEX: FE bitand ] keep
  set-space-invaders-port1 ;
 
 : read-port2 ( cpu -- byte )
@@ -93,13 +93,13 @@ TUPLE: space-invaders port1 port2i port2o port3o port4lo port4hi port5o bitmap s
   #! Bit 5   = player two left
   #! Bit 6   = player two right
   #! Bit 7   = show or hide coin info
-  [ space-invaders-port2i HEX: 8F bitand ] keep 
+  [ space-invaders-port2i HEX: 8F bitand ] keep
   space-invaders-port1 HEX: 70 bitand bitor ;
 
 : read-port3 ( cpu -- byte )
   #! Used to compute a special formula
-  [ space-invaders-port4hi 8 shift ] keep 
-  [ space-invaders-port4lo bitor ] keep 
+  [ space-invaders-port4hi 8 shift ] keep
+  [ space-invaders-port4lo bitor ] keep
   space-invaders-port2o shift -8 shift HEX: FF bitand ;
 
 M: space-invaders read-port ( port cpu -- byte )
@@ -128,18 +128,18 @@ M: space-invaders read-port ( port cpu -- byte )
 : write-port3 ( value cpu -- )
   #! Connected to the sound hardware
   #! Bit 0 = spaceship sound (looped)
-  #! Bit 1 = Shot 
+  #! Bit 1 = Shot
   #! Bit 2 = Your ship hit
   #! Bit 3 = Invader hit
   #! Bit 4 = Extended play sound
-  over 0 bit? over space-invaders-looping? not and [ 
-    dup SOUND-UFO play-invaders-sound 
+  over 0 bit? over space-invaders-looping? not and [
+    dup SOUND-UFO play-invaders-sound
     t over set-space-invaders-looping?
-  ] when 
-  over 0 bit? not over space-invaders-looping? and [ 
-    dup SOUND-UFO stop-invaders-sound 
+  ] when
+  over 0 bit? not over space-invaders-looping? and [
+    dup SOUND-UFO stop-invaders-sound
     f over set-space-invaders-looping?
-  ] when 
+  ] when
   2dup 0 port3-newly-set? [ dup SOUND-UFO  play-invaders-sound ] when
   2dup 1 port3-newly-set? [ dup SOUND-SHOT play-invaders-sound ] when
   2dup 2 port3-newly-set? [ dup SOUND-BASE-HIT play-invaders-sound ] when
@@ -148,8 +148,8 @@ M: space-invaders read-port ( port cpu -- byte )
 
 : write-port4 ( value cpu -- )
   #! Affects the value returned by reading port 3
-  [ space-invaders-port4hi ] keep 
-  [ set-space-invaders-port4lo ] keep 
+  [ space-invaders-port4hi ] keep
+  [ set-space-invaders-port4lo ] keep
   set-space-invaders-port4hi ;
 
 : write-port5 ( value cpu -- )
@@ -158,7 +158,7 @@ M: space-invaders read-port ( port cpu -- byte )
   #! Bit 1 = invaders sound 2
   #! Bit 2 = invaders sound 3
   #! Bit 3 = invaders sound 4
-  #! Bit 4 = spaceship hit 
+  #! Bit 4 = spaceship hit
   #! Bit 5 = amplifier enabled/disabled
   2dup 0 port5-newly-set? [ dup SOUND-WALK1 play-invaders-sound ] when
   2dup 1 port5-newly-set? [ dup SOUND-WALK2 play-invaders-sound ] when
@@ -169,7 +169,7 @@ M: space-invaders read-port ( port cpu -- byte )
 
 M: space-invaders write-port ( value port cpu -- )
   #! Write a byte to the hardware port, where 'port' is
-  #! an 8-bit value.  
+  #! an 8-bit value.
   swap {
     { 2 [ write-port2 ] }
     { 3 [ write-port3 ] }
@@ -191,8 +191,8 @@ M: space-invaders reset ( cpu -- )
 : gui-step ( cpu -- )
   [ read-instruction ] keep ! n cpu
   over get-cycles over inc-cycles
-  [ swap instructions case ] keep  
-  [ cpu-pc HEX: FFFF bitand ] keep 
+  [ swap instructions case ] keep
+  [ cpu-pc HEX: FFFF bitand ] keep
   set-cpu-pc ;
 
 : gui-frame/2 ( cpu -- )
@@ -206,7 +206,7 @@ M: space-invaders reset ( cpu -- )
       HEX: 08 over set-cpu-last-interrupt HEX: 08 swap interrupt
     ] [
       HEX: 10 over set-cpu-last-interrupt HEX: 10 swap interrupt
-    ] if     
+    ] if
   ] if ;
 
 : gui-frame ( cpu -- )
@@ -265,9 +265,9 @@ invaders-gadget H{
     { T{ key-up   f f "LEFT" }      [ invaders-gadget-cpu left-up ] }
     { T{ key-down f f "RIGHT" }     [ invaders-gadget-cpu right-down ] }
     { T{ key-up   f f "RIGHT" }     [ invaders-gadget-cpu right-up ] }
-  } set-gestures 
+  } set-gestures
 
-: <invaders-gadget> ( cpu -- gadget ) 
+: <invaders-gadget> ( cpu -- gadget )
   invaders-gadget construct-gadget
   [ set-invaders-gadget-cpu ] keep
   f over set-invaders-gadget-quit? ;
@@ -318,7 +318,7 @@ M: invaders-gadget draw-gadget* ( gadget -- )
   plot-bitmap-pixel ;
 
 : do-bitmap-update ( bitmap value addr -- )
-  addr>xy swap 
+  addr>xy swap
   [ 0 plot-bitmap-bits ] 3keep
   [ 1 plot-bitmap-bits ] 3keep
   [ 2 plot-bitmap-bits ] 3keep
@@ -328,7 +328,7 @@ M: invaders-gadget draw-gadget* ( gadget -- )
   [ 6 plot-bitmap-bits ] 3keep
   7 plot-bitmap-bits ;
 
-M: space-invaders update-video ( value addr cpu -- )  
+M: space-invaders update-video ( value addr cpu -- )
   over HEX: 2400 >= [
     space-invaders-bitmap -rot do-bitmap-update
   ] [
@@ -341,7 +341,7 @@ M: space-invaders update-video ( value addr cpu -- )
   [ threads:sleep ] [ drop threads:yield ] if millis ;
 
 : invaders-process ( millis gadget -- )
-  #! Run a space invaders gadget inside a 
+  #! Run a space invaders gadget inside a
   #! concurrent process. Messages can be sent to
   #! signal key presses, etc.
   dup invaders-gadget-quit? [
@@ -350,7 +350,7 @@ M: space-invaders update-video ( value addr cpu -- )
     [ sync-frame ] dip
     [ invaders-gadget-cpu gui-frame ] keep
     [ relayout-1 ] keep
-    invaders-process 
+    invaders-process
   ] if ;
 
 M: invaders-gadget graft* ( gadget -- )
@@ -365,7 +365,7 @@ M: invaders-gadget ungraft* ( gadget -- )
 : (run) ( title cpu rom-info -- )
   over load-rom* <invaders-gadget> swap open-window ;
 
-: run ( -- )  
+: run ( -- )
   "Space Invaders" <space-invaders> {
     { HEX: 0000 "invaders/invaders.h" }
     { HEX: 0800 "invaders/invaders.g" }

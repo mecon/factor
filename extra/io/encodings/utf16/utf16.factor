@@ -40,7 +40,7 @@ TUPLE: utf16n ;
         [ BIN: 11 bitand quad-be ]
         [ drop ignore ] if
     ] [ double-be ] if ;
-    
+
 M: utf16be decode-char
     drop dup stream-read1 dup [ begin-utf16be ] when nip ;
 
@@ -95,7 +95,7 @@ M: utf16be encode-char ( char stream encoding -- )
         HEX: 10000 -
         2dup encode-first swap stream-write2
         encode-second swap stream-write2
-    ] [ h>b/b stream-write2 ] if ; 
+    ] [ h>b/b stream-write2 ] if ;
 
 M: utf16le encode-char ( char stream encoding -- )
     drop swap char>utf16le ;

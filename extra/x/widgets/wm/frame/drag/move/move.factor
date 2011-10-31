@@ -1,5 +1,5 @@
 
-USING: kernel combinators namespaces math.vectors x11.xlib x11.constants 
+USING: kernel combinators namespaces math.vectors x11.xlib x11.constants
        mortar mortar.sugar slot-accessors x x.gc x.widgets.wm.frame.drag ;
 
 IN: x.widgets.wm.frame.drag.move
@@ -31,7 +31,7 @@ SYMBOL: <wm-frame-drag-move>
 "draw-move-outline" !( wfdm -- wfdm )
   [ dpy get $default-root over $gc pick <- move-outline <--- draw-rect ]
 
-"loop" !( wfdm -- wfdm ) [ 
+"loop" !( wfdm -- wfdm ) [
   <- next-event
   { { [ <- event-type MotionNotify = ]
       [ <- draw-move-outline <- update-posn <- draw-move-outline <- loop ] }

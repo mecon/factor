@@ -2,10 +2,10 @@
 ! See http://factorcode.org/license.txt for BSD license.
 
 IN: isequences.interface
-USING: generic kernel ;  
+USING: generic kernel ;
 
 ! Unifies sequences, integers and objects, following Enchilada semantics.
-! Efficiency is achieved through lazy immutable size-balanced binary trees. 
+! Efficiency is achieved through lazy immutable size-balanced binary trees.
 
 ! - An object is an isequence of size 1 containing itself
 ! - An integer is an isequence of size itself containing zeros
@@ -15,7 +15,7 @@ USING: generic kernel ;
 
 GENERIC: -- ( s -- -s )                         ! monadic negate
 GENERIC: $$ ( s1 -- h )                         ! monadic hash
-GENERIC: ++ ( s1 s2 -- s )                      ! dyadic concatenate  
+GENERIC: ++ ( s1 s2 -- s )                      ! dyadic concatenate
 
 GENERIC: i-length ( s -- n )                    ! monadic size
 GENERIC: i-cmp ( s1 s2 -- n )                   ! dyadic compare
@@ -29,7 +29,7 @@ GENERIC: iright ( s -- v )                      ! balanced right side
 GENERIC: ipair ( s1 s2 -- s )                   ! pairing two isequences
 
 GENERIC: ascending? ( s -- ? )                  ! monadic ascending query
-GENERIC: descending? ( s -- ? )                 ! monadic descending query    
+GENERIC: descending? ( s -- ? )                 ! monadic descending query
 
 GENERIC: left-side ( v -- v )
 GENERIC: right-side ( v -- v )
@@ -38,7 +38,7 @@ GENERIC: right-side-empty? ( s -- ? )
 GENERIC: :v: ( v -- v )
 
 
-! **** lazy turn of an isequence 
+! **** lazy turn of an isequence
 !
 GENERIC: :: ( s -- ts )
 

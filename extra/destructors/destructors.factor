@@ -13,7 +13,7 @@ M: destructor dispose
     dup destructor-destroyed? [
         drop
     ] [
-        dup destructor-object dispose 
+        dup destructor-object dispose
         t swap set-destructor-destroyed?
     ] if ;
 

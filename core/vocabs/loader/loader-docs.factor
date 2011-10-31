@@ -44,7 +44,7 @@ HELP: find-vocab-root
 { $description "Searches for a vocabulary in the vocabulary roots." } ;
 
 HELP: no-vocab
-{ $values { "name" "a vocabulary name" } } 
+{ $values { "name" "a vocabulary name" } }
 { $description "Throws a " { $link no-vocab } "." }
 { $error-description "Thrown when a " { $link POSTPONE: USE: } " or " { $link POSTPONE: USING: } " form refers to a non-existent vocabulary." } ;
 

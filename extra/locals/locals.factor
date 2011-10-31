@@ -92,7 +92,7 @@ C: <quote> quote
 
 UNION: special local quote local-word local-reader local-writer ;
 
-: load-local ( arg -- quot ) 
+: load-local ( arg -- quot )
     local-reader? [ 1array >r ] [ >r ] ? ;
 
 : load-locals ( quot args -- quot )

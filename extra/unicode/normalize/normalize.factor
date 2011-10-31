@@ -33,7 +33,7 @@ IN: unicode.normalize
     r> medial-base - + final-count *
     r> final-base - + hangul-base + ;
 
-! Normalization -- Decomposition 
+! Normalization -- Decomposition
 
 : (insert) ( seq n quot -- )
     over 0 = [ 3drop ] [

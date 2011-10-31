@@ -15,7 +15,7 @@ INSTANCE: splay tree-mixin
     dup node-left
     [ node-right swap set-node-left ] 2keep
     [ set-node-right ] keep ;
-                                                        
+
 : rotate-left ( node -- node )
     dup node-right
     [ node-left swap set-node-right ] 2keep
@@ -32,10 +32,10 @@ INSTANCE: splay tree-mixin
 : cmp ( key node -- obj node -1/0/1 )
     2dup node-key <=> ;
 
-: lcmp ( key node -- obj node -1/0/1 ) 
+: lcmp ( key node -- obj node -1/0/1 )
     2dup node-left node-key <=> ;
 
-: rcmp ( key node -- obj node -1/0/1 ) 
+: rcmp ( key node -- obj node -1/0/1 )
     2dup node-right node-key <=> ;
 
 DEFER: (splay)

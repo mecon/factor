@@ -39,7 +39,7 @@ HELP: source-file
 
 HELP: record-checksum
 { $values { "source-file" source-file } { "lines" "a sequence of strings" } }
-{ $description "Records the CRC32 checksm of the source file's contents." } 
+{ $description "Records the CRC32 checksm of the source file's contents." }
 $low-level-note ;
 
 HELP: xref-source

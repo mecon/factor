@@ -72,6 +72,6 @@ TUPLE: buffer size ptr fill pos ;
     [ 1+ ] change-fill drop ;
 
 : n>buffer ( n buffer -- )
-    [ buffer-fill + ] keep 
+    [ buffer-fill + ] keep
     [ buffer-size > [ "Buffer overflow" throw ] when ] 2keep
     set-buffer-fill ;

@@ -5,7 +5,7 @@
 
 ! Adapted from cryptlib.h
 ! Tested with cryptlib 3.3.1.0
-USING: cryptlib.libcl kernel hashtables alien math 
+USING: cryptlib.libcl kernel hashtables alien math
 namespaces sequences assocs libc alien.c-types alien.accessors continuations ;
 
 IN: cryptlib
@@ -25,14 +25,14 @@ SYMBOL: session
 ! =========================================================
 
 : check-result ( result -- )
-    dup CRYPT_OK = [ 
+    dup CRYPT_OK = [
         drop
     ] [
         dup CRYPT_ENVELOPE_RESOURCE = [
             throw
         ] [
             dup error-messages >hashtable at throw
-        ] if     
+        ] if
     ] if ;
 
 ! =========================================================
@@ -195,7 +195,7 @@ SYMBOL: session
     *int cryptFlushData check-result ;
 
 : pop-data ( handle length -- )
-    dup >r >r *int r> "uchar*" malloc-array 
+    dup >r >r *int r> "uchar*" malloc-array
     dup r> swap >r "int" <c-object> [ cryptPopData ] keep
     swap check-result bytes-copied set r> pop-buffer set ;
 

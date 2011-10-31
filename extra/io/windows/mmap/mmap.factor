@@ -69,7 +69,7 @@ M: wince with-privileges
         r> 0 0 0 MapViewOfFile [ win32-error=0/f ] keep
         dup close-later
     ] with-privileges ;
-    
+
 M: windows <mapped-file> ( path length -- mmap )
     [
         swap

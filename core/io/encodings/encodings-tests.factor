@@ -4,7 +4,7 @@ IN: io.streams.encodings.tests
 
 : <resource-reader> ( resource -- stream )
     resource-path ascii <file-reader> ;
-    
+
 [ { } ]
 [ "core/io/test/empty-file.txt" <resource-reader> lines ]
 unit-test

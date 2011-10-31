@@ -15,12 +15,12 @@ H{
     { "txt"    "text/plain"                       }
     { "xml"    "text/xml"                         }
     { "css"    "text/css"                         }
-                                                    
+
     { "gif"    "image/gif"                        }
     { "png"    "image/png"                        }
     { "jpg"    "image/jpeg"                       }
     { "jpeg"   "image/jpeg"                       }
-                                                    
+
     { "jar"    "application/octet-stream"         }
     { "zip"    "application/octet-stream"         }
     { "tgz"    "application/octet-stream"         }

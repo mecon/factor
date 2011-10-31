@@ -20,7 +20,7 @@ IN: cpu.arm.allot
     R12 swap type-number tag-fixnum MOV ! compute header
     R12 R11 0 <+> STR ! store header
     ;
-    
+
 : %store-tagged ( reg tag -- )
     >r dup fresh-object v>operand R11 r> tag-number ORR ;
 

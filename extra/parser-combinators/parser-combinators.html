@@ -11,11 +11,11 @@
   href="ftp://ftp.cs.kun.nl/pub/Clean/papers/cleanbook/II.05.ParserCombinators.pdf">PDF
   available here</a>). Based on the description
   in that chapter I developed a version for Factor, a concatenative
-  language.</p>  
+  language.</p>
 <p>A parser is a word or quotation that, when called, processes
    an input string on the stack, performs some parsing operation on
    it, and returns a result indicating the success of the parsing
-   operation.</p> 
+   operation.</p>
 <p>The result returned by a parser is known as a 'list of
 successes'. It is a lazy list of standard Factor cons cells. Each cons
 cell is a result of a parse. The car of the cell is the remaining
@@ -56,7 +56,7 @@ input string. When passed an input string with a string with a leading
 'a' then the 'list of successes' has 1 result value. The cdr of that
 result value is the character 'a' successfully parsed, and the car is
 the remaining input string. On failure of the parse an empty list is
-returned.</p> 
+returned.</p>
 <p>The parser combinator library provides a combinator, &lt;&amp;&gt;, that takes
 two parsers off the stack and returns a parser that calls the original
 two in sequence. An example of use would be calling 'char-a' twice,
@@ -73,11 +73,11 @@ characters leading:</p>
 so there is a word that, given a string token on the stack, returns
 a parser that parses that particular token:</p>
 <pre class="code">
-  (1) "begin" token 
+  (1) "begin" token
       =&gt; < a parser that parses the token "begin" >
   (2) dup "this should fail" swap call lnil? .
       =&gt; t
-  (3) "begin a successfull parse" swap call 
+  (3) "begin a successfull parse" swap call
       =&gt; < lazy list >
   (4) [ . ] leach
       =&gt; [[ " a successfull parse" "begin" ]]
@@ -143,10 +143,10 @@ character code '53'.</p>
 <pre class="code">
   (1) : digit-list>number ( list -- number )
          #! Converts a list of digits to a number
-         [ >digit ] map >string dup empty? [ 
-           drop 0 
+         [ >digit ] map >string dup empty? [
+           drop 0
          ] [
-	   str>number 
+	   str>number
          ]  ifte ;
   (2) : natural-parser ( -- parser )
         digit-parser2 <*> [ car digit-list>number unit  ] &lt;@  ;
@@ -175,7 +175,7 @@ displays the topmost item on the stack:</p>
 </pre>
 <p>From the debug output we can see how to manipulate the result to
 get what we want. In this case it's the quotation in the previous example.</p>
- 
+
 <h2>Sequential combinator</h2>
 <p>To create a full grammar we need a parser combinator that does
 sequential compositions. That is, given two parsers, the sequential
@@ -185,7 +185,7 @@ list, the second parser will be run on each item of the lazy list. Of
 course this is done lazily so it only ends up being done when those
 list items are requested. The sequential combinator word is &lt;&amp;&gt;.</p>
 <pre class="code">
-  ( 1 ) "number:" token 
+  ( 1 ) "number:" token
        =&gt; < parser that parses the text 'number:' >
   ( 2 ) natural-parser
        =&gt; < parser that parses natural numbers >
@@ -202,11 +202,11 @@ list items are requested. The sequential combinator word is &lt;&amp;&gt;.</p>
 <p>In this  example we might prefer not to have the parse result
 contain the token, we want just the number. Two alternatives to &lt;&amp;&gt;
 provide the ability to select which result to use from the two
-parsers. These operators are &lt;&amp; and &amp;&gt;. The &lt; or &gt; points 
+parsers. These operators are &lt;&amp; and &amp;&gt;. The &lt; or &gt; points
 in the direction of which parser to retain the results from. So our
 example above could be:</p>
 <pre class="code">
-  ( 1 ) "number:" token 
+  ( 1 ) "number:" token
        =&gt; < parser that parses the text 'number:' >
   ( 2 ) natural-parser
        =&gt; < parser that parses natural numbers >
@@ -232,7 +232,7 @@ second parser is tried and its result returned.</p>
 <pre class="code">
   ( 1 ) "one" token
         =&gt; < parser that parses the text 'one' >
-  ( 2 ) "two" token 
+  ( 2 ) "two" token
         =&gt; < parser that parses the text 'two' >
   ( 3 ) &lt;|&gt;
         =&gt; < parser that parses 'one' or 'two' >
@@ -251,7 +251,7 @@ integers with an optional leading minus sign.</p>
 <pre class="code">
   ( 1 ) : integer-parser
           "-" token &lt;?&gt; natural-parser &lt;&amp;&gt; ;
-  ( 2 ) "200" integer-parser call [ . ] leach 
+  ( 2 ) "200" integer-parser call [ . ] leach
        =&gt; [ "" [ ] 200 ]
             [ "0" [ ] 20 ]
             [ "00" [ ] 2 ]
@@ -264,7 +264,7 @@ integers with an optional leading minus sign.</p>
             [ "-200" [ ] 0 ]
   ( 4 ) : integer-parser2
           integer-parser [ uncons swap [ car -1 * ] when ] &lt;@ ;
-  ( 5 ) "200" integer-parser2 call [ . ] leach 
+  ( 5 ) "200" integer-parser2 call [ . ] leach
        =&gt; [ "" 200 ]
             [ "0" 20 ]
             [ "00" 2 ]
@@ -303,7 +303,7 @@ computes the entered value will be executed.</p>
   ( 2 ) "/" token "*" token "+" token "-" token &lt;|&gt; &lt;|&gt; &lt;|&gt;
         =&gt; < a parser for the operator >
   ( 3 ) sp [ "\\ " swap cat2 eval unit ] &lt;@
-        =&gt; < operator parser that skips whitespace and converts to a 
+        =&gt; < operator parser that skips whitespace and converts to a
              factor expression >
   ( 4 ) natural-parser sp
         =&gt; < a whitespace skipping natural parser >
@@ -321,15 +321,15 @@ computes the entered value will be executed.</p>
 factored a little, looks quite readable:</p>
 <pre class="code">
   ( 1 ) : operator ( -- parser )
-          "/" token 
+          "/" token
           "*" token &lt;|&gt;
           "+" token &lt;|&gt;
           "-" token &lt;|&gt;
           [ "\\ " swap cat2 eval unit ] &lt;@ ;
   ( 2 ) : expression ( -- parser )
-          natural-parser 
-          operator sp &lt;&amp;&gt;  
-          natural-parser sp &lt;&amp;&gt; 
+          natural-parser
+          operator sp &lt;&amp;&gt;
+          natural-parser sp &lt;&amp;&gt;
           [ uncons swap uncons -rot append append reverse call ] &lt;@ ;
   ( 3 ) "40+2" expression call lcar .
         =&gt; [[ "" 42 ]]

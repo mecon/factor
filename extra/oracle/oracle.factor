@@ -64,27 +64,27 @@ C: <connection> connection
     check-result *void* env set ;
 
 : create-environment ( -- )
-    "void*" <c-object> dup OCI_DEFAULT f f f f 0 f OCIEnvCreate 
+    "void*" <c-object> dup OCI_DEFAULT f f f f 0 f OCIEnvCreate
     check-result *void* env set ;
 
 : allocate-error-handle ( -- )
     env get
-    "void*" <c-object> tuck OCI_HTYPE_ERROR 0 f OCIHandleAlloc 
+    "void*" <c-object> tuck OCI_HTYPE_ERROR 0 f OCIHandleAlloc
     check-result *void* err set ;
 
 : allocate-service-handle ( -- )
     env get
-    "void*" <c-object> tuck OCI_HTYPE_SVCCTX 0 f OCIHandleAlloc 
+    "void*" <c-object> tuck OCI_HTYPE_SVCCTX 0 f OCIHandleAlloc
     check-result *void* svc set ;
 
 : allocate-session-handle ( -- )
     env get
-    "void*" <c-object> tuck OCI_HTYPE_SESSION 0 f OCIHandleAlloc 
+    "void*" <c-object> tuck OCI_HTYPE_SESSION 0 f OCIHandleAlloc
     check-result *void* ses set ;
 
 : allocate-server-handle ( -- )
     env get
-    "void*" <c-object> tuck OCI_HTYPE_SERVER 0 f OCIHandleAlloc 
+    "void*" <c-object> tuck OCI_HTYPE_SERVER 0 f OCIHandleAlloc
     check-result *void* srv set ;
 
 : init ( -- )
@@ -100,8 +100,8 @@ C: <connection> connection
 ! =========================================================
 
 : oci-log-on ( -- )
-    env get err get svc get 
-    con get connection-username dup length swap malloc-char-string swap 
+    env get err get svc get
+    con get connection-username dup length swap malloc-char-string swap
     con get connection-password dup length swap malloc-char-string swap
     con get connection-db dup length swap malloc-char-string swap
     OCILogon check-result ;
@@ -118,11 +118,11 @@ C: <connection> connection
     svc get OCI_HTYPE_SVCCTX srv get 0 OCI_ATTR_SERVER err get OCIAttrSet check-result ;
 
 : set-username-attribute ( -- )
-    ses get OCI_HTYPE_SESSION con get connection-username dup length swap malloc-char-string swap 
+    ses get OCI_HTYPE_SESSION con get connection-username dup length swap malloc-char-string swap
     OCI_ATTR_USERNAME err get OCIAttrSet check-result ;
 
 : set-password-attribute ( -- )
-    ses get OCI_HTYPE_SESSION con get connection-password dup length swap malloc-char-string swap 
+    ses get OCI_HTYPE_SESSION con get connection-password dup length swap malloc-char-string swap
     OCI_ATTR_PASSWORD err get OCIAttrSet check-result ;
 
 : set-attributes ( -- )
@@ -146,7 +146,7 @@ C: <connection> connection
 
 : allocate-statement-handle ( -- )
     env get
-    "void*" <c-object> tuck OCI_HTYPE_STMT 0 f OCIHandleAlloc 
+    "void*" <c-object> tuck OCI_HTYPE_STMT 0 f OCIHandleAlloc
     check-result *void* stm set ;
 
 : prepare-statement ( statement -- )
@@ -229,9 +229,9 @@ C: <connection> connection
 ! =========================================================
 
 : log-on ( username password db -- )
-    <connection> con set 
+    <connection> con set
     init attach-to-server set-attributes
-    begin-session set-authentication-handle 
+    begin-session set-authentication-handle
     V{ } clone res set ;
 
 : fetch-each ( object -- object )

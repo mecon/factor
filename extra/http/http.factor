@@ -427,7 +427,7 @@ M: response write-full-response ( request response -- )
     [ name>> dupd get-cookie [ dupd delete-cookie ] when* ] keep
     over cookies>> push ;
 
-TUPLE: raw-response 
+TUPLE: raw-response
 version
 code
 message

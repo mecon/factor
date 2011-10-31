@@ -40,7 +40,7 @@ sequences.private ;
 ! [ CHAR: b ] [ 1 "abc" [ char-slot ] compile-call ] unit-test
 ! [ CHAR: b ] [ 1 [ "abc" char-slot ] compile-call ] unit-test
 ! [ CHAR: b ] [ [ 1 "abc" char-slot ] compile-call ] unit-test
-! 
+!
 ! [ "axc" ] [ CHAR: x 1 "abc" [ [ set-char-slot ] keep { string } declare dup rehash-string ] compile-call ] unit-test
 ! [ "axc" ] [ CHAR: x 1 [ "abc" [ set-char-slot ] keep { string } declare dup rehash-string ] compile-call ] unit-test
 ! [ "axc" ] [ CHAR: x [ 1 "abc" [ set-char-slot ] keep { string } declare dup rehash-string ] compile-call ] unit-test
@@ -228,7 +228,7 @@ sequences.private ;
 cell 8 = [
     [ t ] [ 1 59 fixnum-shift dup [ fixnum+ ] compile-call 1 60 fixnum-shift = ] unit-test
     [ -1152921504606846977 ] [ 1 60 shift neg >fixnum [ -1 fixnum+ ] compile-call ] unit-test
-    
+
     [ t ] [ 1 40 shift 1 40 shift [ fixnum* ] compile-call 1 80 shift = ] unit-test
     [ t ] [ 1 40 shift neg 1 40 shift [ fixnum* ] compile-call 1 80 shift neg = ] unit-test
     [ t ] [ 1 40 shift neg 1 40 shift neg [ fixnum* ] compile-call 1 80 shift = ] unit-test
@@ -241,7 +241,7 @@ cell 8 = [
     [ -18446744073709551616 ] [ -1 64 [ fixnum-shift ] compile-call ] unit-test
     [ -18446744073709551616 ] [ -1 [ 64 fixnum-shift ] compile-call ] unit-test
     [ -18446744073709551616 ] [ -1 [ 32 fixnum-shift 32 fixnum-shift ] compile-call ] unit-test
-    
+
     [ 1152921504606846976 ] [ -1152921504606846976 >fixnum -1 [ fixnum/i ] compile-call ] unit-test
 
     [ 1152921504606846976 0 ] [ -1152921504606846976 >fixnum -1 [ fixnum/mod ] compile-call ] unit-test

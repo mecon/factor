@@ -20,7 +20,7 @@ TUPLE: avl-node balance ;
     over avl-node-balance + swap set-avl-node-balance ;
 
 : rotate ( node -- node )
-    dup node+link dup node-link pick set-node+link tuck set-node-link ;    
+    dup node+link dup node-link pick set-node+link tuck set-node-link ;
 
 : single-rotate ( node -- node )
     0 over set-avl-node-balance 0 over node+link set-avl-node-balance rotate ;

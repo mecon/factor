@@ -6,7 +6,7 @@ IN: peg.pl0
 
 #! Grammar for PL/0 based on http://en.wikipedia.org/wiki/PL/0
 
-EBNF: pl0 
+EBNF: pl0
 _ = (" " | "\t" | "\n")* => [[ drop ignore ]]
 
 BEGIN       = "BEGIN" _
@@ -38,18 +38,18 @@ DIVIDE      = "/" _
 LPAREN      = "(" _
 RPAREN      = ")" _
 
-block       =  ( CONST ident EQ number ( COMMA ident EQ number )* SEMICOLON )? 
-               ( VAR ident ( COMMA ident )* SEMICOLON )? 
-               ( PROCEDURE ident SEMICOLON ( block SEMICOLON )? )* statement 
-statement   =  (  ident ASSIGN expression 
-                | CALL ident 
-                | BEGIN statement ( SEMICOLON statement )* END 
-                | IF condition THEN statement 
-                | WHILE condition DO statement )?  
-condition   =  ODD expression 
+block       =  ( CONST ident EQ number ( COMMA ident EQ number )* SEMICOLON )?
+               ( VAR ident ( COMMA ident )* SEMICOLON )?
+               ( PROCEDURE ident SEMICOLON ( block SEMICOLON )? )* statement
+statement   =  (  ident ASSIGN expression
+                | CALL ident
+                | BEGIN statement ( SEMICOLON statement )* END
+                | IF condition THEN statement
+                | WHILE condition DO statement )?
+condition   =  ODD expression
              | expression (EQ | NEQ | LTEQ | LT | GTEQ | GT) expression
 expression  = (ADD | SUBTRACT)? term ( (ADD | SUBTRACT) term )* _
-term        = factor ( (MULTIPLY | DIVIDE) factor )* 
+term        = factor ( (MULTIPLY | DIVIDE) factor )*
 factor      = ident | number | LPAREN expression RPAREN
 ident       = (([a-zA-Z])+) _ => [[ >string ]]
 digit       = ([0-9])         => [[ digit> ]]

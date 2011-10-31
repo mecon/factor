@@ -41,9 +41,9 @@ C-STRUCT: bio
     { "void*" "ptr" }
     { "void*" "next-bio" }
     { "void*" "prev-bio" }
-    { "int" "references" } 
+    { "int" "references" }
     { "ulong" "num-read" }
-    { "ulong" "num-write" } 
+    { "ulong" "num-write" }
     { "void*" "crypto-ex-data-stack" }
     { "int" "crypto-ex-data-dummy" } ;
 

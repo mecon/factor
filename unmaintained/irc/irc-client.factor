@@ -92,7 +92,7 @@ M: object handle-irc ( obj -- )
 
 M: logged-in handle-irc ( obj -- )
     logged-in-name irc-client get [ irc-client-nick set-nick-name ] keep
-    
+
     irc-client-profile profile-default-channels
     [
         [ channel-profile-name ] keep
@@ -182,7 +182,7 @@ M: join-command handle-command ( obj -- )
 M: part-command handle-command ( obj -- )
     [ part-command-channel ] keep part-command-text part ;
 
-M: service handle-command ( service -- )    
+M: service handle-command ( service -- )
     drop ;
 
 : command-handler ( -- )

@@ -18,7 +18,7 @@ HELP: define-consult
 { $notes "Usually, " { $link POSTPONE: CONSULT: } " should be used instead. This is only for runtime use." } ;
 
 HELP: CONSULT:
-{ $syntax "CONSULT: group class getter... ;" } 
+{ $syntax "CONSULT: group class getter... ;" }
 { $values { "group" "a protocol, generic word or tuple class" } { "class" "a class" } { "getter" "code to get where the method should be forwarded" } }
 { $description "Defines a class to consult, using the given code, on the generic words contained in the group. This means that, when one of the words in the group is called on an object of this class, the quotation will be called, and then the generic word called again. If the getter is empty, this will cause an infinite loop. Consultation overwrites the existing methods, but others can be defined afterwards." } ;
 

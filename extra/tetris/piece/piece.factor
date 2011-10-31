@@ -1,6 +1,6 @@
 ! Copyright (C) 2006, 2007 Alex Chapman
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel arrays tetris.tetromino math math.vectors 
+USING: kernel arrays tetris.tetromino math math.vectors
 sequences quotations lazy-lists ;
 IN: tetris.piece
 

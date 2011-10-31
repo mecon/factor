@@ -11,7 +11,7 @@ USING: generic kernel math sequences isequences.interface isequences.base ;
 
 TUPLE: p-iota offset size ;
 
-: <ip-iota> ( offset size -- p-iota ) 
+: <ip-iota> ( offset size -- p-iota )
     dup zero? [ nip ] [ dup 1 = [ drop <i> <i> ] [ <p-iota> ] if ] if ; inline
 
 M: p-iota i-length p-iota-size ;
@@ -29,7 +29,7 @@ M: p-iota descending? drop f ;
 !
 TUPLE: n-iota offset size ;
 
-: <in-iota> ( offset size -- n-iota ) 
+: <in-iota> ( offset size -- n-iota )
     dup zero? [ nip ] [ dup 1 = [ drop <i> <i> ] [ <n-iota> ] if ] if ; inline
 
 M: n-iota i-length n-iota-size ;
@@ -40,7 +40,7 @@ M: n-iota ihead (ihead) ;
 M: n-iota itail (itail) ;
 M: n-iota $$ dup n-iota-offset swap n-iota-size [ $$ -- ] 2apply quick-hash ;
 M: n-iota ascending? drop f ;
-M: n-iota descending? drop t ; 
+M: n-iota descending? drop t ;
 
 M: object ~~
     0 over i-length dup 0 <

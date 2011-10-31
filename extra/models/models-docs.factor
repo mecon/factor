@@ -179,17 +179,17 @@ HELP: range-max-value*
 
 HELP: set-range-value
 { $values { "value" object } { "model" model } }
-{ $description "Sets the current value of a range model." } 
+{ $description "Sets the current value of a range model." }
 { $side-effects "model" } ;
 
 HELP: set-range-page-value
 { $values { "value" object } { "model" model } }
-{ $description "Sets the page size of a range model." } 
+{ $description "Sets the page size of a range model." }
 { $side-effects "model" } ;
 
 HELP: set-range-min-value
 { $values { "value" object } { "model" model } }
-{ $description "Sets the minimum value of a range model." } 
+{ $description "Sets the minimum value of a range model." }
 { $side-effects "model" } ;
 
 HELP: set-range-max-value
@@ -287,13 +287,13 @@ ARTICLE: "models-range" "Range models"
 ARTICLE: "range-model-protocol" "Range model protocol"
 "The range model protocol is implemented by the " { $link range } " and " { $link compose } " classes. User-defined models may implement it too."
 { $subsection range-value          }
-{ $subsection range-page-value     } 
-{ $subsection range-min-value      } 
-{ $subsection range-max-value      } 
-{ $subsection range-max-value*     } 
-{ $subsection set-range-value      } 
-{ $subsection set-range-page-value } 
-{ $subsection set-range-min-value  } 
+{ $subsection range-page-value     }
+{ $subsection range-min-value      }
+{ $subsection range-max-value      }
+{ $subsection range-max-value*     }
+{ $subsection set-range-value      }
+{ $subsection set-range-page-value }
+{ $subsection set-range-min-value  }
 { $subsection set-range-max-value  } ;
 
 ARTICLE: "models-impl" "Implementing models"

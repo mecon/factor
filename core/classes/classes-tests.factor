@@ -107,7 +107,7 @@ USE: io.streams.string
 
 2 [
     [ "mixin-forget-test" forget-source ] with-compilation-unit
-    
+
     [ ] [
         {
             "USING: sequences ;"
@@ -119,10 +119,10 @@ USE: io.streams.string
         } "\n" join <string-reader> "mixin-forget-test"
         parse-stream drop
     ] unit-test
-    
+
     [ { } ] [ { } "mixin-forget-test-g" "classes.tests" lookup execute ] unit-test
     [ H{ } "mixin-forget-test-g" "classes.tests" lookup execute ] must-fail
-    
+
     [ ] [
         {
             "USING: hashtables ;"
@@ -134,7 +134,7 @@ USE: io.streams.string
         } "\n" join <string-reader> "mixin-forget-test"
         parse-stream drop
     ] unit-test
-    
+
     [ { } "mixin-forget-test-g" "classes.tests" lookup execute ] must-fail
     [ H{ } ] [ H{ } "mixin-forget-test-g" "classes.tests" lookup execute ] unit-test
 ] times

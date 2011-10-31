@@ -13,12 +13,12 @@ TUPLE: icache left right size hash ;
 : <i-cache> ( s -- cs )
     ! only cache isequences with size > 16
     dup i-length 16 > [ f f f f <icache> tuck set-delegate ] when ; inline
-    
+
 : cached-length ( s -- n )
     dup icache-size dup not
     [ drop dup delegate i-length tuck swap set-icache-size ]
     [ nip ] if ; inline
-: cached-ileft ( s -- s ) 
+: cached-ileft ( s -- s )
     dup icache-left dup not
     [ drop dup delegate ileft CC tuck swap set-icache-left ]
     [ nip ] if ; inline
@@ -26,7 +26,7 @@ TUPLE: icache left right size hash ;
     dup icache-right dup not
     [ drop dup delegate iright CC tuck swap set-icache-right ]
     [ nip ] if ; inline
-: cached-$$ ( s -- hash ) 
+: cached-$$ ( s -- hash )
     dup icache-hash dup not
     [ drop dup delegate $$ tuck swap set-icache-hash ]
     [ nip ] if ; inline

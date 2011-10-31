@@ -213,7 +213,7 @@ IN: tools.deploy.shaker
     { } set-retainstack
     V{ } set-namestack
     V{ } set-catchstack
-    
+
     "Saving final image" show
     [ save-image-and-exit ] call-clear ;
 

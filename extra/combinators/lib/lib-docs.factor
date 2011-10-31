@@ -14,11 +14,11 @@ HELP: generate
 
 HELP: ndip
 { $values { "quot" quotation } { "n" number } }
-{ $description "A generalisation of " { $link dip } " that can work " 
+{ $description "A generalisation of " { $link dip } " that can work "
 "for any stack depth. The quotation will be called with a stack that "
 "has 'n' items removed first. The 'n' items are then put back on the "
 "stack. The quotation can consume and produce any number of items."
-} 
+}
 { $examples
   { $example "USING: combinators.lib kernel prettyprint ;" "1 2 [ dup ] 1 ndip .s" "1\n1\n2" }
   { $example "USING: combinators.lib kernel prettyprint ;" "1 2 3 [ drop ] 2 ndip .s" "2\n3" }
@@ -27,10 +27,10 @@ HELP: ndip
 
 HELP: nslip
 { $values { "n" number } }
-{ $description "A generalisation of " { $link slip } " that can work " 
+{ $description "A generalisation of " { $link slip } " that can work "
 "for any stack depth. The first " { $snippet "n" } " items after the quotation will be "
 "removed from the stack, the quotation called, and the items restored."
-} 
+}
 { $examples
   { $example "USING: combinators.lib prettyprint ;" "[ 99 ] 1 2 3 4 5 5 nslip .s" "99\n1\n2\n3\n4\n5" }
 }
@@ -38,10 +38,10 @@ HELP: nslip
 
 HELP: nkeep
 { $values { "quot" quotation } { "n" number } }
-{ $description "A generalisation of " { $link keep } " that can work " 
+{ $description "A generalisation of " { $link keep } " that can work "
 "for any stack depth. The first " { $snippet "n" } " items after the quotation will be "
 "saved, the quotation called, and the items restored."
-} 
+}
 { $examples
   { $example "USING: combinators.lib kernel prettyprint ;" "1 2 3 4 5 [ drop drop drop drop drop 99 ] 5 nkeep .s" "99\n1\n2\n3\n4\n5" }
 }

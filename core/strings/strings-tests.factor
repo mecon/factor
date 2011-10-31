@@ -46,7 +46,7 @@ unit-test
 [ 1 "" nth ] must-fail
 [ -6 "hello" nth ] must-fail
 
-[ t ] [ "hello world" dup >vector >string = ] unit-test 
+[ t ] [ "hello world" dup >vector >string = ] unit-test
 
 [ "ab" ] [ 2 "abc" resize-string ] unit-test
 [ "abc\0\0\0" ] [ 6 "abc" resize-string ] unit-test

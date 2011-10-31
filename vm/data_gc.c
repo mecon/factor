@@ -263,7 +263,7 @@ CELL next_object(void)
 
 	if(heap_scan_ptr >= data_heap->generations[TENURED].here)
 		return F;
-	
+
 	type = untag_header(value);
 	heap_scan_ptr += untagged_object_size(heap_scan_ptr);
 
@@ -810,7 +810,7 @@ DEFINE_PRIMITIVE(become)
 		critical_error("bad parameters to become",0);
 
 	CELL i;
-	
+
 	for(i = 0; i < capacity; i++)
 	{
 		CELL old_obj = array_nth(old_objects,i);

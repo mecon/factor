@@ -72,7 +72,7 @@ M: mx unregister-io-task ( task mx -- )
 : check-null ( n -- ) zero? [ (io-error) ] when ;
 
 : io-error ( n -- ) 0 < [ (io-error) ] when ;
- 
+
 M: integer init-handle ( fd -- )
     #! We drop the error code rather than calling io-error,
     #! since on OS X 10.3, this operation fails from init-io

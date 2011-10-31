@@ -15,10 +15,10 @@ SYMBOL: page
 ! =========================================================
 
 : check-status ( status -- )
-    dup zero? [ 
+    dup zero? [
         drop
     ] [
-        error-code >hashtable at throw   
+        error-code >hashtable at throw
     ] if ;
 
 ! =========================================================

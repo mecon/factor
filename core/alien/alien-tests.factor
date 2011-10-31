@@ -47,7 +47,7 @@ cell 8 = [
       HEX: 123412341234 over 0 set-alien-signed-8
       0 alien-signed-8
     ] unit-test
-    
+
     [ HEX: 123412341234 ] [
       8 <byte-array>
       HEX: 123412341234 over 0 set-alien-signed-cell

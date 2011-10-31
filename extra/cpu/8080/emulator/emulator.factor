@@ -117,23 +117,23 @@ M: cpu write-port ( value port cpu -- )
     2drop HEX: FF
   ] if ;
 
-: read-word ( addr cpu -- word )  
+: read-word ( addr cpu -- word )
   #! Read a 16-bit word from memory at the specified address.
   #! The address is 16-bit, but if a value greater than
   #! 0xFFFF is provided then return a default value.
   [ read-byte ] 2keep >r 1 + r> read-byte 8 shift bitor ;
- 
+
 : next-byte ( cpu -- byte )
   #! Return the value of the byte at PC, and increment PC.
   [ cpu-pc ] keep
-  [ read-byte ] keep 
+  [ read-byte ] keep
   [ cpu-pc 1 + ] keep
   set-cpu-pc ;
 
 : next-word ( cpu -- word )
   #! Return the value of the word at PC, and increment PC.
   [ cpu-pc ] keep
-  [ read-word ] keep 
+  [ read-word ] keep
   [ cpu-pc 2 + ] keep
   set-cpu-pc ;
 
@@ -153,15 +153,15 @@ M: cpu write-port ( value port cpu -- )
   >r >r >word< r> r> [ write-byte ] 2keep >r 1 + r> write-byte ;
 
 : cpu-a-bitand ( quot cpu -- )
-  #! A &= quot call 
+  #! A &= quot call
   [ cpu-a swap call bitand ] keep set-cpu-a ; inline
 
 : cpu-a-bitor ( quot cpu -- )
-  #! A |= quot call 
+  #! A |= quot call
   [ cpu-a swap call bitor ] keep set-cpu-a ; inline
 
 : cpu-a-bitxor ( quot cpu -- )
-  #! A ^= quot call 
+  #! A ^= quot call
   [ cpu-a swap call bitxor ] keep set-cpu-a ; inline
 
 : cpu-a-bitxor= ( value cpu -- )
@@ -169,15 +169,15 @@ M: cpu write-port ( value port cpu -- )
   [ cpu-a bitxor ] keep set-cpu-a ;
 
 : cpu-f-bitand ( quot cpu -- )
-  #! F &= quot call 
+  #! F &= quot call
   [ cpu-f swap call bitand ] keep set-cpu-f ; inline
 
 : cpu-f-bitor ( quot cpu -- )
-  #! F |= quot call 
+  #! F |= quot call
   [ cpu-f swap call bitor ] keep set-cpu-f ; inline
 
 : cpu-f-bitxor ( quot cpu -- )
-  #! F |= quot call 
+  #! F |= quot call
   [ cpu-f swap call bitxor ] keep set-cpu-f ; inline
 
 : cpu-f-bitor= ( value cpu -- )
@@ -204,7 +204,7 @@ M: cpu write-port ( value port cpu -- )
   swap HEX: FF bitand 0 = [ zero-flag set-flag ] [ zero-flag clear-flag ] if ;
 
 : update-sign-flag ( result cpu -- )
-  #! If the most significant bit of the result 
+  #! If the most significant bit of the result
   #! has the value 1 then the flag is set, otherwise
   #! it is reset.
   swap HEX: 80 bitand 0 = [ sign-flag clear-flag ] [ sign-flag set-flag ] if ;
@@ -216,7 +216,7 @@ M: cpu write-port ( value port cpu -- )
   swap HEX: FF bitand 2 mod 0 = [ parity-flag set-flag ] [ parity-flag clear-flag ] if ;
 
 : update-carry-flag ( result cpu -- )
-  #! If the instruction resulted in a carry (from addition) 
+  #! If the instruction resulted in a carry (from addition)
   #! or a borrow (from subtraction or a comparison) out of the
   #! higher order bit, this flag is set, otherwise it is reset.
   swap dup HEX: 100 >= swap 0 < or [ carry-flag set-flag ] [ carry-flag clear-flag ] if ;
@@ -227,7 +227,7 @@ M: cpu write-port ( value port cpu -- )
   #! The 'original' is the original value of the register being changed.
   #! 'change-by' is the amount it is being added or decremented by.
   #! 'result' is the result of that change.
-  >r bitxor bitxor HEX: 10 bitand 0 = not r> 
+  >r bitxor bitxor HEX: 10 bitand 0 = not r>
   swap [ half-carry-flag set-flag ] [ half-carry-flag clear-flag ] if ;
 
 : update-flags ( result cpu -- )
@@ -244,7 +244,7 @@ M: cpu write-port ( value port cpu -- )
 : add-byte ( lhs rhs cpu -- result )
   #! Add rhs to lhs
   >r 2dup + r> ! lhs rhs result cpu
-  [ update-flags ] 2keep 
+  [ update-flags ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
 
@@ -256,34 +256,34 @@ M: cpu write-port ( value port cpu -- )
   #! Add rhs to lhs plus carry.
   >r 2dup + r> ! lhs rhs result cpu
   [ add-carry ] keep
-  [ update-flags ] 2keep 
+  [ update-flags ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
 
-: sub-carry ( change-by result cpu -- change-by result ) 
+: sub-carry ( change-by result cpu -- change-by result )
   #! Subtract the effect of the carry flag from the result
   flag-c? [ 1 - >r 1 - r>  ] when ;
 
 : sub-byte ( lhs rhs cpu -- result )
   #! Subtract rhs from lhs
-  >r 2dup - r> 
-  [ update-flags ] 2keep 
+  >r 2dup - r>
+  [ update-flags ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
 
 : sub-byte-with-carry ( lhs rhs cpu -- result )
   #! Subtract rhs from lhs and take carry into account
-  >r 2dup - r> 
-  [ sub-carry ] keep 
-  [ update-flags ] 2keep 
+  >r 2dup - r>
+  [ sub-carry ] keep
+  [ update-flags ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
- 
+
 : inc-byte ( byte cpu -- result )
   #! Increment byte by one. Note that carry flag is not affected
   #! by this operation.
   >r 1 2dup + r> ! lhs rhs result cpu
-  [ update-flags-no-carry ] 2keep 
+  [ update-flags-no-carry ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
 
@@ -291,7 +291,7 @@ M: cpu write-port ( value port cpu -- )
   #! Decrement byte by one. Note that carry flag is not affected
   #! by this operation.
   >r 1 2dup - r> ! lhs rhs result cpu
-  [ update-flags-no-carry ] 2keep 
+  [ update-flags-no-carry ] 2keep
   [ update-half-carry-flag ] 2keep
   drop HEX: FF bitand ;
 
@@ -311,27 +311,27 @@ M: cpu write-port ( value port cpu -- )
 : bit3or ( lhs rhs -- 0|1 )
   #! bitor bit 3 of the two numbers on the stack
   BIN: 00001000 bitand -3 shift >r
-  BIN: 00001000 bitand -3 shift r> 
+  BIN: 00001000 bitand -3 shift r>
   bitor ;
 
 : and-byte ( lhs rhs cpu -- result )
   #! Logically and rhs to lhs. The carry flag is cleared and
   #! the half carry is set to the ORing of bits 3 of the operands.
   [ drop bit3or ] 3keep ! bit3or lhs rhs cpu
-  >r bitand r> [ update-flags ] 2keep 
+  >r bitand r> [ update-flags ] 2keep
   [ carry-flag clear-flag ] keep
   rot 0 = [ half-carry-flag set-flag ] [ half-carry-flag clear-flag ] if
   HEX: FF bitand ;
 
 : xor-byte ( lhs rhs cpu -- result )
   #! Logically xor rhs to lhs. The carry and half-carry flags are cleared.
-  >r bitxor r> [ update-flags ] 2keep 
+  >r bitxor r> [ update-flags ] 2keep
   [ half-carry-flag carry-flag bitor clear-flag ] keep
   drop HEX: FF bitand ;
 
 : or-byte ( lhs rhs cpu -- result )
   #! Logically or rhs to lhs. The carry and half-carry flags are cleared.
-  >r bitor r> [ update-flags ] 2keep 
+  >r bitor r> [ update-flags ] 2keep
   [ half-carry-flag carry-flag bitor clear-flag ] keep
   drop HEX: FF bitand ;
 
@@ -339,8 +339,8 @@ M: cpu write-port ( value port cpu -- )
   [ 0 [ execute bitor ] reduce ] map ;
 
 : decrement-sp ( n cpu -- )
-  #! Decrement the stackpointer by n.  
-  [ cpu-sp ] keep 
+  #! Decrement the stackpointer by n.
+  [ cpu-sp ] keep
   >r swap - r> set-cpu-sp ;
 
 : save-pc ( cpu -- )
@@ -357,14 +357,14 @@ M: cpu write-port ( value port cpu -- )
 : pop-pc ( cpu -- pc )
   #! Pop the value of the PC off the stack.
   [ cpu-sp ] keep
-  [ read-word ] keep 
+  [ read-word ] keep
   -2 swap decrement-sp ;
 
 : push-sp ( value cpu -- )
   [ 2 swap decrement-sp ] keep
   [ cpu-sp ] keep
   write-word ;
-  
+
 : pop-sp ( cpu -- value )
   [ cpu-sp ] keep
   [ read-word ] keep
@@ -372,15 +372,15 @@ M: cpu write-port ( value port cpu -- )
 
 : call-sub ( addr cpu -- )
   #! Call the address as a subroutine.
-  dup push-pc 
+  dup push-pc
   >r HEX: FFFF bitand r> set-cpu-pc ;
 
 : ret-from-sub ( cpu -- )
   [ pop-pc ] keep set-cpu-pc ;
- 
+
 : interrupt ( number cpu -- )
   #! Perform a hardware interrupt
-!  "***Interrupt: " write over 16 >base print 
+!  "***Interrupt: " write over 16 >base print
   dup cpu-f interrupt-flag bitand 0 = not [
     dup push-pc
     set-cpu-pc
@@ -391,7 +391,7 @@ M: cpu write-port ( value port cpu -- )
 : inc-cycles ( n cpu -- )
   #! Increment the number of cpu cycles
   [ cpu-cycles + ] keep set-cpu-cycles ;
-  
+
 : instruction-cycles ( -- vector )
   #! Return a 256 element vector containing the cycles for
   #! each opcode in the 8080 instruction set.
@@ -419,7 +419,7 @@ M: cpu reset ( cpu -- )
   [ 0 swap set-cpu-a  ] keep
   [ 0 swap set-cpu-f  ] keep
   [ 0 swap set-cpu-pc  ] keep
-  [ HEX: F000 swap set-cpu-sp  ] keep 
+  [ HEX: F000 swap set-cpu-sp  ] keep
   [ HEX: FFFF 0 <array> swap set-cpu-ram ] keep
   [ f swap set-cpu-halted? ] keep
   [ HEX: 10 swap set-cpu-last-interrupt ] keep
@@ -439,7 +439,7 @@ M: cpu reset ( cpu -- )
 : load-rom ( filename cpu -- )
   #! Load the contents of the file into ROM.
   #! (address 0x0000-0x1FFF).
-  cpu-ram swap binary [ 
+  cpu-ram swap binary [
     0 swap (load-rom)
   ] with-file-reader ;
 
@@ -455,18 +455,18 @@ SYMBOL: rom-root
   #! file path shoul dbe relative to the '/roms' resource path.
   rom-dir [
     cpu-ram [
-      swap first2 rom-dir prepend-path binary [      
+      swap first2 rom-dir prepend-path binary [
         swap (load-rom)
       ] with-file-reader
-    ] curry each 
+    ] curry each
   ] [
-    ! 
+    !
     ! the ROM files.
     "Set 'rom-root' to the path containing the root of the 8080 ROM files." throw
   ] if ;
 
 : read-instruction ( cpu -- word )
-  #! Read the next instruction from the cpu's program 
+  #! Read the next instruction from the cpu's program
   #! counter, and increment the program counter.
   [ cpu-pc ] keep ! pc cpu
   [ over 1 + swap set-cpu-pc ] keep
@@ -475,24 +475,24 @@ SYMBOL: rom-root
 : get-cycles ( n -- opcode )
   #! Returns the cycles for the given instruction value.
   #! If the opcode is not defined throw an error.
-  dup instruction-cycles nth [ 
-    nip  
+  dup instruction-cycles nth [
+    nip
   ] [
     [ "Undefined 8080 opcode: " % number>string % ] "" make throw
   ] if* ;
 
 : process-interrupts ( cpu -- )
   #! Process any hardware interrupts
-  [ cpu-cycles ] keep 
+  [ cpu-cycles ] keep
   over 16667 < [
     2drop
-  ] [ 
+  ] [
     [ >r 16667 - r> set-cpu-cycles ] keep
     dup cpu-last-interrupt HEX: 10 = [
       HEX: 08 over set-cpu-last-interrupt HEX: 08 swap interrupt
     ] [
       HEX: 10 over set-cpu-last-interrupt HEX: 10 swap interrupt
-    ] if     
+    ] if
   ] if ;
 
 : peek-instruction ( cpu -- word )
@@ -501,32 +501,32 @@ SYMBOL: rom-root
   [ cpu-pc ] keep read-byte instructions nth first ;
 
 : cpu. ( cpu -- )
-  [ " PC: " write cpu-pc 16 >base 4 CHAR: \s pad-left write ] keep 
-  [ " B: " write cpu-b 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " C: " write cpu-c 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " D: " write cpu-d 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " E: " write cpu-e 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " F: " write cpu-f 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " H: " write cpu-h 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " L: " write cpu-l 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " A: " write cpu-a 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " SP: " write cpu-sp 16 >base 4 CHAR: \s pad-left write ] keep 
-  [ " cycles: " write cpu-cycles number>string 5 CHAR: \s pad-left write ] keep 
+  [ " PC: " write cpu-pc 16 >base 4 CHAR: \s pad-left write ] keep
+  [ " B: " write cpu-b 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " C: " write cpu-c 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " D: " write cpu-d 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " E: " write cpu-e 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " F: " write cpu-f 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " H: " write cpu-h 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " L: " write cpu-l 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " A: " write cpu-a 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " SP: " write cpu-sp 16 >base 4 CHAR: \s pad-left write ] keep
+  [ " cycles: " write cpu-cycles number>string 5 CHAR: \s pad-left write ] keep
   [ " " write peek-instruction word-name write " " write ] keep
   nl drop ;
 
 : cpu*. ( cpu -- )
-  [ " PC: " write cpu-pc 16 >base 4 CHAR: \s pad-left write ] keep 
-  [ " B: " write cpu-b 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " C: " write cpu-c 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " D: " write cpu-d 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " E: " write cpu-e 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " F: " write cpu-f 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " H: " write cpu-h 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " L: " write cpu-l 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " A: " write cpu-a 16 >base 2 CHAR: \s pad-left write ] keep 
-  [ " SP: " write cpu-sp 16 >base 4 CHAR: \s pad-left write ] keep 
-  [ " cycles: " write cpu-cycles number>string 5 CHAR: \s pad-left write ] keep 
+  [ " PC: " write cpu-pc 16 >base 4 CHAR: \s pad-left write ] keep
+  [ " B: " write cpu-b 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " C: " write cpu-c 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " D: " write cpu-d 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " E: " write cpu-e 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " F: " write cpu-f 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " H: " write cpu-h 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " L: " write cpu-l 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " A: " write cpu-a 16 >base 2 CHAR: \s pad-left write ] keep
+  [ " SP: " write cpu-sp 16 >base 4 CHAR: \s pad-left write ] keep
+  [ " cycles: " write cpu-cycles number>string 5 CHAR: \s pad-left write ] keep
   nl drop ;
 
 : register-lookup ( string -- vector )
@@ -569,22 +569,22 @@ SYMBOL: $3
 SYMBOL: $4
 
 : replace-patterns ( vector tree -- tree )
-  #! Copy the tree, replacing each occurence of 
-  #! $1, $2, etc with the relevant item from the 
+  #! Copy the tree, replacing each occurence of
+  #! $1, $2, etc with the relevant item from the
   #! given index.
   dup quotation? over [ ] = not and [ ! vector tree
     dup first swap 1 tail ! vector car cdr
     >r dupd replace-patterns ! vector v R: cdr
     swap r> replace-patterns >r 1quotation r> append
   ] [ ! vector value
-    dup $1 = [ drop 0 over nth  ] when 
-    dup $2 = [ drop 1 over nth  ] when 
-    dup $3 = [ drop 2 over nth  ] when 
-    dup $4 = [ drop 3 over nth  ] when 
+    dup $1 = [ drop 0 over nth  ] when
+    dup $2 = [ drop 1 over nth  ] when
+    dup $3 = [ drop 2 over nth  ] when
+    dup $4 = [ drop 3 over nth  ] when
     nip
   ] if ;
 
-: test-rp 
+: test-rp
   { 4 5 3 } [ 1 $2 [ $1 4 ] ] replace-patterns ;
 
 : (emulate-RST) ( n cpu -- )
@@ -609,9 +609,9 @@ SYMBOL: $4
   #! one position. The low order bit and the carry flag
   #! are both set to the value shifd out of the high
   #! order bit position. Only the carry flag is affected.
-  [ cpu-a -7 shift ] keep 
+  [ cpu-a -7 shift ] keep
   over 0 = [ dup carry-flag clear-flag ] [ dup carry-flag set-flag ] if
-  [ cpu-a 1 shift HEX: FF bitand ] keep 
+  [ cpu-a 1 shift HEX: FF bitand ] keep
   >r bitor r> set-cpu-a ;
 
 : (emulate-RRCA) ( cpu -- )
@@ -619,59 +619,59 @@ SYMBOL: $4
   #! one position. The high order bit and the carry flag
   #! are both set to the value shifd out of the low
   #! order bit position. Only the carry flag is affected.
-  [ cpu-a 1 bitand 7 shift ] keep 
+  [ cpu-a 1 bitand 7 shift ] keep
   over 0 = [ dup carry-flag clear-flag ] [ dup carry-flag set-flag ] if
-  [ cpu-a 254 bitand -1 shift ] keep 
+  [ cpu-a 254 bitand -1 shift ] keep
   >r bitor r> set-cpu-a ;
 
-: (emulate-RLA) ( cpu -- )  
+: (emulate-RLA) ( cpu -- )
   #! The content of the accumulator is rotated left
   #! one position through the carry flag. The low
   #! order bit is set equal to the carry flag and
-  #! the carry flag is set to the value shifd out 
+  #! the carry flag is set to the value shifd out
   #! of the high order bit. Only the carry flag is
   #! affected.
-  [ carry-flag swap flag-set? [ 1 ] [ 0 ] if ] keep 
-  [ cpu-a 127 bitand 7 shift ] keep 
+  [ carry-flag swap flag-set? [ 1 ] [ 0 ] if ] keep
+  [ cpu-a 127 bitand 7 shift ] keep
   dup cpu-a 128 bitand 0 = [ dup carry-flag clear-flag ] [ dup carry-flag set-flag ] if
   >r bitor r> set-cpu-a ;
 
-: (emulate-RRA) ( cpu -- )  
+: (emulate-RRA) ( cpu -- )
   #! The content of the accumulator is rotated right
   #! one position through the carry flag. The high order
   #! bit is set to the carry flag and the carry flag is
-  #! set to the value shifd out of the low order bit. 
+  #! set to the value shifd out of the low order bit.
   #! Only the carry flag is affected.
-  [ carry-flag swap flag-set? [ BIN: 10000000 ] [ 0 ] if ] keep 
-  [ cpu-a 254 bitand -1 shift ] keep 
+  [ carry-flag swap flag-set? [ BIN: 10000000 ] [ 0 ] if ] keep
+  [ cpu-a 254 bitand -1 shift ] keep
   dup cpu-a 1 bitand 0 = [ dup carry-flag clear-flag ] [ dup carry-flag set-flag ] if
   >r bitor r> set-cpu-a ;
 
-: (emulate-CPL) ( cpu -- )  
+: (emulate-CPL) ( cpu -- )
   #! The contents of the accumulator are complemented
   #! (zero bits become one, one bits becomes zero).
   #! No flags are affected.
   HEX: FF swap cpu-a-bitxor= ;
 
-: (emulate-DAA) ( cpu -- )  
+: (emulate-DAA) ( cpu -- )
   #! The eight bit number in the accumulator is
   #! adjusted to form two four-bit binary-coded-decimal
   #! digits.
   [
-    dup half-carry-flag swap flag-set? swap 
-    cpu-a BIN: 1111 bitand 9 > or [ 6 ] [ 0 ] if 
-  ] keep 
+    dup half-carry-flag swap flag-set? swap
+    cpu-a BIN: 1111 bitand 9 > or [ 6 ] [ 0 ] if
+  ] keep
   [ cpu-a + ] keep
-  [ update-flags ] 2keep  
-  [ swap HEX: FF bitand swap set-cpu-a ] keep 
+  [ update-flags ] 2keep
+  [ swap HEX: FF bitand swap set-cpu-a ] keep
   [
-    dup carry-flag swap flag-set? swap 
-    cpu-a -4 shift BIN: 1111 bitand 9 > or [ 96 ] [ 0 ] if 
-  ] keep 
+    dup carry-flag swap flag-set? swap
+    cpu-a -4 shift BIN: 1111 bitand 9 > or [ 96 ] [ 0 ] if
+  ] keep
   [ cpu-a + ] keep
-  [ update-flags ] 2keep  
+  [ update-flags ] 2keep
   swap HEX: FF bitand swap set-cpu-a ;
-  
+
 : patterns ( -- hashtable )
   #! table of code quotation patterns for each type of instruction.
   H{
@@ -721,7 +721,7 @@ SYMBOL: $4
     { "RRCA"          [ (emulate-RRCA) ]               }
     { "HALT"          [ drop  ]               }
     { "DI"          [ [ 255 interrupt-flag - ] swap cpu-f-bitand  ]               }
-    { "EI"          [ [ interrupt-flag ] swap cpu-f-bitor  ]  }  
+    { "EI"          [ [ interrupt-flag ] swap cpu-f-bitor  ]  }
     { "POP-RR"     [ [ pop-sp ] keep $2 ] }
     { "PUSH-RR"     [ [ $1 ] keep push-sp ] }
     { "INC-R"     [ [ $1 ] keep [ inc-byte ] keep $2 ] }
@@ -758,7 +758,7 @@ SYMBOL: $4
   #! is the getter word for that register with stack effect
   #! ( cpu -- value ). The second item is the setter word with
   #! stack effect ( value cpu -- ).
-  "A" token 
+  "A" token
   "B" token  <|>
   "C" token  <|>
   "D" token  <|>
@@ -767,14 +767,14 @@ SYMBOL: $4
   "L" token  <|> [ register-lookup ] <@ ;
 
 : all-flags
-  #! A parser for 16-bit flags. 
-  "NZ" token  
+  #! A parser for 16-bit flags.
+  "NZ" token
   "NC" token <|>
   "PO" token <|>
-  "PE" token <|> 
-  "Z" token <|> 
-  "C" token <|> 
-  "P" token <|> 
+  "PE" token <|>
+  "Z" token <|>
+  "C" token <|>
+  "P" token <|>
   "M" token <|> [ flag-lookup ] <@ ;
 
 : 16-bit-registers
@@ -783,7 +783,7 @@ SYMBOL: $4
   #! is the getter word for that register with stack effect
   #! ( cpu -- value ). The second item is the setter word with
   #! stack effect ( value cpu -- ).
-  "AF" token  
+  "AF" token
   "BC" token <|>
   "DE" token <|>
   "HL" token <|>
@@ -791,7 +791,7 @@ SYMBOL: $4
 
 : all-registers ( -- parser )
   #! Return a parser that can parse the format
-  #! for 8 bit or 16 bit registers. 
+  #! for 8 bit or 16 bit registers.
   8-bit-registers 16-bit-registers <|> ;
 
 : indirect ( parser -- parser )
@@ -802,19 +802,19 @@ SYMBOL: $4
   "(" token swap &> ")" token <& ;
 
 : generate-instruction ( vector string -- quot )
-  #! Generate the quotation for an instruction, given the instruction in 
+  #! Generate the quotation for an instruction, given the instruction in
   #! the 'string' and a vector containing the arguments for that instruction.
   patterns at replace-patterns ;
 
 : simple-instruction ( token -- parser )
-  #! Return a parser for then instruction identified by the token. 
+  #! Return a parser for then instruction identified by the token.
   #! The parser return parses the token only and expects no additional
   #! arguments to the instruction.
   token [ [ { } clone , , \ generate-instruction , ] [ ] make ] <@ ;
 
 : complex-instruction ( type token -- parser )
-  #! Return a parser for an instruction identified by the token. 
-  #! The instruction is expected to take additional arguments by 
+  #! Return a parser for an instruction identified by the token.
+  #! The instruction is expected to take additional arguments by
   #! being combined with other parsers. Then 'type' is used for a lookup
   #! in a pattern hashtable to return the instruction quotation pattern.
   token swap [ nip [ , \ generate-instruction , ] [ ] make ] curry <@ ;
@@ -822,75 +822,75 @@ SYMBOL: $4
 : NOP-instruction ( -- parser )
   "NOP" simple-instruction ;
 
-: RET-NN-instruction ( -- parser )  
-  "RET-NN" "RET" complex-instruction  
+: RET-NN-instruction ( -- parser )
+  "RET-NN" "RET" complex-instruction
   "nn" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-0-instruction ( -- parser )  
-  "RST-0" "RST" complex-instruction  
+: RST-0-instruction ( -- parser )
+  "RST-0" "RST" complex-instruction
   "0" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-8-instruction ( -- parser )  
-  "RST-8" "RST" complex-instruction  
+: RST-8-instruction ( -- parser )
+  "RST-8" "RST" complex-instruction
   "8" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-10H-instruction ( -- parser )  
-  "RST-10H" "RST" complex-instruction  
+: RST-10H-instruction ( -- parser )
+  "RST-10H" "RST" complex-instruction
   "10H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-18H-instruction ( -- parser )  
-  "RST-18H" "RST" complex-instruction  
+: RST-18H-instruction ( -- parser )
+  "RST-18H" "RST" complex-instruction
   "18H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-20H-instruction ( -- parser )  
-  "RST-20H" "RST" complex-instruction  
+: RST-20H-instruction ( -- parser )
+  "RST-20H" "RST" complex-instruction
   "20H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-28H-instruction ( -- parser )  
-  "RST-28H" "RST" complex-instruction  
+: RST-28H-instruction ( -- parser )
+  "RST-28H" "RST" complex-instruction
   "28H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-30H-instruction ( -- parser )  
-  "RST-30H" "RST" complex-instruction  
+: RST-30H-instruction ( -- parser )
+  "RST-30H" "RST" complex-instruction
   "30H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: RST-38H-instruction ( -- parser )  
-  "RST-38H" "RST" complex-instruction  
+: RST-38H-instruction ( -- parser )
+  "RST-38H" "RST" complex-instruction
   "38H" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
-: JP-NN-instruction ( -- parser )  
-  "JP-NN" "JP" complex-instruction  
+: JP-NN-instruction ( -- parser )
+  "JP-NN" "JP" complex-instruction
   "nn" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
 : JP-F|FF,NN-instruction ( -- parser )
-  "JP-F|FF,NN" "JP" complex-instruction  
-  all-flags sp <&> 
+  "JP-F|FF,NN" "JP" complex-instruction
+  all-flags sp <&>
   ",nn" token <&
   just [ first2 swap curry ] <@ ;
 
 : JP-(RR)-instruction ( -- parser )
-  "JP-(RR)" "JP" complex-instruction  
+  "JP-(RR)" "JP" complex-instruction
   16-bit-registers indirect sp <&>
   just [ first2 swap curry ] <@ ;
 
-: CALL-NN-instruction ( -- parser )  
-  "CALL-NN" "CALL" complex-instruction  
+: CALL-NN-instruction ( -- parser )
+  "CALL-NN" "CALL" complex-instruction
   "nn" token sp <&
   just [ { } clone swap curry  ] <@ ;
 
 : CALL-F|FF,NN-instruction ( -- parser )
-  "CALL-F|FF,NN" "CALL" complex-instruction  
-  all-flags sp <&> 
+  "CALL-F|FF,NN" "CALL" complex-instruction
+  all-flags sp <&>
   ",nn" token <&
   just [ first2 swap curry ] <@ ;
 
@@ -928,40 +928,40 @@ SYMBOL: $4
   "RRA" simple-instruction ;
 
 : DEC-R-instruction ( -- parser )
-  "DEC-R" "DEC" complex-instruction  8-bit-registers sp <&> 
+  "DEC-R" "DEC" complex-instruction  8-bit-registers sp <&>
   just [ first2 swap curry ] <@ ;
 
 : DEC-RR-instruction ( -- parser )
-  "DEC-RR" "DEC" complex-instruction  16-bit-registers sp <&> 
+  "DEC-RR" "DEC" complex-instruction  16-bit-registers sp <&>
   just [ first2 swap curry ] <@ ;
 
 : DEC-(RR)-instruction ( -- parser )
-  "DEC-(RR)" "DEC" complex-instruction  
+  "DEC-(RR)" "DEC" complex-instruction
   16-bit-registers indirect sp <&>
   just [ first2 swap curry ] <@ ;
 
 : POP-RR-instruction ( -- parser )
-  "POP-RR" "POP" complex-instruction  all-registers sp <&> 
+  "POP-RR" "POP" complex-instruction  all-registers sp <&>
   just [ first2 swap curry ] <@ ;
 
 : PUSH-RR-instruction ( -- parser )
-  "PUSH-RR" "PUSH" complex-instruction  all-registers sp <&> 
+  "PUSH-RR" "PUSH" complex-instruction  all-registers sp <&>
   just [ first2 swap curry ] <@ ;
 
 : INC-R-instruction ( -- parser )
-  "INC-R" "INC" complex-instruction  8-bit-registers sp <&> 
+  "INC-R" "INC" complex-instruction  8-bit-registers sp <&>
   just [ first2 swap curry ] <@ ;
 
 : INC-RR-instruction ( -- parser )
-  "INC-RR" "INC" complex-instruction  16-bit-registers sp <&> 
+  "INC-RR" "INC" complex-instruction  16-bit-registers sp <&>
   just [ first2 swap curry ] <@ ;
-   
+
 : INC-(RR)-instruction  ( -- parser )
   "INC-(RR)" "INC" complex-instruction
   all-registers indirect sp <&> just [ first2 swap curry ] <@ ;
 
 : RET-F|FF-instruction ( -- parser )
-  "RET-F|FF" "RET" complex-instruction  all-flags sp <&> 
+  "RET-F|FF" "RET" complex-instruction  all-flags sp <&>
   just [ first2 swap curry ] <@ ;
 
 : AND-N-instruction ( -- parser )
@@ -1019,52 +1019,52 @@ SYMBOL: $4
 : ADC-R,N-instruction ( -- parser )
   "ADC-R,N" "ADC" complex-instruction
   8-bit-registers sp <&>
-  ",n" token <& 
-  just [ first2 swap curry ] <@ ;  
+  ",n" token <&
+  just [ first2 swap curry ] <@ ;
 
 : ADC-R,R-instruction ( -- parser )
   "ADC-R,R" "ADC" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   8-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : ADC-R,(RR)-instruction ( -- parser )
   "ADC-R,(RR)" "ADC" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   16-bit-registers indirect <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : SBC-R,N-instruction ( -- parser )
   "SBC-R,N" "SBC" complex-instruction
   8-bit-registers sp <&>
-  ",n" token <& 
-  just [ first2 swap curry ] <@ ;  
+  ",n" token <&
+  just [ first2 swap curry ] <@ ;
 
 : SBC-R,R-instruction ( -- parser )
   "SBC-R,R" "SBC" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   8-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry  ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry  ] <@ ;
 
 : SBC-R,(RR)-instruction ( -- parser )
   "SBC-R,(RR)" "SBC" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   16-bit-registers indirect  <&>
-  just [ first2 swap first2 swap >r prepend r> curry  ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry  ] <@ ;
 
 : SUB-R-instruction ( -- parser )
   "SUB-R" "SUB" complex-instruction
   8-bit-registers sp <&>
-  just [ first2 swap curry ] <@ ;  
+  just [ first2 swap curry ] <@ ;
 
 : SUB-(RR)-instruction ( -- parser )
   "SUB-(RR)" "SUB" complex-instruction
   16-bit-registers indirect sp <&>
-  just [ first2 swap curry ] <@ ;  
+  just [ first2 swap curry ] <@ ;
 
 : SUB-N-instruction ( -- parser )
   "SUB-N" "SUB" complex-instruction
@@ -1074,78 +1074,78 @@ SYMBOL: $4
 : ADD-R,N-instruction ( -- parser )
   "ADD-R,N" "ADD" complex-instruction
   8-bit-registers sp <&>
-  ",n" token <& 
-  just [ first2 swap curry ] <@ ;  
+  ",n" token <&
+  just [ first2 swap curry ] <@ ;
 
 : ADD-R,R-instruction ( -- parser )
   "ADD-R,R" "ADD" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   8-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : ADD-RR,RR-instruction ( -- parser )
   "ADD-RR,RR" "ADD" complex-instruction
   16-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   16-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : ADD-R,(RR)-instruction ( -- parser )
   "ADD-R,(RR)" "ADD" complex-instruction
   8-bit-registers sp <&>
-  "," token <& 
+  "," token <&
   16-bit-registers indirect <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
-  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
+
 : LD-RR,NN-instruction
   #! LD BC,nn
   "LD-RR,NN" "LD" complex-instruction
   16-bit-registers sp <&>
-  ",nn" token <& 
+  ",nn" token <&
   just [ first2 swap curry ] <@ ;
 
 : LD-R,N-instruction
   #! LD B,n
   "LD-R,N" "LD" complex-instruction
   8-bit-registers sp <&>
-  ",n" token <& 
+  ",n" token <&
   just [ first2 swap curry ] <@ ;
-  
+
 : LD-(RR),N-instruction
   "LD-(RR),N" "LD" complex-instruction
-  16-bit-registers indirect sp <&> 
+  16-bit-registers indirect sp <&>
   ",n" token <&
   just [ first2 swap curry ] <@ ;
 
 : LD-(RR),R-instruction
   #! LD (BC),A
   "LD-(RR),R" "LD" complex-instruction
-  16-bit-registers indirect sp <&> 
+  16-bit-registers indirect sp <&>
   "," token <&
   8-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : LD-R,R-instruction
   "LD-R,R" "LD" complex-instruction
-  8-bit-registers sp <&> 
+  8-bit-registers sp <&>
   "," token <&
   8-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : LD-RR,RR-instruction
   "LD-RR,RR" "LD" complex-instruction
-  16-bit-registers sp <&> 
+  16-bit-registers sp <&>
   "," token <&
   16-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : LD-R,(RR)-instruction
   "LD-R,(RR)" "LD" complex-instruction
-  8-bit-registers sp <&> 
+  8-bit-registers sp <&>
   "," token <&
   16-bit-registers indirect <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : LD-(NN),RR-instruction
   "LD-(NN),RR" "LD" complex-instruction
@@ -1191,89 +1191,89 @@ SYMBOL: $4
 
 : EX-(RR),RR-instruction
   "EX-(RR),RR" "EX" complex-instruction
-  16-bit-registers indirect sp <&> 
+  16-bit-registers indirect sp <&>
   "," token <&
   16-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : EX-RR,RR-instruction
   "EX-RR,RR" "EX" complex-instruction
-  16-bit-registers sp <&> 
+  16-bit-registers sp <&>
   "," token <&
   16-bit-registers <&>
-  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;  
+  just [ first2 swap first2 swap >r prepend r> curry ] <@ ;
 
 : 8080-generator-parser
-  NOP-instruction 
-  RST-0-instruction <|> 
-  RST-8-instruction <|> 
-  RST-10H-instruction <|> 
-  RST-18H-instruction <|> 
-  RST-20H-instruction <|> 
-  RST-28H-instruction <|> 
-  RST-30H-instruction <|> 
-  RST-38H-instruction <|> 
-  JP-F|FF,NN-instruction <|> 
-  JP-NN-instruction <|> 
-  JP-(RR)-instruction <|> 
-  CALL-F|FF,NN-instruction <|> 
-  CALL-NN-instruction <|> 
-  CPL-instruction <|> 
-  CCF-instruction <|> 
-  SCF-instruction <|> 
-  DAA-instruction <|> 
-  RLA-instruction <|> 
-  RRA-instruction <|> 
-  RLCA-instruction <|> 
-  RRCA-instruction <|> 
-  HALT-instruction <|> 
-  DI-instruction <|> 
-  EI-instruction <|> 
-  AND-N-instruction <|> 
-  AND-R-instruction <|> 
-  AND-(RR)-instruction <|> 
-  XOR-N-instruction <|> 
-  XOR-R-instruction <|> 
-  XOR-(RR)-instruction <|> 
-  OR-N-instruction <|> 
-  OR-R-instruction <|> 
-  OR-(RR)-instruction <|> 
-  CP-N-instruction <|> 
-  CP-R-instruction <|> 
-  CP-(RR)-instruction <|> 
-  DEC-RR-instruction <|> 
-  DEC-R-instruction <|> 
-  DEC-(RR)-instruction <|> 
-  POP-RR-instruction <|> 
-  PUSH-RR-instruction <|> 
-  INC-RR-instruction <|> 
-  INC-R-instruction <|> 
+  NOP-instruction
+  RST-0-instruction <|>
+  RST-8-instruction <|>
+  RST-10H-instruction <|>
+  RST-18H-instruction <|>
+  RST-20H-instruction <|>
+  RST-28H-instruction <|>
+  RST-30H-instruction <|>
+  RST-38H-instruction <|>
+  JP-F|FF,NN-instruction <|>
+  JP-NN-instruction <|>
+  JP-(RR)-instruction <|>
+  CALL-F|FF,NN-instruction <|>
+  CALL-NN-instruction <|>
+  CPL-instruction <|>
+  CCF-instruction <|>
+  SCF-instruction <|>
+  DAA-instruction <|>
+  RLA-instruction <|>
+  RRA-instruction <|>
+  RLCA-instruction <|>
+  RRCA-instruction <|>
+  HALT-instruction <|>
+  DI-instruction <|>
+  EI-instruction <|>
+  AND-N-instruction <|>
+  AND-R-instruction <|>
+  AND-(RR)-instruction <|>
+  XOR-N-instruction <|>
+  XOR-R-instruction <|>
+  XOR-(RR)-instruction <|>
+  OR-N-instruction <|>
+  OR-R-instruction <|>
+  OR-(RR)-instruction <|>
+  CP-N-instruction <|>
+  CP-R-instruction <|>
+  CP-(RR)-instruction <|>
+  DEC-RR-instruction <|>
+  DEC-R-instruction <|>
+  DEC-(RR)-instruction <|>
+  POP-RR-instruction <|>
+  PUSH-RR-instruction <|>
+  INC-RR-instruction <|>
+  INC-R-instruction <|>
   INC-(RR)-instruction <|>
-  LD-RR,NN-instruction <|> 
-  LD-R,N-instruction <|> 
-  LD-R,R-instruction <|> 
-  LD-RR,RR-instruction <|> 
-  LD-(RR),N-instruction <|> 
-  LD-(RR),R-instruction <|> 
-  LD-R,(RR)-instruction <|> 
-  LD-(NN),RR-instruction <|> 
-  LD-(NN),R-instruction <|> 
-  LD-RR,(NN)-instruction <|> 
-  LD-R,(NN)-instruction <|> 
-  ADC-R,N-instruction <|> 
-  ADC-R,R-instruction <|> 
-  ADC-R,(RR)-instruction <|> 
-  ADD-R,N-instruction <|> 
-  ADD-R,R-instruction <|> 
-  ADD-RR,RR-instruction <|> 
-  ADD-R,(RR)-instruction <|> 
-  SBC-R,N-instruction <|> 
-  SBC-R,R-instruction <|> 
-  SBC-R,(RR)-instruction <|> 
-  SUB-R-instruction <|> 
-  SUB-(RR)-instruction <|> 
-  SUB-N-instruction <|> 
-  RET-F|FF-instruction <|> 
+  LD-RR,NN-instruction <|>
+  LD-R,N-instruction <|>
+  LD-R,R-instruction <|>
+  LD-RR,RR-instruction <|>
+  LD-(RR),N-instruction <|>
+  LD-(RR),R-instruction <|>
+  LD-R,(RR)-instruction <|>
+  LD-(NN),RR-instruction <|>
+  LD-(NN),R-instruction <|>
+  LD-RR,(NN)-instruction <|>
+  LD-R,(NN)-instruction <|>
+  ADC-R,N-instruction <|>
+  ADC-R,R-instruction <|>
+  ADC-R,(RR)-instruction <|>
+  ADD-R,N-instruction <|>
+  ADD-R,R-instruction <|>
+  ADD-RR,RR-instruction <|>
+  ADD-R,(RR)-instruction <|>
+  SBC-R,N-instruction <|>
+  SBC-R,R-instruction <|>
+  SBC-R,(RR)-instruction <|>
+  SUB-R-instruction <|>
+  SUB-(RR)-instruction <|>
+  SUB-N-instruction <|>
+  RET-F|FF-instruction <|>
   RET-NN-instruction <|>
   OUT-(N),R-instruction <|>
   IN-R,(N)-instruction <|>
@@ -1295,13 +1295,13 @@ SYMBOL: last-opcode
   #! up an 8080 instruction, and output a quotation
   #! that would implement that instruction.
   dup " " join instruction-quotations
-  >r "_" join [ "emulate-" % % ] "" make create-in dup last-instruction global set-at  
+  >r "_" join [ "emulate-" % % ] "" make create-in dup last-instruction global set-at
   r> define ;
 
 : INSTRUCTION: ";" parse-tokens parse-instructions ; parsing
 
 : cycles ( -- )
-  #! Set the number of cycles for the last instruction that was defined. 
+  #! Set the number of cycles for the last instruction that was defined.
   scan string>number last-opcode global at instruction-cycles set-nth ; parsing
 
 : opcode ( -- )

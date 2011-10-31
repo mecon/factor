@@ -72,7 +72,7 @@ void load_image(F_PARAMETERS *p)
 
 	if(h.version != IMAGE_VERSION)
 		fatal_error("Bad image: version number check failed",h.version);
-	
+
 	load_data_heap(file,&h,p);
 	load_code_heap(file,&h,p);
 

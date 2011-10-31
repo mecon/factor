@@ -64,7 +64,7 @@ IN: locals.tests
 
 
 [ { 4 5 6 } ] [ { 2 3 4 } 2 wlet-test-2 ] unit-test
-    
+
 :: wlet-test-3 ( a -- b )
     [wlet | add-a [ a + ] | [ add-a ] ]
     [let | a [ 3 ] | a swap call ] ;

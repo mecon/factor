@@ -29,7 +29,7 @@ SYMBOL: ignore-case?
 
 PRIVATE>
 
-: ascii? ( n -- ? ) 
+: ascii? ( n -- ? )
     0 HEX: 7f between? ;
 
 : octal-digit? ( n -- ? )

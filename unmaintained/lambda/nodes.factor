@@ -1,5 +1,5 @@
 #! A lambda expression manipulator, by Matthew Willis
-USING: lazy-lists strings arrays hashtables 
+USING: lazy-lists strings arrays hashtables
 sequences namespaces words parser kernel ;
 
 IN: lambda
@@ -14,14 +14,14 @@ TUPLE: alien-node word ;
 M: lambda-node equal? 2drop f ;
 
 GENERIC: bind-var
-M: lambda-node bind-var ( binding lambda -- ) 
-    lambda-node-expr bind-var ; 
+M: lambda-node bind-var ( binding lambda -- )
+    lambda-node-expr bind-var ;
 
 M: apply-node bind-var ( binding apply -- )
     [ apply-node-func bind-var ] 2keep apply-node-arg bind-var ;
 
 M: var-node bind-var ( binding var-node -- )
-    2dup var-node-name swap lambda-node-name = 
+    2dup var-node-name swap lambda-node-name =
     [ set-var-node-name ] [ 2drop ] if ;
 
 M: alien-node bind-var ( binding alien -- ) 2drop ;
@@ -42,7 +42,7 @@ M: lambda-node beta-push ( beta lambda -- lambda )
 
 M: apply-node beta-push ( beta apply -- apply )
     #! push the beta into each branch, cloning the beta
-    swap dup clone 
+    swap dup clone
     pick apply-node-func swap [ set-beta-node-expr ] keep swap
     rot apply-node-arg swap [ set-beta-node-expr ] keep
     <apply-node> ;
@@ -83,44 +83,44 @@ DEFER: evaluate
     ] if ;
 
 GENERIC: evaluate
-#! There are 
+#! There are
 #!   beta-reduction, beta-pushing, and name replacing.
 : normalize ( expr -- expr )
     dup evaluate [ nip normalize ] when* ;
-    
+
 M: lambda-node evaluate ( lambda -- node/f ) drop f ;
 
 M: apply-node evaluate ( apply -- node )
     dup apply-node-func lambda-node?
-    [ beta-reduce ] 
-    [ 
+    [ beta-reduce ]
+    [
         dup apply-node-func alien-node?
         [ alien-reduce ]
         [ left-reduce ] if
     ] if ;
 
-M: var-node evaluate ( var -- node/f ) 
+M: var-node evaluate ( var -- node/f )
     var-node-name lambda-names get hash ;
 
-M: beta-node evaluate ( beta -- node/f ) 
+M: beta-node evaluate ( beta -- node/f )
     dup beta-node-expr beta-push ;
 
 M: alien-node evaluate ( alien -- node/f ) drop f ;
 
 GENERIC: expr>string
 M: lambda-node expr>string ( lambda-node -- string )
-    [ 
-        dup "(" , lambda-node-name , ". " , 
-        lambda-node-expr expr>string , ")" , 
+    [
+        dup "(" , lambda-node-name , ". " ,
+        lambda-node-expr expr>string , ")" ,
     ] { } make concat ;
 
-M: apply-node expr>string ( apply-node -- string ) 
-    [ 
-        dup "(" , apply-node-func expr>string , " " , 
-        apply-node-arg expr>string , ")" , 
+M: apply-node expr>string ( apply-node -- string )
+    [
+        dup "(" , apply-node-func expr>string , " " ,
+        apply-node-arg expr>string , ")" ,
     ] { } make concat ;
 
-M: var-node expr>string ( variable-node -- string ) 
+M: var-node expr>string ( variable-node -- string )
     var-node-name dup string? [ lambda-node-name ] unless ;
 
 M: alien-node expr>string ( alien-node -- string )

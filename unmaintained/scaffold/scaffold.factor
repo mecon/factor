@@ -56,23 +56,23 @@ HELP: crud-lookup*
 
 : define-show ( class -- word )
     dup "show" crud-create swap
-    [ crud-lookup <furnace-model> "show" "Show" crud-page ] 
+    [ crud-lookup <furnace-model> "show" "Show" crud-page ]
     curry dupd define-compound ;
 
 : define-edit ( class -- word )
     dup "edit" crud-create swap
-    [ crud-lookup* <furnace-model> "edit" "Edit" crud-page ] 
+    [ crud-lookup* <furnace-model> "edit" "Edit" crud-page ]
     curry dupd define-compound ;
-    
+
 : define-new ( class -- word )
     dup "new" crud-create swap "edit" crud-word
     [ f swap execute ]
     curry dupd define-compound ;
-    
+
 : define-update ( class -- word )
     dup "update" crud-create swap
-    [ 
-        tuck crud-lookup [ over get-global remove over set-global ] when* 
+    [
+        tuck crud-lookup [ over get-global remove over set-global ] when*
         dup >r "constructor" word-prop execute
         r> 2dup get-global swap add over set-global swap
         crud-index swap "show" crud-word execute
@@ -80,8 +80,8 @@ HELP: crud-lookup*
 
 : define-delete ( class -- word )
     dup "delete" crud-create swap
-    [ 
-        tuck crud-lookup [ over get-global remove over set-global ] when* 
+    [
+        tuck crud-lookup [ over get-global remove over set-global ] when*
         "list" crud-word execute
     ] curry dupd define-compound ;
 
@@ -90,7 +90,7 @@ HELP: crud-lookup*
     swap [ crud-lookup ] curry define-compound ;
 
 : define-lookup* ( class -- )
-    dup "crud-index" word-prop ">" pick unparse "*" append 3append 
+    dup "crud-index" word-prop ">" pick unparse "*" append 3append
     in get create swap [ crud-lookup* ] curry define-compound ;
 
 : scaffold-params ( class -- array )
@@ -101,13 +101,13 @@ HELP: crud-lookup*
     [ define-lookup ] keep [ define-lookup* ] keep
     [ get-global [ { } over set-global ] unless ] keep
     [ define-list { } rot define-authenticated-action ] 2keep
-    [ dup define-show swap scaffold-params rot 
+    [ dup define-show swap scaffold-params rot
         define-authenticated-action ] 2keep
     [ dup define-edit swap scaffold-params rot
         define-authenticated-action ] 2keep
     [ define-new { } rot define-authenticated-action ] 2keep
-    [ dup define-update swap "slot-names" word-prop 
-        "crud-index" add [ 1array ] map rot 
+    [ dup define-update swap "slot-names" word-prop
+        "crud-index" add [ 1array ] map rot
         define-authenticated-action ] 2keep
     dup define-delete swap scaffold-params rot
     define-authenticated-action ;
@@ -117,7 +117,7 @@ HELP: scaffold
 "If realm is not f, then realm is used as the basic authentication realm for the scaffolding actions." ;
 
 ARTICLE: { "furnace" "crud" } "CRUD Scaffolding"
-{ $code 
+{ $code
     "\"libs/furnace\" require"
     "USING: furnace httpd threads ;"
     "IN: furnace:crud-example"

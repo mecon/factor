@@ -8,8 +8,8 @@ USE: kernel-internals
 : elements ( string -- result )
   #! Call JQuery's $ function
   window { "result" } "" "$" { "string" } alien-invoke ;
-  
-: html ( string -- element ) 
+
+: html ( string -- element )
   #! Set the innerHTML of element using jQuery
   { } "" "html" { "string" } alien-invoke ;
 
@@ -31,9 +31,9 @@ USE: kernel-internals
       "Waiting for click on button" alert
       continue
     ] callcc0
-    drop "Click done!" alert 
+    drop "Click done!" alert
   ] callcc0 ;
-  
+
 : alert ( string -- )
   #! Display the string in an alert box
   window { } "" "alert" { "string" } alien-invoke ;

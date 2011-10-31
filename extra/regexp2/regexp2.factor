@@ -6,33 +6,33 @@ USE: tools.walker
 IN: regexp2
 
 <PRIVATE
-    
+
 SYMBOL: ignore-case?
 
 : char=-quot ( ch -- quot )
     ignore-case? get
     [ ch>upper [ swap ch>upper = ] ] [ [ = ] ] if
     curry ;
-    
+
 : char-between?-quot ( ch1 ch2 -- quot )
     ignore-case? get
     [ [ ch>upper ] bi@ [ >r >r ch>upper r> r> between? ] ]
     [ [ between? ] ]
     if 2curry ;
-    
+
 : or-predicates ( quots -- quot )
     [ \ dup prefix ] map [ [ t ] ] f short-circuit \ nip suffix ;
 
 : literal-action [ nip ] curry action ;
 
 : delay-action [ curry ] curry action ;
-    
+
 PRIVATE>
 
 : ascii? ( n -- ? )
     0 HEX: 7f between? ;
-    
-: octal-digit? ( n -- ? ) 
+
+: octal-digit? ( n -- ? )
     CHAR: 0 CHAR: 7 between? ;
 
 : hex-digit? ( n -- ? )
@@ -93,17 +93,17 @@ MEMO: 'simple-escape-char' ( -- parser )
     } [ char=-quot ] assoc-map satisfy-tokens ;
 
 MEMO: 'predefined-char-class' ( -- parser )
-    {   
-        { "d" [ digit? ] } 
+    {
+        { "d" [ digit? ] }
         { "D" [ digit? not ] }
-        { "s" [ java-blank? ] } 
+        { "s" [ java-blank? ] }
         { "S" [ java-blank? not ] }
-        { "w" [ c-identifier-char? ] } 
+        { "w" [ c-identifier-char? ] }
         { "W" [ c-identifier-char? not ] }
     } satisfy-tokens ;
 
 MEMO: 'posix-character-class' ( -- parser )
-    {   
+    {
         { "Lower" [ letter? ] }
         { "Upper" [ LETTER? ] }
         { "ASCII" [ ascii? ] }
@@ -179,7 +179,7 @@ MEMO: 'character-class-term' ( -- parser )
 
 MEMO: 'positive-character-class' ( -- parser )
     ! todo
-    "]" token [ CHAR: ] = ] literal-action 'character-class-term' repeat0 2seq 
+    "]" token [ CHAR: ] = ] literal-action 'character-class-term' repeat0 2seq
     'character-class-term' repeat1 2choice [ or-predicates ] action ;
 
 MEMO: 'negative-character-class' ( -- parser )
@@ -193,17 +193,17 @@ MEMO: 'character-class' ( -- parser )
 MEMO: 'escaped-seq' ( -- parser )
     any-char repeat1
     [ ignore-case? get token ] action "\\Q" "\\E" surrounded-by ;
-    
+
 MEMO: 'break' ( quot -- parser )
     satisfy ensure
     epsilon just 2choice ;
-    
+
 MEMO: 'break-escape' ( -- parser )
     "$" token [ "\r\n" member? ] 'break' literal-action
     "\\b" token [ blank? ] 'break' literal-action
     "\\B" token [ blank? not ] 'break' literal-action
     "\\z" token epsilon just literal-action 4choice ;
-    
+
 MEMO: 'simple' ( -- parser )
     [
         'escaped-seq' ,

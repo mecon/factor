@@ -48,7 +48,7 @@ HELP: generate-node
 { $notes "This word can only be called from inside the quotation passed to " { $link with-generator } "." } ;
 
 HELP: generate-nodes
-{ $values { "node" "a dataflow node" } } 
+{ $values { "node" "a dataflow node" } }
 { $description "Recursively generate machine code for a dataflow graph." }
 { $notes "This word can only be called from inside the quotation passed to " { $link with-generator } "." } ;
 

@@ -15,28 +15,28 @@ IN: db.sqlite.ffi
 ! Return values from sqlite functions
 : SQLITE_OK           0   ; inline ! Successful result
 : SQLITE_ERROR        1   ; inline ! SQL error or missing database
-: SQLITE_INTERNAL     2   ; inline ! An internal logic error in SQLite 
-: SQLITE_PERM         3   ; inline ! Access permission denied 
-: SQLITE_ABORT        4   ; inline ! Callback routine requested an abort 
-: SQLITE_BUSY         5   ; inline ! The database file is locked 
-: SQLITE_LOCKED       6   ; inline ! A table in the database is locked 
-: SQLITE_NOMEM        7   ; inline ! A malloc() failed 
-: SQLITE_READONLY     8   ; inline ! Attempt to write a readonly database 
-: SQLITE_INTERRUPT    9   ; inline ! Operation terminated by sqlite_interrupt() 
-: SQLITE_IOERR       10   ; inline ! Some kind of disk I/O error occurred 
-: SQLITE_CORRUPT     11   ; inline ! The database disk image is malformed 
-: SQLITE_NOTFOUND    12   ; inline ! (Internal Only) Table or record not found 
-: SQLITE_FULL        13   ; inline ! Insertion failed because database is full 
-: SQLITE_CANTOPEN    14   ; inline ! Unable to open the database file 
-: SQLITE_PROTOCOL    15   ; inline ! Database lock protocol error 
-: SQLITE_EMPTY       16   ; inline ! (Internal Only) Database table is empty 
-: SQLITE_SCHEMA      17   ; inline ! The database schema changed 
-: SQLITE_TOOBIG      18   ; inline ! Too much data for one row of a table 
-: SQLITE_CONSTRAINT  19   ; inline ! Abort due to contraint violation 
-: SQLITE_MISMATCH    20   ; inline ! Data type mismatch 
-: SQLITE_MISUSE      21   ; inline ! Library used incorrectly 
-: SQLITE_NOLFS       22   ; inline ! Uses OS features not supported on host 
-: SQLITE_AUTH        23   ; inline ! Authorization denied 
+: SQLITE_INTERNAL     2   ; inline ! An internal logic error in SQLite
+: SQLITE_PERM         3   ; inline ! Access permission denied
+: SQLITE_ABORT        4   ; inline ! Callback routine requested an abort
+: SQLITE_BUSY         5   ; inline ! The database file is locked
+: SQLITE_LOCKED       6   ; inline ! A table in the database is locked
+: SQLITE_NOMEM        7   ; inline ! A malloc() failed
+: SQLITE_READONLY     8   ; inline ! Attempt to write a readonly database
+: SQLITE_INTERRUPT    9   ; inline ! Operation terminated by sqlite_interrupt()
+: SQLITE_IOERR       10   ; inline ! Some kind of disk I/O error occurred
+: SQLITE_CORRUPT     11   ; inline ! The database disk image is malformed
+: SQLITE_NOTFOUND    12   ; inline ! (Internal Only) Table or record not found
+: SQLITE_FULL        13   ; inline ! Insertion failed because database is full
+: SQLITE_CANTOPEN    14   ; inline ! Unable to open the database file
+: SQLITE_PROTOCOL    15   ; inline ! Database lock protocol error
+: SQLITE_EMPTY       16   ; inline ! (Internal Only) Database table is empty
+: SQLITE_SCHEMA      17   ; inline ! The database schema changed
+: SQLITE_TOOBIG      18   ; inline ! Too much data for one row of a table
+: SQLITE_CONSTRAINT  19   ; inline ! Abort due to contraint violation
+: SQLITE_MISMATCH    20   ; inline ! Data type mismatch
+: SQLITE_MISUSE      21   ; inline ! Library used incorrectly
+: SQLITE_NOLFS       22   ; inline ! Uses OS features not supported on host
+: SQLITE_AUTH        23   ; inline ! Authorization denied
 : SQLITE_FORMAT      24   ; inline ! Auxiliary database format error
 : SQLITE_RANGE       25   ; inline ! 2nd parameter to sqlite3_bind out of range
 : SQLITE_NOTADB      26   ; inline ! File opened that is not a database file
@@ -82,7 +82,7 @@ IN: db.sqlite.ffi
 : SQLITE_BLOB        4 ; inline
 : SQLITE_NULL        5 ; inline
 
-! Values for the 'destructor' parameter of the 'bind' routines. 
+! Values for the 'destructor' parameter of the 'bind' routines.
 : SQLITE_STATIC      0  ; inline
 : SQLITE_TRANSIENT   -1 ; inline
 

@@ -177,5 +177,5 @@ vm/resources.o:
 
 .m.o:
 	$(CC) -c $(CFLAGS) -o $@ $<
-	
+
 .PHONY: factor

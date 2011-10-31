@@ -8,7 +8,7 @@ IN: io.encodings.utf8
 
 TUPLE: utf8 ;
 
-<PRIVATE 
+<PRIVATE
 
 : starts-2? ( char -- ? )
     dup [ -6 shift BIN: 10 number= ] when ;

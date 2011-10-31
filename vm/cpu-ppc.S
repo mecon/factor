@@ -21,7 +21,7 @@ in the public domain. */
 #define SAVED_REGS_SIZE 96
 
 #define FRAME (RESERVED_SIZE + PARAM_SIZE + SAVED_REGS_SIZE + 8)
-   
+
 #if defined( __APPLE__)
         #define LR_SAVE 8
         #define RESERVED_SIZE 24

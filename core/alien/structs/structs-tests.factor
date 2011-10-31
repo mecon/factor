@@ -14,13 +14,13 @@ C-STRUCT: bar
 ! C-STRUCT: align-test
 !     { "int" "x" }
 !     { "double" "y" } ;
-! 
+!
 ! [ 16 ] [ "align-test" heap-size ] unit-test
-! 
+!
 ! cell 4 = [
 !     C-STRUCT: one
 !     { "long" "a" } { "double" "b" } { "int" "c" } ;
-! 
+!
 !     [ 24 ] [ "one" heap-size ] unit-test
 ! ] when
 

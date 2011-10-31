@@ -281,7 +281,7 @@ M: postgresql-db create-type-table ( -- hash )
 
 M: postgresql-db compound-modifier ( str seq -- newstr )
     postgresql-compound ;
-    
+
 M: postgresql-db modifier-table ( -- hashtable )
     H{
         { +native-id+ "primary key" }

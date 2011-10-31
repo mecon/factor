@@ -43,11 +43,11 @@ HELP: bootstrap-first-bignum
 { $description "Outputs the value for the target architecture when bootstrapping." } ;
 
 HELP: bootstrap-most-positive-fixnum
-{ $values { "n" "largest positive integer representable by a fixnum" } } 
+{ $values { "n" "largest positive integer representable by a fixnum" } }
 { $description "Outputs the value for the target architecture when bootstrapping." } ;
 
 HELP: bootstrap-most-negative-fixnum
-{ $values { "n" "smallest negative integer representable by a fixnum" } } 
+{ $values { "n" "smallest negative integer representable by a fixnum" } }
 { $description "Outputs the value for the target architecture when bootstrapping." } ;
 
 HELP: cell

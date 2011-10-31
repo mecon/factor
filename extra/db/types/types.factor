@@ -125,7 +125,7 @@ TUPLE: no-sql-modifier ;
     " " swap 3append ;
 
 : modifiers ( spec -- str )
-    sql-spec-modifiers 
+    sql-spec-modifiers
     [ lookup-modifier ] map " " join
     dup empty? [ " " prepend ] unless ;
 

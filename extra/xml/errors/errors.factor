@@ -1,6 +1,6 @@
 ! Copyright (C) 2005, 2006 Daniel Ehrenberg
 ! See http://factorcode.org/license.txt for BSD license.
-USING: xml.data xml.writer kernel generic io prettyprint math 
+USING: xml.data xml.writer kernel generic io prettyprint math
 debugger sequences state-parser ;
 IN: xml.errors
 

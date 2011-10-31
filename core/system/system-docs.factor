@@ -83,7 +83,7 @@ HELP: millis ( -- n )
 HELP: os-env ( key -- value )
 { $values { "key" string } { "value" string } }
 { $description "Looks up the value of a shell environment variable." }
-{ $examples 
+{ $examples
     "This is an operating system-specific feature. On Unix, you can do:"
     { $unchecked-example "\"USER\" os-env print" "jane" }
 }
@@ -92,7 +92,7 @@ HELP: os-env ( key -- value )
 HELP: os-envs
 { $values { "assoc" "an association mapping strings to strings" } }
 { $description "Outputs the current set of environment variables." }
-{ $notes 
+{ $notes
     "Names and values of environment variables are operating system-specific."
 }
 { $errors "Windows CE has no concept of environment variables, so this word throws an error there." } ;

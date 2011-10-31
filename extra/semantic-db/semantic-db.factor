@@ -70,7 +70,7 @@ arc "arc"
 : has-context-relation 2 ;
 
 : create-bootstrap-arcs ( -- )
-    has-context-relation has-context-relation semantic-db-context create-arc ;    
+    has-context-relation has-context-relation semantic-db-context create-arc ;
 
 : init-semantic-db ( -- )
     create-node-table create-arc-table create-bootstrap-nodes create-bootstrap-arcs ;

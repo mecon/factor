@@ -19,7 +19,7 @@ SYMBOL: <widget>
 "remove-from-window-table" !( window -- window )
   [ dup $dpy over <-- remove-from-window-table ]
 
-"handle-event" !( event widget -- ) [ 
+"handle-event" !( event widget -- ) [
   over XAnyEvent-type
   { { [ dup Expose = ]           [ drop <- handle-expose ] }
     { [ dup KeyPress = ]         [ drop <- handle-key-press ] }

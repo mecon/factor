@@ -1,6 +1,6 @@
 USING: help.markup help.syntax isequences.interface ;
 
-HELP: i-at 
+HELP: i-at
 { $values { "s" "an isequence" } { "n" "an isequence" } { "v" "the element at the " { $snippet "n" } "th index" } }
 { $contract "Outputs the element at position" { $snippet "n" } "of the isequence." } ;
 

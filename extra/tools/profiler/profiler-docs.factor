@@ -2,7 +2,7 @@ USING: tools.profiler.private tools.time help.markup help.syntax
 quotations io strings words definitions ;
 IN: tools.profiler
 
-ARTICLE: "profiling" "Profiling code" 
+ARTICLE: "profiling" "Profiling code"
 "The " { $vocab-link "tools.profiler" } " vocabulary implements a simple call counting profiler. The profiler is completely accurate with words and methods which are compiled with the non-optimizing compiler. Some optimizations performed by the optimizing compiler can inhibit accurate call counting, however:"
 { $list
     "The optimizing compiler open-codes certain primitives with inline machine code, and in some cases optimizes them out altogether; this includes stack shuffling operations, conditionals, and many object allocation operations."

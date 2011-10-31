@@ -3,7 +3,7 @@ USING: kernel parser io io.files namespaces sequences editors threads vars
        mortar mortar.sugar slot-accessors
        x
        x.widgets.wm.root
-       x.widgets.wm.frame 
+       x.widgets.wm.frame
        x.widgets.wm.menu
        factory.load
        factory.commands ;
@@ -29,7 +29,7 @@ VAR: root-menu
 install-default-error-handler
 create-wm-root
 init-atoms
-manage-windows 
+manage-windows
 load-factory-rc ;
 
 : factory ( -- ) f start-factory stop ;

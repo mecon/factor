@@ -52,7 +52,7 @@ HELP: fclose ( alien -- )
 
 HELP: fgetc ( alien -- ch/f )
 { $values { "alien" "a C FILE* handle" } { "ch/f" "a character or " { $link f } } }
-{ $description "Reads a single character from a C FILE* handle, and outputs " { $link f } " on end of file." } 
+{ $description "Reads a single character from a C FILE* handle, and outputs " { $link f } " on end of file." }
 { $errors "Throws an error if the input operation failed." } ;
 
 HELP: fread ( n alien -- str/f )

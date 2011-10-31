@@ -15,7 +15,7 @@ void print_word(F_WORD* word, CELL nesting)
 		print_chars(untag_string(word->vocabulary));
 		printf(":");
 	}
-	
+
 	if(type_of(word->name) == STRING_TYPE)
 		print_chars(untag_string(word->name));
 	else
@@ -206,7 +206,7 @@ void dump_cell(CELL cell)
 		}
 		break;
 	}
-	
+
 	printf("\n");
 }
 

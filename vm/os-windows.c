@@ -72,7 +72,7 @@ const F_CHAR *default_image_path(void)
 	if((ptr = wcsrchr(full_path, '.')))
 		*ptr = 0;
 
-	snwprintf(path_temp, sizeof(path_temp)-1, L"%s.image", full_path); 
+	snwprintf(path_temp, sizeof(path_temp)-1, L"%s.image", full_path);
 	path_temp[sizeof(path_temp) - 1] = 0;
 
 	return safe_strdup(path_temp);

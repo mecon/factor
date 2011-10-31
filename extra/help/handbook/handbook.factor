@@ -129,7 +129,7 @@ ARTICLE: "numbers" "Numbers"
 
 USE: io.buffers
 
-ARTICLE: "collections" "Collections" 
+ARTICLE: "collections" "Collections"
 { $heading "Sequences" }
 { $subsection "sequences" }
 "Fixed-length sequences:"

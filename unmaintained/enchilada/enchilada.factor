@@ -2,7 +2,7 @@
 ! See http://factorcode.org/license.txt for BSD license.
 
 IN: enchilada
-USING: generic kernel enchilada.engine enchilada.parser enchilada.printer prettyprint ; 
+USING: generic kernel enchilada.engine enchilada.parser enchilada.printer prettyprint ;
 
 
 : (e-eval) ( e-expression -- )

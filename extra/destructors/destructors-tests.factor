@@ -21,13 +21,13 @@ M: dummy-destructor dispose ( obj -- )
 [ t ] [
     [
         <dummy-obj> dup destroy-always
-    ] with-destructors dummy-obj-destroyed? 
+    ] with-destructors dummy-obj-destroyed?
 ] unit-test
 
 [ f ] [
     [
         <dummy-obj> dup destroy-later
-    ] with-destructors dummy-obj-destroyed? 
+    ] with-destructors dummy-obj-destroyed?
 ] unit-test
 
 [ t ] [
@@ -36,7 +36,7 @@ M: dummy-destructor dispose ( obj -- )
             dup destroy-always
             "foo" throw
         ] with-destructors
-    ] ignore-errors dummy-obj-destroyed? 
+    ] ignore-errors dummy-obj-destroyed?
 ] unit-test
 
 [ t ] [
@@ -45,6 +45,6 @@ M: dummy-destructor dispose ( obj -- )
             dup destroy-later
             "foo" throw
         ] with-destructors
-    ] ignore-errors dummy-obj-destroyed? 
+    ] ignore-errors dummy-obj-destroyed?
 ] unit-test
 

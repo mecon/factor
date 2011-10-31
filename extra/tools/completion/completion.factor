@@ -6,7 +6,7 @@ vectors words assocs combinators sorting unicode.case
 unicode.categories ;
 
 : (fuzzy) ( accum ch i full -- accum i ? )
-    index* 
+    index*
     [
         [ swap push ] 2keep 1+ t
     ] [

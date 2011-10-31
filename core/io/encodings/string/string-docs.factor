@@ -13,6 +13,6 @@ HELP: decode
     { "string" string } }
 { $description "Decodes the byte array using the given encoding, outputting a string" } ;
 
-HELP: encode 
+HELP: encode
 { $values { "string" string } { "encoding" "an encoding descriptor" } { "byte-array" byte-array } }
 { $description "Encodes the given string into a byte array with the given encoding." } ;

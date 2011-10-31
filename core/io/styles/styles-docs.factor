@@ -51,7 +51,7 @@ HELP: bold-italic
 { $description "A value for the " { $link font-style } " character style denoting boldface italicized text." } ;
 
 HELP: foreground
-{ $description "Character style. Text color, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." } 
+{ $description "Character style. Text color, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." }
 { $examples
     { $code
         "10 ["
@@ -107,19 +107,19 @@ HELP: presented-printer
 { $description "Character and paragraph style. A quotation with stack effect " { $snippet "( obj -- )" } " which is applied to the value at the " { $link presented-path } " if the presentation needs to be re-displayed after the object has been edited." } ;
 
 HELP: page-color
-{ $description "Paragraph style. Background color of the paragraph block, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." } 
+{ $description "Paragraph style. Background color of the paragraph block, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." }
 { $examples
     { $code "H{ { page-color { 1 0.8 0.5 1 } } }\n[ \"A background\" write ] with-nesting nl" }
 } ;
 
 HELP: border-color
-{ $description "Paragraph style. Border color of the paragraph block, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." } 
+{ $description "Paragraph style. Border color of the paragraph block, denoted by a sequence of four numbers between 0 and 1 (red, green, blue and alpha)." }
 { $examples
     { $code "H{ { border-color { 1 0 0 1 } } }\n[ \"A border\" write ] with-nesting nl" }
 } ;
 
 HELP: border-width
-{ $description "Paragraph style. Pixels between edge of text and border color, an integer." } 
+{ $description "Paragraph style. Pixels between edge of text and border color, an integer." }
 { $examples
     { $code "H{ { border-width 10 } }\n[ \"Some inset text\" write ] with-nesting nl" }
 } ;

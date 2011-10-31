@@ -96,7 +96,7 @@ IN: html.parser.analyzer
     ] [
         3drop V{ } clone
     ] if ;
-    
+
 : find-between ( i/f tag/f vector -- vector )
     find-between* dup length 3 >= [
         [ 1 tail-slice 1 head-slice* ] keep like

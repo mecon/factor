@@ -8,7 +8,7 @@ SYMBOL: <wm-child>
 
 <wm-child> <widget> { } define-simple-class
 
-<wm-child> "create" !( id <wm-child> -- wm-child ) [ 
+<wm-child> "create" !( id <wm-child> -- wm-child ) [
   new-empty swap >>id dpy get >>dpy PropertyChangeMask >>mask
   <- add-to-save-set
   0 <-- set-border-width

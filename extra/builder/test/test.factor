@@ -12,7 +12,7 @@
 !        bootstrap.stage2 benchmark builder.util ;
 
 USING: kernel namespaces assocs
-       io.files io.encodings.utf8 prettyprint 
+       io.files io.encodings.utf8 prettyprint
        help.lint
        benchmark
        bootstrap.stage2

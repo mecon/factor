@@ -7,10 +7,10 @@ threads io io.sniffer.backend io.sniffer.bsd
 io.unix.backend ;
 IN: channels.sniffer.bsd
 
-M: unix-io sniff-channel ( -- channel ) 
+M: unix-io sniff-channel ( -- channel )
   "/dev/bpf0" "en1" <sniffer-spec> <sniffer> <channel> [
     [
-      (sniff-channel) 
+      (sniff-channel)
     ] 3curry spawn drop
   ] keep ;
 

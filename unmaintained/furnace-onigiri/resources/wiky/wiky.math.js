@@ -3,7 +3,7 @@
 	License: http://creativecommons.org/licenses/LGPL/2.1/
 
 	Author:  Stefan Goessner/2005-06
-	Web:     http://goessner.net/ 
+	Web:     http://goessner.net/
    inspired by: http://xml-maiden.com/
 */
 Wiky.rules.math = {
@@ -33,7 +33,7 @@ Wiky.rules.math = {
       { rex:/!=|\\neq|\\ne/g, tmplt:"&#8800;"},
       { rex:/\.\.\.|\\ldots/g, tmplt:"&#8230;"},
       { rex:/\\in|\\isin/g, tmplt:"&#8712;"},
-      { rex:/([0-9])x([0-9])/g, tmplt:"$1&#215;$2"}, 
+      { rex:/([0-9])x([0-9])/g, tmplt:"$1&#215;$2"},
       { rex:/([A-Za-z]) x ([A-Za-z])/g, tmplt:"$1&#215;$2"},
 //      { rex:/[`]{4}/g, tmplt:"&#8195;"},  // omit due to charset support ie6
 //      { rex:/[`]{3}/g, tmplt:"&#8194;"},
@@ -52,7 +52,7 @@ Wiky.rules.math = {
       { rex:/_([-]?[a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})/g, tmplt:"<sub class=\"i\">$1</sub>"}, // underindex
       { rex:/-/g, tmplt:"&#8722;"},
       { rex:/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})\/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})/g, tmplt:"<span class=\"f\"><span class=\"n\">$1</span><span class=\"d\">$2</span></span>"},  // fraction
-      { rex:/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})\/\/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})/g, tmplt:"<sup>$1</sup>&#8260;<sub>$2</sub>"}, // fraction 
+      { rex:/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})\/\/([a-zA-Z0-9\.&;#\\]+|\{@[0-9]+@\})/g, tmplt:"<sup>$1</sup>&#8260;<sub>$2</sub>"}, // fraction
       { rex:/\[((\[(([^,\]]+[,]){1,}[^\]]+)\][ \n]*){1,})\]/g, tmplt:function($0,$1){var m=Wiky.math.transpose($1.replace(/(^\[|\]$)/g,"").replace(/(\][ \n]*\[)/g,"|").split("|")),sz=" style=\"font-size:"+(m.len)+"00%;\"";/*alert("{("+m.mat.join(")}\n{(").split(",").join(")(")+")}");*/ return "<span class=\"lb\""+sz+">"+Wiky.math.fence()+"</span><span class=\"m\"><span class=\"e\">"+m.mat.join("</span></span>\n<span class=\"m\"><span class=\"e\">").split(",").join("</span><span class=\"e\">")+"</span></span><span class=\"rb\""+sz+">"+Wiky.math.fence()+"</span>";}}, // matrix
       { rex:/\[((?:[^,\]]){1,}[^\]]+)\]/g, tmplt:function($0,$1){var v=$1.split(","),sz=" style=\"font-size:"+v.length+"00%;\""; return "<span class=\"lb\""+sz+">"+Wiky.math.fence()+"</span><span class=\"v\"><span class=\"e\">"+v.join("</span><span class=\"e\">")+"</span></span><span class=\"rb\""+sz+">"+Wiky.math.fence()+"</span>";}}, // vector
       { rex:/!([a-zA-Z0-9\.&;]+)/g, tmplt:"<span class=\"b\">$1</span>" }, // bold vector symbol ..
@@ -198,7 +198,7 @@ Wiky.inverse.math = {
       { rex:/<span class=\"lb\"[^>]*>&[^;]+;<\/span>((?:<span class=\"m\">(?:(?:<span class=\"e\">[^>]*<\/span>){2,})<\/span>[^>]*){2,})<span class=\"rb\"[^>]*>&[^;]+;<\/span>/mgi, tmplt:function($0,$1){return "[["+Wiky.math.transpose($1.replace(/(?:^<span class=\"m\"><span class=\"e\">|<\/span><\/span>$)/g,"").replace(/<\/span><span class=\"e\">/g,",").replace(/<\/span><\/span>[^>]*<span class=\"m\"><span class=\"e\">/g,"|").split("|")).mat.join("][")+"]]";}}, // matrix ..
       { rex:/<span class=\"b\">(@[0-9]+@)<\/span>/mgi, tmplt:"!$1"}, // bold vector ..
       { rex:/<sup>(\{?@[0-9]+@\}?)<\/sup>&#8260;<sub>(\{?@[0-9]+@\}?)<\/sub>/mgi, tmplt:"$1//$2"},
-      { rex:/<sup class=\"i\">(\{?@[0-9]+@\}?)<\/sup>/mgi, tmplt:"^$1" }, 
+      { rex:/<sup class=\"i\">(\{?@[0-9]+@\}?)<\/sup>/mgi, tmplt:"^$1" },
       { rex:/<sub class=\"i\">(\{?@[0-9]+@\}?)<\/sub>/mgi, tmplt:"_$1" }
    ],
    symbols: [
@@ -312,8 +312,8 @@ Wiky.math = {
    toWiki: function(str) {
       var parseTree = function(itr, endtag) {
          var c, s="",gt,nam,idxof=function(s,c,p){var i=s.indexOf(c,p);return i>=0?i:s.length;}
-         for (itr.buf=itr.str.substr(itr.pos,endtag.length); 
-              itr.pos<itr.str.length && (!endtag || itr.buf!=endtag); 
+         for (itr.buf=itr.str.substr(itr.pos,endtag.length);
+              itr.pos<itr.str.length && (!endtag || itr.buf!=endtag);
               itr.buf=itr.str.substr(++itr.pos,endtag.length)) {
             if ((c=itr.str.charAt(itr.pos))=="<" && (gt=idxof(itr.str,">",itr.pos)) < idxof(itr.str,"/",itr.pos)) { // start tags .. no empty elements or endtags ..
                nam = itr.str.substring(itr.pos+1,Math.min(idxof(itr.str," ",itr.pos),gt));

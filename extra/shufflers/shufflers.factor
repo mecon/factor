@@ -1,5 +1,5 @@
-USING: kernel sequences words math math.functions arrays 
-shuffle quotations parser math.parser strings namespaces 
+USING: kernel sequences words math math.functions arrays
+shuffle quotations parser math.parser strings namespaces
 splitting effects sequences.lib ;
 IN: shufflers
 

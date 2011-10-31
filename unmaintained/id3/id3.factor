@@ -34,7 +34,7 @@ C: <extended-header> extended-header
   0 [ >r 7 shift r> bitor ] reduce ;
 
 : read-size ( -- size )
-  4 read >syncsafe ; 
+  4 read >syncsafe ;
 
 : read-frame-id ( -- id )
   4 read ;
@@ -53,7 +53,7 @@ C: <extended-header> extended-header
   "\0" ?tail drop ; ! remove null terminator
 
 : read-popm ( size -- popm )
-  read-text ; 
+  read-text ;
 
 : read-frame-data ( id size -- data )
   swap
@@ -77,18 +77,18 @@ C: <extended-header> extended-header
 
 : read-eh-flags ( -- flags )
   read1 read le> ;
-  
+
 : read-eh-data ( size -- data )
   6 - read ;
 
 : read-crc ( flags -- crc )
-  5 bit? [ read1 read >syncsafe ] [ f ] if ; 
+  5 bit? [ read1 read >syncsafe ] [ f ] if ;
 
 : tag-is-update? ( flags -- ? )
   6 bit? dup [ read1 drop ] [ ] if ;
 
 : (read-tag-restrictions) ( -- restrictions )
-  read1 dup read le> ; 
+  read1 dup read le> ;
 
 : read-tag-restrictions ( flags -- restrictions/f )
   4 bit? [ (read-tag-restrictions) ] [ f ] if ;
@@ -130,7 +130,7 @@ C: <extended-header> extended-header
 
 : mp3? ( path -- ? )
   ".mp3" tail? ;
-  
+
 : mp3s ( paths -- mp3s )
   [ mp3? ] subset ;
 

@@ -363,7 +363,7 @@ HELP: touch-file
 HELP: delete-tree
 { $values { "path" "a pathname string" } }
 { $description "Deletes a file or directory, recursing into subdirectories." }
-{ $errors "Throws an error if the deletion fails." } 
+{ $errors "Throws an error if the deletion fails." }
 { $warning "Misuse of this word can lead to catastrophic data loss." } ;
 
 HELP: move-file

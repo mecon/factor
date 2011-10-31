@@ -70,7 +70,7 @@ catch_exception_raise (mach_port_t exception_port,
 	mach_msg_type_number_t state_count;
 
 	/* Get fault information and the faulting thread's register contents..
-	
+
 	See http://web.mit.edu/darwin/src/modules/xnu/osfmk/man/thread_get_state.html.  */
 	state_count = MACH_EXC_STATE_COUNT;
 	if (thread_get_state (thread, MACH_EXC_STATE_FLAVOR,
@@ -97,7 +97,7 @@ catch_exception_raise (mach_port_t exception_port,
 	call_fault_handler(exception,&exc_state,&thread_state);
 
 	/* Set the faulting thread's register contents..
-	
+
 	See http://web.mit.edu/darwin/src/modules/xnu/osfmk/man/thread_set_state.html.  */
 	if (thread_set_state (thread, MACH_THREAD_STATE_FLAVOR,
 		(void *) &thread_state, state_count)

@@ -84,12 +84,12 @@ M: node kill-node* drop t ;
     over >r call [ r> node-successor ] [ r> drop t ] if ;
     inline
 
-M: #shuffle kill-node* 
+M: #shuffle kill-node*
     [
         dup node-in-d empty? swap node-out-d empty? and
     ] prune-if ;
 
-M: #push kill-node* 
+M: #push kill-node*
     [ node-out-d empty? ] prune-if ;
 
 M: #>r kill-node* [ node-in-d empty? ] prune-if ;

@@ -41,7 +41,7 @@ M: check< summary drop "Number exceeds upper bound" ;
 : pad ( i name -- )
     bin> , , \ -nrot , ;
 
-: add-padding ( names -- ) 
+: add-padding ( names -- )
     <enum>
     [ dup padding-name? [ pad ] [ 2drop ] if ] assoc-each ;
 
@@ -95,13 +95,13 @@ M: check< summary drop "Number exceeds upper bound" ;
 : filter-pad ( slots -- slots )
     [ drop padding-name? not ] assoc-subset ;
 
-: define-bitfield ( classname slots -- ) 
+: define-bitfield ( classname slots -- )
     [
         [ define-constructor ] 2keep
         >ranges filter-pad [ define-setters ] 2keep define-accessors
     ] with-compilation-unit ;
 
-: parse-bitfield 
+: parse-bitfield
     scan ";" parse-tokens parse-slots define-bitfield ;
 
 : BITFIELD:

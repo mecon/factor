@@ -23,7 +23,7 @@ MACRO: nkeep ( n -- )
   [ [ , ndup ] dip , -nrot , nslip ]
   bake ;
 
-: 4keep ( w x y z quot -- w x y z ) 4 nkeep ; inline 
+: 4keep ( w x y z quot -- w x y z ) 4 nkeep ; inline
 
 MACRO: ncurry ( n -- ) [ curry ] n*quot ;
 
@@ -117,7 +117,7 @@ MACRO: parallel-call ( quots -- )
 ! map-call and friends
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-: (make-call-with) ( quots -- quot ) 
+: (make-call-with) ( quots -- quot )
     [ [ keep ] curry ] map concat [ drop ] append ;
 
 MACRO: map-call-with ( quots -- )
@@ -130,13 +130,13 @@ MACRO: map-call-with ( quots -- )
 MACRO: map-call-with2 ( quots -- )
     [
         [ [ 2dup >r >r ] prepend [ r> r> ] append ] map concat
-        [ 2drop ] append    
+        [ 2drop ] append
     ] keep length [ narray ] curry append ;
 
 MACRO: map-exec-with ( words -- )
     [ 1quotation ] map [ map-call-with ] curry ;
 
-MACRO: construct-slots ( assoc tuple-class -- tuple ) 
+MACRO: construct-slots ( assoc tuple-class -- tuple )
     [ construct-empty ] curry swap [
         [ dip ] curry swap 1quotation [ keep ] curry compose
     ] { } assoc>map concat compose ;

@@ -21,7 +21,7 @@ TUPLE: oint location forward up left ;
 !     dup sin neg swap cos 2dup 0 -rot 3float-array >r
 !     swap neg 0 -rot 3float-array >r
 !     { 1 0 0 } r> r> 3float-array ;
-! 
+!
 ! : y-rotation ( theta -- matrix )
 !     #! costruct this matrix:
 !     #! { { cos(theta) 0 -sin(theta) }

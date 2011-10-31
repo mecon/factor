@@ -147,7 +147,7 @@ IN: windows.user32
 ! : PM_QS_SENDMESSAGE   (QS_SENDMESSAGE << 16) ;
 
 
-! 
+!
 ! Standard Cursor IDs
 !
 : IDC_ARROW           32512 ; inline
@@ -1063,7 +1063,7 @@ FUNCTION: UINT MapVirtualKeyExW ( UINT uCode, UINT uMapType, HKL dwhkl ) ;
 ! -1 is Simple beep
 FUNCTION: BOOL MessageBeep ( UINT uType ) ;
 
-FUNCTION: int MessageBoxA ( 
+FUNCTION: int MessageBoxA (
                 HWND hWnd,
                 LPCSTR lpText,
                 LPCSTR lpCaption,
@@ -1242,7 +1242,7 @@ FUNCTION: BOOL SetForegroundWindow ( HWND hWnd ) ;
 ! FUNCTION: SetInternalWindowPos
 ! FUNCTION: SetKeyboardState
 ! type is ignored
-FUNCTION: void SetLastErrorEx ( DWORD dwErrCode, DWORD dwType ) ; 
+FUNCTION: void SetLastErrorEx ( DWORD dwErrCode, DWORD dwType ) ;
 : SetLastError 0 SetLastErrorEx ;
 ! FUNCTION: SetLayeredWindowAttributes
 ! FUNCTION: SetLogonNotifyWindow

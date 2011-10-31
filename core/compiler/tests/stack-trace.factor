@@ -24,7 +24,7 @@ words splitting sorting ;
 [ t ] [
     [ { 1 "hi" } bleh ] ignore-errors \ + stack-trace-contains?
 ] unit-test
-    
+
 [ t f ] [
     [ { "hi" } bleh ] ignore-errors
     \ + stack-trace-contains?

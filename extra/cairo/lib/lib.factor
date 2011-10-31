@@ -9,7 +9,7 @@ C: <cairo-t> cairo-t
 M: cairo-t dispose ( alien -- ) alien>> cairo_destroy ;
 : cairo-t-destroy-always ( alien -- ) <cairo-t> add-always-destructor ;
 : cairo-t-destroy-later ( alien -- ) <cairo-t> add-error-destructor ;
-    
+
 TUPLE: cairo-surface-t alien ;
 C: <cairo-surface-t> cairo-surface-t
 M: cairo-surface-t dispose ( alien -- ) alien>> cairo_surface_destroy ;

@@ -54,7 +54,7 @@ ARTICLE: "ui-browser" "UI browser"
 { $command-map browser-gadget "toolbar" }
 "Browsers are instances of " { $link browser-gadget } "." ;
 
-ARTICLE: "ui-profiler" "UI profiler" 
+ARTICLE: "ui-profiler" "UI profiler"
 "The graphical profiler is based on the terminal profiler (see " { $link "profiling" } ") and adds more convenient browsing of profiler results."
 $nl
 "To use the profiler, enter a piece of code in the listener input area and press " { $operation com-profile } "."
@@ -77,7 +77,7 @@ ARTICLE: "ui-tool-tutorial" "UI tool tutorial"
 "The following is an example of a typical session with the UI which should give you a taste of its power:"
 { $list
     { "You decide to refactor some code, and move a few words from a source file you have already loaded, into a new source file." }
-    { "You press " { $operation edit } " in the listener, which displays a gadget where you can type part of a loaded file's name, and then press " { $snippet "RET" } " when the correct completion is highlighted. This opens the file in your editor." } 
+    { "You press " { $operation edit } " in the listener, which displays a gadget where you can type part of a loaded file's name, and then press " { $snippet "RET" } " when the correct completion is highlighted. This opens the file in your editor." }
     { "You refactor your words, move them to a new source file, and load the new file using " { $link run-file } "." }
     { "Interactively testing the new code reveals a problem with one particular code snippet, so you enter it in the listener's input area, and press " { $operation walk } " to invoke the single stepper." }
     { "Single stepping through the code makes the problem obvious, so you right-click on a presentation of the broken word in the stepper, and choose " { $strong "Edit" } " from the menu." }

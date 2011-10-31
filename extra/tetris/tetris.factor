@@ -51,7 +51,7 @@ M: tetris-gadget graft* ( gadget -- )
 M: tetris-gadget ungraft* ( gadget -- )
     [ tetris-gadget-alarm cancel-alarm f ] keep set-tetris-gadget-alarm ;
 
-: tetris-window ( -- ) 
+: tetris-window ( -- )
     [
         <default-tetris> <tetris-gadget>
         "Tetris" open-status-window

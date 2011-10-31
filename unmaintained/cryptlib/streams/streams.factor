@@ -45,10 +45,10 @@ TUPLE: crypt-stream handle eof? ;
     dup (refill) check-read swap set-crypt-stream-eof? ;
 
 : read-step ( n stream -- )
-    dup refill tuck buffer-length 2dup <= 
+    dup refill tuck buffer-length 2dup <=
     [ drop swap buffer> % ]
     [
-        - swap dup buffer>> % dup crypt-stream-eof? 
+        - swap dup buffer>> % dup crypt-stream-eof?
         [ 2drop ] [ read-step ] if
     ] if ;
 
@@ -62,7 +62,7 @@ M: crypt-stream stream-read1 ( stream -- ch/f )
 
 : read-until-step ( seps stream -- sep/f )
     dup refill 2dup buffer-until [ swap % 2nip ]
-    [ 
+    [
         % dup crypt-stream-eof? [ 2drop f ] [ read-until-step ] if
     ] if* ;
 
@@ -70,7 +70,7 @@ M: crypt-stream stream-read-until ( seps stream -- str/f sep/f )
     2dup buffer-until [ >r 2nip r> ] [
         [ % read-until-step ] "" make f like swap
     ] if* ;
- 
+
 M: crypt-stream stream-flush ( cl-stream -- )
     crypt-stream-handle cryptFlushData check-result ;
 
@@ -83,7 +83,7 @@ M: crypt-stream stream-write1 ( ch stream -- )
 
 : check-close ( err -- )
     dup CRYPT_ERROR_PARAM1 = [ drop ] [ check-result ] if ;
-    
+
 M: crypt-stream dispose ( stream -- )
     crypt-stream-handle cryptDestroySession check-close ;
 
@@ -109,35 +109,35 @@ M: crypt-stream dispose ( stream -- )
     8888 crypt-server
     dup "user" "pass" crypt-login
     <crypt-stream>
-    
-    "Welcome to cryptlib!" over stream-print 
+
+    "Welcome to cryptlib!" over stream-print
     dup stream-flush
-    
+
     dup stream-readln print
-    
-    dispose 
-    end 
+
+    dispose
+    end
     ;
-    
+
 : test-client ( -- stream )
     init
     "localhost" 8888 crypt-client
     dup "user" "pass" crypt-login
     <crypt-stream>
-    
+
     dup stream-readln print
-    
+
     "Thanks!" over stream-print
     dup stream-flush
-    
+
     dispose
-    end 
+    end
     ;
-    
+
 : (rpl) ( stream -- stream )
     readln
     {
-        { [ dup "." = ] 
+        { [ dup "." = ]
             [ drop dup stream-readln "READ: " write print flush (rpl) ] }
         { [ dup "q" = ] [ drop ] }
         { [ t ] [ over stream-print dup stream-flush (rpl) ] }
@@ -149,9 +149,9 @@ M: crypt-stream dispose ( stream -- )
     [ "localhost" 8888 crypt-client ] [ 8888 crypt-server ] if
     dup "user" "pass" crypt-login
     <crypt-stream>
-    
+
     (rpl)
-    
-    dispose 
-    end 
+
+    dispose
+    end
     ;

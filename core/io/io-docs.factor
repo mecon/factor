@@ -201,7 +201,7 @@ $io-error ;
 
 HELP: stream-copy
 { $values { "in" "an input stream" } { "out" "an output stream" } }
-{ $description "Copies the contents of one stream into another, closing both streams when done." } 
+{ $description "Copies the contents of one stream into another, closing both streams when done." }
 $io-error ;
 
 HELP: stdio

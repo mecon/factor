@@ -31,14 +31,14 @@ PRIVATE>
 
 ! convolution
 : pextend-conv ( p p -- p p )
-    #! extend to: p_m + p_n - 1 
+    #! extend to: p_m + p_n - 1
     2dup [ length ] bi@ + 1- 2pad-right [ >vector ] bi@ ;
 
 : p* ( p p -- p )
     #! Multiply two polynomials.
     2unempty pextend-conv <reversed> dup length
     [ over length pick <slice> pick [ * ] 2map sum ] map 2nip reverse ;
-    
+
 : p-sq ( p -- p-sq )
     dup p* ;
 

@@ -17,11 +17,11 @@ IN: temporary
 { 2 } [ { 1 2 3 4 } 1 i-at ] unit-test
 { 2 } [ { 1 2 3 4 } -- -1 i-at ] unit-test
 
-{ 6 } [ 10 4 -- ++ ] unit-test 
+{ 6 } [ 10 4 -- ++ ] unit-test
 { { 1 2 3 4 5 6 } }  [ { 1 2 3 } { 4 5 6 } ++ to-sequence ] unit-test
 { { 1 2 3 0 0 0 } }  [ { 1 2 3 } 3 ++ to-sequence ] unit-test
 { { 0 1 2 3 4 5 6 7 8 9 } }  [ 10 [ <i> ] map unclip [ ++ ] reduce to-sequence ] unit-test
-{ { 0 1 2 3 } }  [ { 0 1 2 3 4 5 } 2 -- ++ to-sequence ] unit-test 
+{ { 0 1 2 3 } }  [ { 0 1 2 3 4 5 } 2 -- ++ to-sequence ] unit-test
 { { 3 2 1 } } [ { 1 2 3 4 5 } -- 2 ++ to-sequence ] unit-test
 { { 0 1 2 3 } } [ { 0 1 2 3 4 5 6 } [ 7 8 9 ] -- ++ to-sequence ] unit-test
 { { 6 5 4 3 2 1 } } [ { 1 2 3 } -- { 4 5 6 } -- ++ to-sequence ] unit-test

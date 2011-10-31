@@ -2,16 +2,16 @@
     IBClasses = (
         {
             ACTIONS = {
-                newFactorWorkspace = id; 
-                runFactorFile = id; 
-                saveFactorImage = id; 
-                saveFactorImageAs = id; 
-                showFactorHelp = id; 
-            }; 
-            CLASS = FirstResponder; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSObject; 
+                newFactorWorkspace = id;
+                runFactorFile = id;
+                saveFactorImage = id;
+                saveFactorImageAs = id;
+                showFactorHelp = id;
+            };
+            CLASS = FirstResponder;
+            LANGUAGE = ObjC;
+            SUPERCLASS = NSObject;
         }
-    ); 
-    IBVersion = 1; 
+    );
+    IBVersion = 1;
 }

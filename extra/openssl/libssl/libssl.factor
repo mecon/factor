@@ -153,7 +153,7 @@ FUNCTION: void SSL_CTX_set_default_passwd_cb_userdata ( ssl-ctx ctx,
 FUNCTION: int SSL_CTX_use_PrivateKey_file ( ssl-ctx ctx, char* file,
                                             int type ) ;
 
-! Sets the maximum depth for the allowed ctx certificate chain verification 
+! Sets the maximum depth for the allowed ctx certificate chain verification
 FUNCTION: void SSL_CTX_set_verify_depth ( ssl-ctx ctx, int depth ) ;
 
 ! Sets DH parameters to be used to be dh.

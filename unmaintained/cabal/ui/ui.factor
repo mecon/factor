@@ -4,7 +4,7 @@ USING: kernel
        io.sockets
        namespaces sequences math math.parser threads quotations splitting
        ui
-       ui.gadgets 
+       ui.gadgets
        ui.gadgets.panes
        ui.gadgets.scrollers
        ui.gadgets.tracks
@@ -39,8 +39,8 @@ M: cabal-gadget pref-dim* drop { 550 650 } ;
 readln over stream-print dup stream-flush outgoing-loop ;
 
 : cabal-thread ( -- )
-    "cabal://" write readln 
-    ":" split1 string>number <inet> <client> 
+    "cabal://" write readln
+    ":" split1 string>number <inet> <client>
     [ outgoing-loop ] in-thread incoming-loop ;
 
 : cabal-client ( -- )

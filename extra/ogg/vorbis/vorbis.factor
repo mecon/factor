@@ -9,12 +9,12 @@ IN: ogg.vorbis
     { [ os winnt? ]  [ "vorbis.dll" ] }
     { [ os macosx? ] [ "libvorbis.0.dylib" ] }
     { [ os unix? ]   [ "libvorbis.so" ] }
-} cond "cdecl" add-library 
+} cond "cdecl" add-library
 >>
 
 LIBRARY: vorbis
 
-C-STRUCT: vorbis_info 
+C-STRUCT: vorbis_info
     { "int" "version" }
     { "int" "channels" }
     { "long" "rate" }
@@ -22,7 +22,7 @@ C-STRUCT: vorbis_info
     { "long" "bitrate_nominal" }
     { "long" "bitrate_lower" }
     { "long" "bitrate_window" }
-    { "void*" "codec_setup"} 
+    { "void*" "codec_setup"}
     ;
 
 C-STRUCT: vorbis_dsp_state

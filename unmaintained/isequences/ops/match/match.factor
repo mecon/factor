@@ -11,10 +11,10 @@ DEFER: ifind-c
 
 : <i-match> ( s1 s2 -- imatch )
     dup i-length dup zero? [ 3drop 0 ]
-    [ 1 = [ swap i-sort swap 0 i-at ifind-c <i> ] [ swap i-sort swap <imatch> ] if ] if ; inline 
+    [ 1 = [ swap i-sort swap 0 i-at ifind-c <i> ] [ swap i-sort swap <imatch> ] if ] if ; inline
 
 : imatch-unpack ( imatch -- sorted-s1 s2 )
-    dup imatch-sorted-s1 swap imatch-s2 ; inline 
+    dup imatch-sorted-s1 swap imatch-s2 ; inline
 
 DEFER: (ifind2-left-m)
 
@@ -50,7 +50,7 @@ DEFER: (ifind2-left)
 
 : (ifind-s2) ( s1 v -- sv )
     2dup ifind-left rot swap itail dup rot ifind-left-m ihead ## :: ; inline
-    
+
 : ifind-s ( s1 v -- sv )
     2dup icontains-left?
     [ (ifind-s2) ] [ 2drop 0 ] if ; inline
@@ -59,13 +59,13 @@ DEFER: (ifind2-left)
     dup i-length dup zero?
     [ 2drop 0 ]
     [ 1 = [ 0 i-at left-side ] [ left-right [ iflatten ] 2apply ++ ] if ] if ; inline
-    
+
 : ifind-c ( s1 v -- s )
     ifind-s iflatten ; inline
 
 : >>g++ ( s1 s2 -- imatch )
     <i-match> ; inline
-    
+
 : >>g-+ ( s1 s2 -- imatch )
     swap -- swap >>g++ ; inline
 
@@ -80,7 +80,7 @@ DEFER: (ifind2-left)
     [ [ >>g-+ ] [ >>g++ ] if ] if ; inline
 
 M: object >> >>g ;
-    
+
 M: imatch i-length imatch-s2 i-length ;
 M: imatch i-at swap imatch-unpack rot i-at tuck left-side ifind-c swap right-side <i-dual-sided> ;
 M: imatch ileft imatch-unpack ileft <i-match> ;

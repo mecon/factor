@@ -89,7 +89,7 @@ IN: random-tester.safe-words
         ! "core-foundation" "definitions" "documents"
         ! "float-arrays" "generic" "graphs" "growable"
         "hashtables"  ! io.*
-        "kernel" "math" 
+        "kernel" "math"
         "math.bitfields" "math.complex" "math.constants" "math.floats"
         "math.functions" "math.integers" "math.intervals" "math.libm"
         "math.parser" "math.ratios" "math.vectors"
@@ -98,7 +98,7 @@ IN: random-tester.safe-words
         "vectors"
         ! "words"
     } [ words ] map concat seq-diff natural-sort ;
-    
+
 safe-words \ safe-words set-global
 
 ! foo dup (clone) = .

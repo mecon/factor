@@ -47,7 +47,7 @@ SINGLETON: windows-ui-backend
         EmptyClipboard win32-error=0/f
         GMEM_MOVEABLE over length 1+ GlobalAlloc
             dup win32-error=0/f
-    
+
         dup GlobalLock dup win32-error=0/f
         swapd byte-array>memory
         dup GlobalUnlock win32-error=0/f
@@ -326,7 +326,7 @@ SYMBOL: nc-buttons
     4drop release-capture ;
 
 : handle-wm-mouseleave ( hWnd uMsg wParam lParam -- )
-    #! message sent if mouse leaves main application 
+    #! message sent if mouse leaves main application
     4drop forget-rollover ;
 
 SYMBOL: wm-handlers

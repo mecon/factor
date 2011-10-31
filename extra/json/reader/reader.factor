@@ -1,6 +1,6 @@
 ! Copyright (C) 2006 Chris Double.
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel parser-combinators namespaces sequences promises strings 
+USING: kernel parser-combinators namespaces sequences promises strings
        assocs math math.parser math.vectors math.functions
        lazy-lists hashtables ascii ;
 IN: json.reader
@@ -14,10 +14,10 @@ IN: json.reader
   { } make unclip [ <|> ] reduce ;
 
 LAZY: 'ws' ( -- parser )
-  " " token 
+  " " token
   "\n" token <|>
   "\r" token <|>
-  "\t" token <|> 
+  "\t" token <|>
   "" token <|> ;
 
 LAZY: spaced ( parser -- parser )
@@ -54,32 +54,32 @@ LAZY: 'quot' ( -- parser )
   "\"" token ;
 
 LAZY: 'string' ( -- parser )
-  'quot' 
-  [ 
+  'quot'
+  [
     [ quotable? ] keep
-    [ CHAR: \\ = or ] keep 
-    CHAR: " = not and 
-  ] satisfy <*> &> 
+    [ CHAR: \\ = or ] keep
+    CHAR: " = not and
+  ] satisfy <*> &>
   'quot' <& [ >string ] <@  ;
 
 DEFER: 'value'
 
 LAZY: 'member' ( -- parser )
   'string'
-  'name-separator' <&  
+  'name-separator' <&
   'value' <&> ;
 
-USE: prettyprint 
+USE: prettyprint
 LAZY: 'object' ( -- parser )
-  'begin-object' 
+  'begin-object'
   'member' 'value-separator' list-of &>
   'end-object' <& [ >hashtable ] <@ ;
 
 LAZY: 'array' ( -- parser )
-  'begin-array' 
+  'begin-array'
   'value' 'value-separator' list-of &>
   'end-array' <&  ;
-  
+
 LAZY: 'minus' ( -- parser )
   "-" token ;
 
@@ -93,12 +93,12 @@ LAZY: 'decimal-point' ( -- parser )
   "." token ;
 
 LAZY: 'digit1-9' ( -- parser )
-  [ 
-    dup integer? [ 
-      CHAR: 1 CHAR: 9 between? 
-    ] [ 
-      drop f 
-    ] if 
+  [
+    dup integer? [
+      CHAR: 1 CHAR: 9 between?
+    ] [
+      drop f
+    ] if
   ] satisfy [ digit> ] <@ ;
 
 LAZY: 'digit0-9' ( -- parser )
@@ -107,7 +107,7 @@ LAZY: 'digit0-9' ( -- parser )
 : decimal>integer ( seq -- num ) 10 digits>integer ;
 
 LAZY: 'int' ( -- parser )
-  'zero' 
+  'zero'
   'digit1-9' 'digit0-9' <*> <&:> [ decimal>integer ] <@ <|>  ;
 
 LAZY: 'e' ( -- parser )
@@ -119,11 +119,11 @@ LAZY: 'e' ( -- parser )
   dup second swap first [ -1 * ] when ;
 
 LAZY: 'exp' ( -- parser )
-    'e' 
+    'e'
     'minus' 'plus' <|> <?> &>
     'digit0-9' <+> [ decimal>integer ] <@ <&> [ sign-number ] <@ ;
 
-: sequence>frac ( seq -- num ) 
+: sequence>frac ( seq -- num )
   #! { 1 2 3 } => 0.123
   reverse 0 [ swap 10 / + ] reduce 10 / >float ;
 
@@ -137,7 +137,7 @@ LAZY: 'frac' ( -- parser )
 
 LAZY: 'number' ( -- parser )
   'minus' <?>
-  [ 'int' , 'frac' 0 succeed <|> , ] [<&>] [ sum ] <@ 
+  [ 'int' , 'frac' 0 succeed <|> , ] [<&>] [ sum ] <@
   'exp' <?> <&> [ raise-to-power ] <@ <&> [ sign-number ] <@ ;
 
 LAZY: 'value' ( -- parser )
@@ -153,8 +153,8 @@ LAZY: 'value' ( -- parser )
 
 : json> ( string -- object )
   #! Parse a json formatted string to a factor object
-  'value' parse dup nil? [ 
+  'value' parse dup nil? [
     "Could not parse json" throw
-  ] [ 
-    car parse-result-parsed 
+  ] [
+    car parse-result-parsed
   ] if ;

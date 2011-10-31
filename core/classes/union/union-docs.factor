@@ -11,7 +11,7 @@ ARTICLE: "unions" "Union classes"
 { $subsection members }
 "The set of union classes is a class:"
 { $subsection union-class }
-{ $subsection union-class? } 
+{ $subsection union-class? }
 "Unions are used to define behavior shared between a fixed set of classes."
 { $see-also "mixins" "tuple-subclassing" } ;
 

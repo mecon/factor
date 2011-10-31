@@ -10,7 +10,7 @@ USING: prettyprint strings generic kernel math math.parser sequences isequences.
 DEFER: e-print
 DEFER: l-print
 
-GENERIC: (e-print) ( op -- string ) 
+GENERIC: (e-print) ( op -- string )
 
 M: .- (e-print) drop "-" ;
 M: .# (e-print) drop "#" ;
@@ -41,7 +41,7 @@ M: .% (e-print) drop "%" ;
 : (l-print1) ( e-list -- string )
     0 i-at dup left-side swap right-side dup 0 =
     [ drop dup i-length 0 = [ drop " " ] [ e-print ] if ] [ e-print swap e-print swap "=" s-append ] if ;
-    
+
 : (l-print0) ( e-list -- string )
     left-right [ l-print ] 2apply ";" s-append ;
 
@@ -57,10 +57,10 @@ M: .% (e-print) drop "%" ;
 
 : (e-print2) ( e-list -- string )
     dup integer? [ prefix-neg swap number>string append ] [ prefix-neg "[" append swap l-print "]" append append ] if ;
-    
+
 : (e-print1) ( e-expression -- string )
     0 i-at dup e-operator? [ (e-print) ] [ dup e-symbol? [ (e-print3) ] [ (e-print2) ] if ] if ;
-        
+
 : e-print ( e-expression -- string )
     dup i-length dup 0 =
     [ 2drop "" ]

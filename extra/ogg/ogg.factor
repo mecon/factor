@@ -32,7 +32,7 @@ C-STRUCT: ogg_stream_state
     { "long" "body_storage" }
     { "long" "body_fill" }
     { "long" "body_returned" }
-    { "int*" "lacing_vals" } 
+    { "int*" "lacing_vals" }
     { "longlong*" "granule_vals" }
     { "long" "lacing_storage" }
     { "long" "lacing_fill" }
@@ -58,7 +58,7 @@ C-STRUCT: ogg_packet
 C-STRUCT: ogg_sync_state
     { "uchar*" "data" }
     { "int" "storage" }
-    { "int" "fill" }  
+    { "int" "fill" }
     { "int" "returned" }
     { "int" "unsynced" }
     { "int" "headerbytes" }

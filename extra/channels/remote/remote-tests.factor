@@ -12,7 +12,7 @@ IN: channels.remote.tests
 { t f } [
     <channel> publish [
         get-channel channel?
-    ] keep 
+    ] keep
     [ unpublish ] keep
     get-channel
 ] unit-test

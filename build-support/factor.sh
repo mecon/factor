@@ -30,7 +30,7 @@ ensure_program_installed() {
         test_program_installed $i
         if [[ $? -eq 0 ]]; then
             echo -n "not "
-        else    
+        else
             installed=$(( $installed + 1 ))
         fi
         $ECHO "found!"

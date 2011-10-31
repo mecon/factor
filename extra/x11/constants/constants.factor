@@ -59,7 +59,7 @@ TYPEDEF: uchar KeyCode
 : NotifyWhileGrabbed    3 ;
 
 : NotifyHint            1 ; ! for MotionNotify events
-                       
+
 ! Notify detail
 
 : NotifyAncestor         0 ;
@@ -133,7 +133,7 @@ TYPEDEF: uchar KeyCode
 : RevertToParent        2 ;
 
 ! *****************************************************************
-! * ERROR CODES 
+! * ERROR CODES
 ! *****************************************************************
 
 : Success          0 ; ! everything's okay
@@ -148,9 +148,9 @@ TYPEDEF: uchar KeyCode
 : BadDrawable      9 ; ! parameter not a Pixmap or Window
 : BadAccess       10 ; ! depending on context:
                        !         - key/button already grabbed
-                       !         - attempt to free an illegal 
-                       !           cmap entry 
-                       !        - attempt to store into a read-only 
+                       !         - attempt to free an illegal
+                       !           cmap entry
+                       !        - attempt to store into a read-only
                        !           color map entry.
                        !        - attempt to modify the access control
                        !           list from other than the local host.
@@ -166,7 +166,7 @@ TYPEDEF: uchar KeyCode
 : LastExtensionError    255 ;
 
 ! *****************************************************************
-! * WINDOW DEFINITIONS 
+! * WINDOW DEFINITIONS
 ! *****************************************************************
 
 ! Window classes used by CreateWindow
@@ -275,7 +275,7 @@ TYPEDEF: uchar KeyCode
 : ArcPieSlice 1 ; ! join endpoints to center of arc
 
 ! *****************************************************************
-! * FONTS 
+! * FONTS
 ! *****************************************************************
 
 ! used in QueryFont -- draw direction
@@ -286,7 +286,7 @@ TYPEDEF: uchar KeyCode
 : FontChange            255 ;
 
 ! *****************************************************************
-! *  IMAGING 
+! *  IMAGING
 ! *****************************************************************
 
 ! ImageFormat -- PutImage, GetImage
@@ -296,7 +296,7 @@ TYPEDEF: uchar KeyCode
 : ZPixmap               2 ; ! depth == drawable depth
 
 ! *****************************************************************
-! *  COLOR MAP STUFF 
+! *  COLOR MAP STUFF
 ! *****************************************************************
 
 ! For CreateColormap
@@ -321,7 +321,7 @@ TYPEDEF: uchar KeyCode
 : TileShape             1 ; ! size tiled fastest
 : StippleShape          2 ; ! size stippled fastest
 
-! ***************************************************************** 
+! *****************************************************************
 ! * KEYBOARD/POINTER STUFF
 ! *****************************************************************
 
@@ -352,7 +352,7 @@ TYPEDEF: uchar KeyCode
 : MappingPointer                2 ;
 
 ! *****************************************************************
-! * SCREEN SAVER STUFF 
+! * SCREEN SAVER STUFF
 ! *****************************************************************
 
 : DontPreferBlanking    0 ;
@@ -385,7 +385,7 @@ TYPEDEF: uchar KeyCode
 : EnableAccess          1 ;
 : DisableAccess         0 ;
 
-! Display classes  used in opening the connection 
+! Display classes  used in opening the connection
 ! Note that the statically allocated ones are even numbered and the
 ! dynamically changeable ones are odd numbered
 

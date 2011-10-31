@@ -1,10 +1,10 @@
 ! Copyright (C) 2005, 2007 Slava Pestov.
 ! See http://factorcode.org/license.txt for BSD license.
 USING: kernel furnace furnace.validator http.server.responders
-       help help.topics html splitting sequences words strings 
+       help help.topics html splitting sequences words strings
        quotations macros vocabs tools.browser combinators
        arrays io.files ;
-IN: webapps.help 
+IN: webapps.help
 
 ! : string>topic ( string -- topic )
     ! " " split dup length 1 = [ first ] when ;

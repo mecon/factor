@@ -259,7 +259,7 @@ $nl
     } }
 } ;
 
-ARTICLE: "embedding-restrictions" "Embedding API restrictions" 
+ARTICLE: "embedding-restrictions" "Embedding API restrictions"
 "The Factor VM is not thread safe, and does not support multiple instances. There must only be one Factor instance per process, and this instance must be consistently accessed from the same thread for its entire lifetime. Once initialized, a Factor instance cannot be destroyed other than by exiting the process." ;
 
 ARTICLE: "embedding-factor" "What embedding looks like from Factor"

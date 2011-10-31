@@ -86,7 +86,7 @@ TUPLE: segment number color radius ;
 : find-nearest-segment ( oint segments -- segment )
     dup first swap 1 tail-slice rot [ (find-nearest-segment) ] curry
     find 2drop ;
-    
+
 : nearest-segment-forward ( segments oint start -- segment )
     rot dup length swap <slice> find-nearest-segment ;
 

@@ -1,5 +1,5 @@
 
-USING: kernel combinators namespaces math.vectors x11.xlib x11.constants 
+USING: kernel combinators namespaces math.vectors x11.xlib x11.constants
        mortar mortar.sugar slot-accessors geom.rect x x.gc x.widgets.wm.frame.drag ;
 
 IN: x.widgets.wm.frame.drag.size
@@ -8,7 +8,7 @@ SYMBOL: <wm-frame-drag-size>
 
 <wm-frame-drag-size> <wm-frame-drag> { } define-simple-class
 
-<wm-frame-drag-size> "create" !( event frame <wfds> -- ) [ 
+<wm-frame-drag-size> "create" !( event frame <wfds> -- ) [
   new-empty swap >>frame swap >>event
   dup $frame $dpy >>dpy
 

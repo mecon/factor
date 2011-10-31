@@ -153,15 +153,15 @@ IN: parser.tests
 
         "foo" source-file source-file-definitions first assoc-size
     ] unit-test
-    
+
     [ t ] [
         array "smudge-me" "parser.tests" lookup order memq?
     ] unit-test
-    
+
     [ t ] [
         integer "smudge-me" "parser.tests" lookup order memq?
     ] unit-test
-    
+
     [ f ] [
         string "smudge-me" "parser.tests" lookup order memq?
     ] unit-test
@@ -170,7 +170,7 @@ IN: parser.tests
         "IN: parser.tests USE: math 2 2 +" <string-reader> "a"
         parse-stream drop
     ] unit-test
-    
+
     [ t ] [
         "a" <pathname> \ + usage member?
     ] unit-test
@@ -179,11 +179,11 @@ IN: parser.tests
         "IN: parser.tests USE: math 2 2 -" <string-reader> "a"
         parse-stream drop
     ] unit-test
-    
+
     [ f ] [
         "a" <pathname> \ + usage member?
     ] unit-test
-    
+
     [ ] [
         "a" source-files get delete-at
         2 [
@@ -191,7 +191,7 @@ IN: parser.tests
             <string-reader> "a" parse-stream drop
         ] times
     ] unit-test
-    
+
     "a" source-files get delete-at
 
     [
@@ -206,7 +206,7 @@ IN: parser.tests
     [ f ] [
         "IN: parser.tests : x ;"
         <string-reader> "a" parse-stream drop
-        
+
         "y" "parser.tests" lookup
     ] unit-test
 
@@ -234,7 +234,7 @@ IN: parser.tests
         "USE: axx IN: bxx : cxx axx bxx ;"
         <string-reader> "bxx" parse-stream drop
     ] unit-test
-    
+
     ! And hope not to get a forward-error!
 
     ! Turning a generic into a non-generic could cause all
@@ -289,7 +289,7 @@ IN: parser.tests
         "IN: parser.tests GENERIC: killer? ( a -- b )"
         <string-reader> "removing-the-predicate" parse-stream drop
     ] unit-test
-    
+
     [ t ] [
         "killer?" "parser.tests" lookup >boolean
     ] unit-test

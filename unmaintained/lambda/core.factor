@@ -7,18 +7,18 @@ IN: lambda
         ":0 (one.(zero.zero))"
         ":SUCC (num.(one.(zero.(one((num one) zero)))))"
     }
-    
+
     0 lfrom 100 swap ltake list>array
-    [ 
+    [
         [ ":" , dup 1 + number>string , " (SUCC " , number>string ,
         ")" , ] { } make concat
     ] map append
-    
+
     0 lfrom 26 swap ltake list>array
     [
         [ ":" , 65 + dup 1string , " " , number>string , ] { } make concat
     ] map append
-    
+
     {
         ":LF 10"
         ":FALSE (t.(f.f))"
@@ -52,7 +52,7 @@ IN: lambda
 
 : print-return ( -- node )
     write "(nil.nil)" lambda-parse second ;
-    
+
 : HELLO ( node -- node )
     drop "\nHello and Welcome to Lambda!\n" print-return ;
 
@@ -76,4 +76,3 @@ IN: lambda
     #! reads one character of input and stores it as a base one num
     "alienbaseonenum" read1 "a" <array> >string <var-node> ;
 
-    

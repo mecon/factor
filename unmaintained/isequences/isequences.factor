@@ -2,6 +2,6 @@
 ! See http://factorcode.org/license.txt for BSD license.
 
 IN: isequences
-USING: generic kernel isequences.interface isequences.interface isequences.ops ;  
+USING: generic kernel isequences.interface isequences.interface isequences.ops ;
 
 

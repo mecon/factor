@@ -12,13 +12,13 @@
 dn: dc=example,dc=com
 dc: example
 description: My wonderful company as much text as you want to place in this line up to 32K
- continuation data for the line above must have &lt;CR> or &lt;CR>&lt;LF> i.e. ENTER works 
+ continuation data for the line above must have &lt;CR> or &lt;CR>&lt;LF> i.e. ENTER works
  on both Windows and *nix system - new line MUST begin with ONE SPACE
 objectClass: dcObject
 objectClass: organization
 o: Example, Inc.
 
-## FIRST Level hierarchy - people 
+## FIRST Level hierarchy - people
 ## uses mixed upper and lower case for objectclass
 # this is an ENTRY sequence and is preceded by a BLANK line
 

@@ -12,7 +12,7 @@ IN: mad
 
 LIBRARY: mad
 
-TYPEDEF: int mad_fixed_t 
+TYPEDEF: int mad_fixed_t
 TYPEDEF: int mad_fixed64hi_t
 TYPEDEF: uint mad_fixed64lo_t
 
@@ -23,18 +23,18 @@ TYPEDEF: int mad_layer
 TYPEDEF: int mad_mode
 TYPEDEF: int mad_emphasis
 
-C-STRUCT: mad_timer_t 
+C-STRUCT: mad_timer_t
     { "long" "seconds" }
     { "ulong" "fraction" }
 ;
 
-C-STRUCT: mad_bitptr 
+C-STRUCT: mad_bitptr
     { "uchar*" "byte" }
     { "short" "cache" }
     { "short" "left" }
 ;
 
-C-STRUCT: mad_stream 
+C-STRUCT: mad_stream
     { "uchar*" "buffer" }
     { "uchar*" "buffend" }
     { "long" "skiplen" }
@@ -50,13 +50,13 @@ C-STRUCT: mad_stream
     { "mad_error" "error" }
 ;
 
-C-STRUCT: struct_async 
+C-STRUCT: struct_async
     { "long" "pid" }
     { "int" "in" }
     { "int" "out" }
 ;
 
-C-STRUCT: mad_header 
+C-STRUCT: mad_header
     { "mad_layer" "layer" }
     { "mad_mode" "mode" }
     { "int" "mode_extension" }
@@ -70,38 +70,38 @@ C-STRUCT: mad_header
     { "mad_timer_t" "duration" }
 ;
 
-C-STRUCT: mad_frame 
+C-STRUCT: mad_frame
     { "mad_header" "header" }
     { "int" "options" }
     { { "mad_fixed_t" 2304 } "sbsample" }
     { "mad_fixed_t*" "overlap" }
 ;
 
-C-STRUCT: mad_pcm 
+C-STRUCT: mad_pcm
     { "uint" "samplerate" }
     { "ushort" "channels" }
     { "ushort" "length" }
     { { "mad_fixed_t" 2304 } "samples" }
 ;
 
-: mad_pcm-sample-left ( pcm int -- sample ) 
+: mad_pcm-sample-left ( pcm int -- sample )
   swap mad_pcm-samples int-nth ;
-: mad_pcm-sample-right ( pcm int -- sample ) 
+: mad_pcm-sample-right ( pcm int -- sample )
   1152 + swap mad_pcm-samples int-nth ;
 
-C-STRUCT: mad_synth 
+C-STRUCT: mad_synth
     { { "mad_fixed_t" 1024 } "filter" }
     { "uint" "phase" }
     { "mad_pcm" "pcm" }
 ;
 
-C-STRUCT: struct_sync 
+C-STRUCT: struct_sync
     { "mad_stream" "stream" }
     { "mad_frame" "frame" }
     { "mad_synth" "synth" }
 ;
 
-C-STRUCT: mad_decoder 
+C-STRUCT: mad_decoder
     { "mad_decoder_mode" "mode" }
     { "int" "options" }
     { "struct_async" "async" }
@@ -150,7 +150,7 @@ C-STRUCT: mad_decoder
 : MAD_ERROR_BADSTEREO       ( -- number ) HEX: 239 ; inline
 
 
-FUNCTION: void mad_decoder_init ( mad_decoder* decoder, void* data, void* input_func, void* header_func, void* filter_func, void* output_func, void* error_func, void* message_func ) ; 
+FUNCTION: void mad_decoder_init ( mad_decoder* decoder, void* data, void* input_func, void* header_func, void* filter_func, void* output_func, void* error_func, void* message_func ) ;
 FUNCTION: int mad_decoder_run ( mad_decoder* decoder, mad_decoder_mode mode ) ;
 FUNCTION: void mad_stream_buffer ( mad_stream* stream, uchar* start, ulong length ) ;
 

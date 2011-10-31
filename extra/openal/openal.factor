@@ -23,7 +23,7 @@ IN: openal
 
 LIBRARY: openal
 
-TYPEDEF: char ALboolean 
+TYPEDEF: char ALboolean
 TYPEDEF: char ALchar
 TYPEDEF: char ALbyte
 TYPEDEF: uchar ALubyte
@@ -107,8 +107,8 @@ TYPEDEF: double ALdouble
 : AL_EXPONENT_DISTANCE_CLAMPED ( -- number ) HEX: D006 ; inline
 
 FUNCTION: void alEnable ( ALenum capability ) ;
-FUNCTION: void alDisable ( ALenum capability ) ; 
-FUNCTION: ALboolean alIsEnabled ( ALenum capability ) ; 
+FUNCTION: void alDisable ( ALenum capability ) ;
+FUNCTION: ALboolean alIsEnabled ( ALenum capability ) ;
 FUNCTION: ALchar* alGetString ( ALenum param ) ;
 FUNCTION: void alGetBooleanv ( ALenum param, ALboolean* data ) ;
 FUNCTION: void alGetIntegerv ( ALenum param, ALint* data ) ;
@@ -124,7 +124,7 @@ FUNCTION: void* alGetProcAddress ( ALchar* fname ) ;
 FUNCTION: ALenum alGetEnumValue ( ALchar* ename ) ;
 FUNCTION: void alListenerf ( ALenum param, ALfloat value ) ;
 FUNCTION: void alListener3f ( ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 ) ;
-FUNCTION: void alListenerfv ( ALenum param, ALfloat* values ) ; 
+FUNCTION: void alListenerfv ( ALenum param, ALfloat* values ) ;
 FUNCTION: void alListeneri ( ALenum param, ALint value ) ;
 FUNCTION: void alListener3i ( ALenum param, ALint value1, ALint value2, ALint value3 ) ;
 FUNCTION: void alListeneriv ( ALenum param, ALint* values ) ;
@@ -134,13 +134,13 @@ FUNCTION: void alGetListenerfv ( ALenum param, ALfloat* values ) ;
 FUNCTION: void alGetListeneri ( ALenum param, ALint* value ) ;
 FUNCTION: void alGetListener3i ( ALenum param, ALint* value1, ALint* value2, ALint* value3 ) ;
 FUNCTION: void alGetListeneriv ( ALenum param, ALint* values ) ;
-FUNCTION: void alGenSources ( ALsizei n, ALuint* sources ) ; 
+FUNCTION: void alGenSources ( ALsizei n, ALuint* sources ) ;
 FUNCTION: void alDeleteSources ( ALsizei n, ALuint* sources ) ;
-FUNCTION: ALboolean alIsSource ( ALuint sid ) ; 
-FUNCTION: void alSourcef ( ALuint sid, ALenum param, ALfloat value ) ; 
+FUNCTION: ALboolean alIsSource ( ALuint sid ) ;
+FUNCTION: void alSourcef ( ALuint sid, ALenum param, ALfloat value ) ;
 FUNCTION: void alSource3f ( ALuint sid, ALenum param, ALfloat value1, ALfloat value2, ALfloat value3 ) ;
-FUNCTION: void alSourcefv ( ALuint sid, ALenum param, ALfloat* values ) ; 
-FUNCTION: void alSourcei ( ALuint sid, ALenum param, ALint value ) ; 
+FUNCTION: void alSourcefv ( ALuint sid, ALenum param, ALfloat* values ) ;
+FUNCTION: void alSourcei ( ALuint sid, ALenum param, ALint value ) ;
 FUNCTION: void alSource3i ( ALuint sid, ALenum param, ALint value1, ALint value2, ALint value3 ) ;
 FUNCTION: void alSourceiv ( ALuint sid, ALenum param, ALint* values ) ;
 FUNCTION: void alGetSourcef ( ALuint sid, ALenum param, ALfloat* value ) ;

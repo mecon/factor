@@ -140,7 +140,7 @@ $nl
     "TUPLE: subclass < superclass ... ;"
 }
 { $subsection "tuple-inheritance-example" }
-{ $subsection "tuple-inheritance-anti-example" } 
+{ $subsection "tuple-inheritance-anti-example" }
 { $see-also "call-next-method" "parametrized-constructors" "unions" "mixins" } ;
 
 ARTICLE: "tuple-introspection" "Tuple introspection"

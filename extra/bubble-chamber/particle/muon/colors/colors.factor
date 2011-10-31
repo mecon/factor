@@ -34,7 +34,7 @@ IN: bubble-chamber.particle.muon.colors
     T{ rgba f 0.47 0.42 0.56 1 }
   } ;
 
-: anti-colors ( -- seq ) good-colors <reversed> ; 
+: anti-colors ( -- seq ) good-colors <reversed> ;
 
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

@@ -8,15 +8,15 @@ words kernel math effects definitions compiler.units accessors ;
 
 [
     [ ] [ init-templates ] unit-test
-    
+
     [ V{ 3 } ] [ 3 fresh-object fresh-objects get ] unit-test
-    
+
     [ ] [ 0 <int-vreg> phantom-push ] unit-test
-    
+
     [ ] [ compute-free-vregs ] unit-test
-    
+
     [ f ] [ 0 <int-vreg> int-regs free-vregs member? ] unit-test
-    
+
     [ f ] [
         [
             copy-templates
@@ -25,19 +25,19 @@ words kernel math effects definitions compiler.units accessors ;
             1 <int-vreg> int-regs free-vregs member?
         ] with-scope
     ] unit-test
-    
+
     [ t ] [ 1 <int-vreg> int-regs free-vregs member? ] unit-test
 ] with-scope
 
 [
     [ ] [ init-templates ] unit-test
-    
+
     [ ] [ T{ effect f 3 { 1 2 0 } f } phantom-shuffle ] unit-test
-    
+
     [ 3 ] [ live-locs length ] unit-test
-    
+
     [ ] [ T{ effect f 2 { 1 0 } f } phantom-shuffle ] unit-test
-    
+
     [ 2 ] [ live-locs length ] unit-test
 ] with-scope
 
@@ -57,7 +57,7 @@ words kernel math effects definitions compiler.units accessors ;
 
 [
     [ ] [ init-templates ] unit-test
-    
+
     H{
         { +input+ { { f "x" } } }
     } clone [
@@ -176,7 +176,7 @@ SYMBOL: template-chosen
         2 phantom-datastack get phantom-input
         [ { { f "a" } { f "b" } } lazy-load ] { } make drop
     ] unit-test
-    
+
     [ t ] [
         phantom-datastack get stack>> [ cached? ] all?
     ] unit-test

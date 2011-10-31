@@ -4,10 +4,10 @@ USING: kernel arrays strings math.parser sequences
 peg peg.ebnf peg.parsers memoize math ;
 IN: peg.expr
 
-EBNF: expr 
+EBNF: expr
 digit    = [0-9]            => [[ digit> ]]
 number   = (digit)+         => [[ 10 digits>integer ]]
-value    =   number 
+value    =   number
            | ("(" exp ")")  => [[ second ]]
 
 fac      =   fac "*" value  => [[ first3 nip * ]]

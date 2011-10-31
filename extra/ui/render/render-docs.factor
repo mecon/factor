@@ -27,16 +27,16 @@ HELP: clip
 { $var-description "The current clipping rectangle." } ;
 
 HELP: draw-gadget*
-{ $values { "gadget" gadget } } 
+{ $values { "gadget" gadget } }
 { $contract "Draws the gadget by making OpenGL calls. The top-left corner of the gadget should be drawn at the location stored in the " { $link origin } " variable." }
 { $notes "This word should not be called directly. To force a gadget to redraw, call " { $link relayout-1 } "." } ;
 
 HELP: draw-interior
-{ $values { "interior" object } { "gadget" gadget } } 
+{ $values { "interior" object } { "gadget" gadget } }
 { $contract "Draws the interior of a gadget by making OpenGL calls. The " { $link gadget-interior } " slot may be set to objects implementing this generic word." } ;
 
 HELP: draw-boundary
-{ $values { "boundary" object } { "gadget" gadget } } 
+{ $values { "boundary" object } { "gadget" gadget } }
 { $contract "Draws the boundary of a gadget by making OpenGL calls. The " { $link gadget-boundary } " slot may be set to objects implementing this generic word." } ;
 
 HELP: solid

@@ -4,7 +4,7 @@
 
 IN: isequences.base
 USING: generic kernel math math.functions sequences
-isequences.interface shuffle ;        
+isequences.interface shuffle ;
 
 : index-error ( -- * )
     "index out of bounds" throw ; foldable
@@ -19,7 +19,7 @@ isequences.interface shuffle ;
     if ; inline
 
 : neg? ( s -- ? ) i-length 0 < ; foldable
-    
+
 : is-atom? ( seq -- ? )
     dup 0 i-at eq? ;
 
@@ -46,10 +46,10 @@ isequences.interface shuffle ;
     [ 2drop nip ]
     [ 2dup < [ swap - rot iright swap ihead ++ ] [ nip ihead nip ] if ]
     if ; inline
-    
-: (ihead) ( s i -- h ) 
+
+: (ihead) ( s i -- h )
     dup pick i-length = [ drop ] [ (ihead2) ] if ; inline
-    
+
 : (itail3) ( s i -- h )
     swap left-right swap dup i-length roll 2dup =
     [ 3drop ]
@@ -60,13 +60,13 @@ isequences.interface shuffle ;
     tuck = [ 2drop 0 ] [ (itail3) ] if ; inline
 
 : (itail) ( s i -- t )
-    over i-length dup >r 1 = 
+    over i-length dup >r 1 =
     [ r> drop 1 = [ drop 0 ] when ] [ r> swap (itail2) ] if ;
 
 
 : PRIME1 ( -- prime1 ) HEX: 58ea12c9 ; foldable
 : PRIME2 ( -- prime2 ) HEX: 79af7bc3 ; foldable
-    
+
 : hh ( fixnum-h -- fixnum-h )
     PRIME1 * PRIME2 + >fixnum ; inline
 
@@ -92,9 +92,9 @@ isequences.interface shuffle ;
     [ swap twice >= [ (ig2) ] [ ipair ] if ] if ; inline
 
 : ++g++ ( s1 s2 -- s )
-    dup i-length dup zero? 
+    dup i-length dup zero?
     [ 2drop ]
-    [ pick i-length dup zero? [ 2drop nip ] [ swap (ig3) ] if ] if ; inline 
+    [ pick i-length dup zero? [ 2drop nip ] [ swap (ig3) ] if ] if ; inline
 
 : ++g+- ( s1 s2 -- s )
     2size + dup 0 <
@@ -131,14 +131,14 @@ M: ineg $$ ineg-sequence $$ neg ;
 
 TUPLE: irev sequence ;
 
-: <i-rev> 
+: <i-rev>
     dup i-length 1 > [ <irev> ] when ; inline
 
 M: irev i-at swap irev-sequence swap i-length over i-length - 1+ neg i-at ;
 M: irev i-length irev-sequence i-length ;
 M: irev ileft irev-sequence iright `` ;
 M: irev iright irev-sequence ileft `` ;
-M: irev ihead >r irev-sequence r> rindex itail `` ;  
+M: irev ihead >r irev-sequence r> rindex itail `` ;
 M: irev itail >r irev-sequence r> rindex ihead `` ;
 M: irev $$ irev-sequence neg hh ;
 
@@ -146,7 +146,7 @@ M: irev descending? irev-sequence ascending? ;
 M: irev ascending? irev-sequence descending? ;
 
 M: object `` <i-rev> ;
-M: ineg `` -- `` -- ; 
+M: ineg `` -- `` -- ;
 M: integer `` ;
 M: irev `` irev-sequence ;
 
@@ -256,7 +256,7 @@ DEFER: (i-eq?)
     [ itail swap iright swap (i-eq?) ]
     [ 3drop f ]
     if ;
- 
+
 : (i-eq2?) ( s1 s2 sl -- ? )
     dup zero? [ 3drop 0 ]
     [ 1 = [ (i-eq4?) ] [ (i-eq3?) ] if ]
@@ -275,7 +275,7 @@ DEFER: (i-eq?)
 : (i-cmp4) ( s1 s2 s -- i )
     dup zero? [ 3drop 0 ]
     [ 1 = [ [ 0 i-at ] 2apply i-cmp ] [ (i-cmp5) ] if ]
-    if ; inline 
+    if ; inline
 
 : (i-cmp3) ( s1 s2 ls1 ls2 -- i )
     2dup = [ drop (i-cmp4) ]
@@ -284,14 +284,14 @@ DEFER: (i-eq?)
 
 : (i-cmp2) ( s1 s2 ls1 ls2 -- i )
      2dup > [ swap 2swap swap 2swap (i-cmp2) neg ] [ (i-cmp3) ] if ; inline
-    
+
 : cmp-g++ ( s1 s2 -- i )
       2dup (i-eq?) [ 2drop 0 ]
       [ 2dup [ i-length ] 2apply (i-cmp2) ] if ; inline
 
 : cmp-g-- ( s1 s2 -- i )
     [ -- ] 2apply swap cmp-g++ ; inline
-    
+
 : cmp-g+- ( s1 s2 -- i ) 2drop 1 ; inline
 
 : cmp-g-+ ( s1 s2 -- i ) 2drop -1 ; inline
@@ -357,15 +357,15 @@ M: iturned $$ iturned-sequence dup -- [ $$ ] 2apply quick-hash ;
     2dup [ i-length ] 2apply zero?
     [ zero? [ 2drop 0 ] [ drop ] if ]
     [ zero? [ nip <i-right-sided> ] [ <idual-sided> ] if ]
-    if ; 
+    if ;
 
 : i-cmp-left-right ( s1 s2 -- i )
     2dup [ left-side ] 2apply i-cmp dup zero?
     [ drop [ right-side ] 2apply i-cmp ]
     [ -rot 2drop ]
     if ; inline
-    
-: ::g ( s -- s ) 
+
+: ::g ( s -- s )
     dup i-length 0 < [ -- <iturned> -- ] [ <iturned> ] if ; inline
 
 M: object :: ::g ;
@@ -413,7 +413,7 @@ M: iright-sided iright-sided/++
 M: idual-sided iright-sided/++
     dup idual-sided-left swap idual-sided-right
     rot iright-sided-value swap ++ <i-dual-sided> ;
-    
+
 M: idual-sided idual-sided/++
         swap 2dup [ idual-sided-left ] 2apply ++
         >r [ idual-sided-right ] 2apply ++ r> <i-dual-sided> ;
@@ -441,14 +441,14 @@ TUPLE: imul sequence multiplier ;
 : *_g-+ ( s n -- s ) swap -- swap *_ -- ; inline
 
 : *_g-- ( s n -- s ) [ -- ] 2apply *_ ; inline
-    
+
 
 : imul-unpack ( imul -- m s )
     dup imul-multiplier swap imul-sequence ; inline
 
 : imul-ileft ( imul -- imul )
     imul-unpack dup i-length 1 =
-    [ swap ileft *_ ] 
+    [ swap ileft *_ ]
     [ ileft swap *_ ]
     if ; inline
 
@@ -456,8 +456,8 @@ TUPLE: imul sequence multiplier ;
     imul-unpack dup i-length 1 =
     [ swap iright *_ ]
     [ iright swap *_ ]
-    if ; inline 
-    
+    if ; inline
+
 : check-bounds ( s i -- s i )
     2dup swap i-length >= [ index-error ] when ; inline
 
@@ -482,7 +482,7 @@ M: imul $$ imul-unpack [ $$ 2/ ] 2apply quick-hash ;
 
 M: imul ascending? imul-sequence ascending? ;
 M: imul descending? imul-sequence descending? ;
-    
+
 
 ! **** sort, union, intersect and diff ****
 !
@@ -509,27 +509,27 @@ DEFER: (ifind2)
      dupd ifind 2dup ihead -rot itail ; inline
 
 DEFER: (union)
-    
+
 : (union6) ( s1 s2 -- s )
     2dup [ 0 i-at ] 2apply i-cmp 0 >
     [ swap ] when ++ ; inline
-    
+
 : (union5) ( s1 s2 -- s )
     over ileft i-length pick swap i-at icut rot left-right
     swap roll (union) -rot swap (union) ++ ;
 
 : (union4) ( s1 s2 -- s )
     2dup ifirst swap ilast i-cmp 0 >= [ ++ ] [ (union5) ] if ; inline
-    
+
 : (union3) ( s1 s2 ls1 ls2 -- s )
-    1 = 
+    1 =
     [ 1 = [ (union6) ] [ (union4) ] if ]
     [ 1 = [ swap ] when (union4) ] if ; inline
 
 : (union2) ( s1 s2 -- s )
     2dup [ i-length ] 2apply 2dup zero?
     [ 3drop drop ] [ zero? [ 2drop nip ] [ (union3) ] if ] if ; inline
-    
+
 : (union) ( s1 s2 -- s )
     2dup eq? [ drop 2 *_ ] [ (union2) ] if ; inline
 
@@ -557,7 +557,7 @@ DEFER: (diff)
     2dup [ i-length ] 2apply 1 =
     [ 1 = [ (diff6) ] [ (diff5) ] if ]
     [ 1 = [ (diff7) ] [ (diff5) ] if ] if ; inline
-    
+
 : (diff3) ( s1 s2 -- s )
     2dup ifirst swap ilast i-cmp 0 >
     [ drop ] [ (diff4) ] if ; inline
@@ -565,7 +565,7 @@ DEFER: (diff)
 : (diff2) ( s1 s2 -- s )
     2dup [ i-length zero? ] either?
     [ drop ] [ (diff3) ] if ; inline
-    
+
 : (diff) ( s1 s2 -- s )
     2dup eq? [ 2drop 0 ] [ (diff2) ] if ; inline
 

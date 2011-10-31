@@ -7,7 +7,7 @@ USING: generic kernel math sequences isequences.interface isequences.base ;
 
 TUPLE: iwiped sequence ;
 
-: <i-wiped> ( s -- iwiped ) 
+: <i-wiped> ( s -- iwiped )
     dup i-length zero? [ drop 0 ] [ <iwiped> ] if ; inline
 
 M: iwiped i-length iwiped-sequence i-length ;
@@ -18,7 +18,7 @@ M: iwiped ihead (ihead) ;
 M: iwiped itail (itail) ;
 M: iwiped $$ iwiped-sequence $$ dup quick-hash ;
 
-M: object ## 
+M: object ##
     dup i-length 0 < [ -- <i-wiped> -- ] [ <i-wiped> ] if ;
 M: integer ## ;
 M: ineg ## -- ## -- ;

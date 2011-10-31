@@ -276,55 +276,55 @@ $nl
 HELP: {
 { $syntax "{ elements... }" }
 { $values { "elements" "a list of objects" } }
-{ $description "Marks the beginning of a literal array. Literal arrays are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal array. Literal arrays are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "{ 1 2 3 }" } } ;
 
 HELP: V{
 { $syntax "V{ elements... }" }
 { $values { "elements" "a list of objects" } }
-{ $description "Marks the beginning of a literal vector. Literal vectors are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal vector. Literal vectors are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "V{ 1 2 3 }" } } ;
 
 HELP: B{
 { $syntax "B{ elements... }" }
 { $values { "elements" "a list of integers" } }
-{ $description "Marks the beginning of a literal byte array. Literal byte arrays are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal byte array. Literal byte arrays are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "B{ 1 2 3 }" } } ;
 
 HELP: BV{
 { $syntax "BV{ elements... }" }
 { $values { "elements" "a list of bytes" } }
-{ $description "Marks the beginning of a literal byte vector. Literal byte vectors are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal byte vector. Literal byte vectors are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "BV{ 1 2 3 12 }" } } ;
 
 HELP: ?{
 { $syntax "?{ elements... }" }
 { $values { "elements" "a list of booleans" } }
-{ $description "Marks the beginning of a literal bit array. Literal bit arrays are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal bit array. Literal bit arrays are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "?{ t f t }" } } ;
 
 HELP: ?V{
 { $syntax "?V{ elements... }" }
 { $values { "elements" "a list of booleans" } }
-{ $description "Marks the beginning of a literal bit vector. Literal bit vectors are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal bit vector. Literal bit vectors are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "?V{ t f t }" } } ;
 
 HELP: FV{
 { $syntax "FV{ elements... }" }
 { $values { "elements" "a list of real numbers" } }
-{ $description "Marks the beginning of a literal float vector. Literal float vectors are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal float vector. Literal float vectors are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "FV{ 1.0 2.0 3.0 }" } } ;
 
 HELP: F{
 { $syntax "F{ elements... }" }
 { $values { "elements" "a list of real numbers" } }
-{ $description "Marks the beginning of a literal float array. Literal float arrays are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal float array. Literal float arrays are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "F{ 1.0 2.0 3.0 }" } } ;
 
 HELP: H{
 { $syntax "H{ { key value }... }" }
 { $values { "key" "an object" } { "value" "an object" } }
-{ $description "Marks the beginning of a literal hashtable, given as a list of two-element arrays holding key/value pairs. Literal hashtables are terminated by " { $link POSTPONE: } } "." } 
+{ $description "Marks the beginning of a literal hashtable, given as a list of two-element arrays holding key/value pairs. Literal hashtables are terminated by " { $link POSTPONE: } } "." }
 { $examples { $code "H{ { \"tuna\" \"fish\" } { \"jalapeno\" \"vegetable\" } }" } } ;
 
 HELP: C{

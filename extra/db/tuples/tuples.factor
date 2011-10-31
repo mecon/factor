@@ -50,7 +50,7 @@ HOOK: insert-tuple* db ( tuple statement -- )
     [ statement-out-params ] keep query-results [
         [ sql-row-typed swap resulting-tuple ] with query-map
     ] with-disposal ;
- 
+
 : query-modify-tuple ( tuple statement -- )
     [ query-results [ sql-row-typed ] with-disposal ] keep
     statement-out-params rot [

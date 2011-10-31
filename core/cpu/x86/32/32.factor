@@ -148,7 +148,7 @@ M: x86.32 %box ( n reg-class func -- )
     over reg-size [
         >r (%box) r> f %alien-invoke
     ] with-aligned-stack ;
-    
+
 : (%box-long-long)
     #! If n is f, push the return registers onto the stack; we
     #! are boxing a return value of a C function. If n is an
@@ -157,7 +157,7 @@ M: x86.32 %box ( n reg-class func -- )
     [
         int-regs box@
         EDX over stack@ MOV
-        EAX swap cell - stack@ MOV 
+        EAX swap cell - stack@ MOV
     ] when*
     EDX PUSH
     EAX PUSH ;

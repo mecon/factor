@@ -172,9 +172,9 @@ HELP: /f
 { $values { "x" real } { "y" real } { "z" real } }
 { $description
     "Divides " { $snippet "x" } " by " { $snippet "y" } ", representing the result as a floating point number."
-    { $list 
+    { $list
         "Integer division of fixnums may overflow and yield a bignum."
-        "Integer division of bignums always yields a bignum."            
+        "Integer division of bignums always yields a bignum."
         "Integer division of floats always yields a float."
         "Integer division of ratios and complex numbers proceeds using the relevant mathematical rules."
     }
@@ -185,9 +185,9 @@ HELP: mod
 { $values { "x" integer } { "y" integer } { "z" integer } }
 { $description
     "Computes the remainder of dividing " { $snippet "x" } " by " { $snippet "y" } ", with the remainder being negative if " { $snippet "x" } " is negative."
-    { $list 
+    { $list
         "Modulus of fixnums always yields a fixnum."
-        "Modulus of bignums always yields a bignum."            
+        "Modulus of bignums always yields a bignum."
     }
 }
 { $see-also "division-by-zero" rem } ;
@@ -196,9 +196,9 @@ HELP: /mod
 { $values { "x" integer } { "y" integer } { "z" integer } { "w" integer } }
 { $description
     "Computes the quotient " { $snippet "z" } " and remainder " { $snippet "w" } " of dividing " { $snippet "x" } " by " { $snippet "y" } ", with the remainder being negative if " { $snippet "x" } " is negative."
-    { $list 
+    { $list
         "The quotient of two fixnums may overflow and yield a bignum; the remainder is always a fixnum"
-        "The quotient and remainder of two bignums is always a bignum."            
+        "The quotient and remainder of two bignums is always a bignum."
     }
 }
 { $see-also "division-by-zero" } ;
@@ -296,9 +296,9 @@ HELP: rem
 { $values { "x" integer } { "y" integer } { "z" integer } }
 { $description
     "Computes the remainder of dividing " { $snippet "x" } " by " { $snippet "y" } ", with the remainder always positive."
-    { $list 
+    { $list
         "Modulus of fixnums always yields a fixnum."
-        "Modulus of bignums always yields a bignum."            
+        "Modulus of bignums always yields a bignum."
     }
 }
 { $see-also "division-by-zero" mod } ;

@@ -33,19 +33,19 @@ GENERIC: e-replace ( from to sequence -- s )
     dup is-atom?
     [ pick over i-cmp 0 = [ drop nip ] [ nip nip ] if ]
     [ <ireplace> ] if ;
-    
+
 : <i-replace> ( from to seq -- ireplace )
    dup i-length dup 0 =
    [ 3drop drop 0 ]
    [ 1 = [ (ireplace1) ] [ <ireplace> ] if ]
    if ;
-       
+
 : ireplace-i-at ( s i -- v )
    swap dup ireplace-seq rot i-at dup >r swap dup ireplace-from rot i-cmp 0 =
    [ r> drop ireplace-to ]
    [ dup ireplace-from swap ireplace-to r> e-replace ]
    if ;
-    
+
 M: object e-replace <i-replace> ;
 M: integer e-replace -rot 2drop ;
 
@@ -64,14 +64,14 @@ GENERIC: esymbol/i-cmp ( esymbol s -- i )
 M: object esymbol/i-cmp 2drop -1 ;
 M: esymbol esymbol/i-cmp swap [ esymbol-seq ] 2apply i-cmp ;
 M: esymbol object/i-cmp 2drop 1 ;
-M: esymbol i-cmp swap esymbol/i-cmp ; 
+M: esymbol i-cmp swap esymbol/i-cmp ;
 
 DEFER: (sunion)
 
 : (sunion6) ( s1 s2 -- s )
     2dup [ 0 i-at ] 2apply i-cmp dup zero?
     [ 2drop ] [ 0 > [ swap ] when ++ ] if ; inline
-    
+
 : (sunion5) ( s1 s2 -- s )
     over ileft i-length pick swap i-at icut rot left-right
     swap roll (sunion) -rot swap (sunion) ++ ; inline
@@ -81,14 +81,14 @@ DEFER: (sunion)
    [ drop 1 itail ++ ] [ 0 > [ ++ ] [ (sunion5) ] if ] if ; inline
 
 : (sunion3) ( s1 s2 ls1 ls2 -- s )
-    1 = 
+    1 =
     [ 1 = [ (sunion6) ] [ (sunion4) ] if ]
     [ 1 = [ swap ] when (sunion4) ] if ; inline
 
 : (sunion2) ( s1 s2 -- s )
     2dup [ i-length ] 2apply 2dup zero?
     [ 3drop drop ] [ zero? [ 2drop nip ] [ (sunion3) ] if ] if ; inline
-    
+
 : (sunion) ( s1 s2 -- s )
     2dup eq? [ drop ] [ (sunion2) ] if ; inline
 
@@ -123,7 +123,7 @@ M: integer !! ;
 M: object \\
     dup i-length dup 0 =
     [ 2drop 0 ]
-    [ 1 = [ 0 i-at left-side (\\) ] [ left-right [ \\ ] 2apply ++ ] if ] if ; 
+    [ 1 = [ 0 i-at left-side (\\) ] [ left-right [ \\ ] 2apply ++ ] if ] if ;
 M: integer \\ ;
 
 TUPLE: emacro symbols expr eager? ;
@@ -149,7 +149,7 @@ M: emacro e-replace
     dup i-length dup zero?
     [ 2drop 0 ]
     [ 1 = [ 0 i-at left-side ] [ left-right [ eflatten ] 2apply ++ ] if ] if ; inline
-    
+
 TUPLE: c-op v d-op ;
 
 M: object e-operator? drop f ;
@@ -160,8 +160,8 @@ M: object e-dyadic? drop f ;
 M: esymbol e-symbol? drop t ;
 
 M: c-op e-m-operate
-    dup c-op-v swap c-op-d-op e-d-operate ; 
-    
+    dup c-op-v swap c-op-d-op e-d-operate ;
+
 TUPLE: .- ;
 M: .- e-m-operate drop -- <i> ;
 TUPLE: .` ;
@@ -180,7 +180,7 @@ TUPLE: .! ;
 M: .! e-m-operate drop !! <i> ;
 TUPLE: .\ ;
 M: .\ e-m-operate drop \\ <i> ;
-    
+
 TUPLE: .+ ;
 M: .+ e-d-operate drop ++ <i> ;
 TUPLE: .* ;
@@ -210,19 +210,19 @@ M: operator-class e-operator? drop t ;
 M: monadic-class e-dyadic? drop f ;
 M: dyadic-class e-dyadic? drop t ;
 
-DEFER: +e+ 
+DEFER: +e+
 
 : (e-reducible?) ( e -- ? )
     left-right 2dup [ e-reducible? ] either?
     [ 2drop t ] [ ifirst e-operator? swap ilast e-list? and ] if ; inline
-        
+
 M: object e-reducible?
     dup i-length 1 <= [ drop f ] [ (e-reducible?) ] if ;
 
 : (e-reduce2) ( e1 e2 -- e )
     2dup ifirst swap ilast swap e-m-operate
     -rot 1 itail swap dup i-length 1- ihead rot ++ swap ++ ; inline
-    
+
 : (e-reduce) ( e -- e )
     left-right swap dup e-reducible? [ (e-reduce) swap ++ ]
     [ swap dup e-reducible? [ (e-reduce) ++ ] [ (e-reduce2) ] if ] if ; inline
@@ -270,7 +270,7 @@ M: e-exp object/++ swap +e+ ;
 M: e-exp object/ipair swap e-ipair ;
 
 M: operator-class ++ +e+ ;
-        
+
 M: e-exp i-length e-exp-expr i-length ;
 M: e-exp i-at swap e-exp-expr swap i-at ;
 M: e-exp ileft e-exp-expr ileft ;
@@ -279,7 +279,7 @@ M: e-exp ihead swap e-exp-expr swap ihead ;
 M: e-exp itail swap e-exp-expr swap itail ;
 M: e-exp $$ e-exp-expr $$ ;
 
-M: e-exp e-replace 
+M: e-exp e-replace
     dup i-length 1 =
     [ e-exp-expr e-replace ]
     [ 3dup iright e-replace >r ileft e-replace r> ++ ] if ;
@@ -301,15 +301,15 @@ TUPLE: ereplacement from to ;
 : replace-s ( s replacements -- s )
     dup i-length dup zero?
     [ 2drop ]
-    [ 1 = [ 0 i-at dup ereplacement-from swap ereplacement-to rot e-replace ] [ left-right >r replace-s r> replace-s ] if ] if ; 
+    [ 1 = [ 0 i-at dup ereplacement-from swap ereplacement-to rot e-replace ] [ left-right >r replace-s r> replace-s ] if ] if ;
 
 : (replacements) ( value macro -- replacements )
     dup emacro-expr free-symbols swap emacro-symbols -1 ++
-    i-intersect tuck swap free-symbols i-intersect (replacements2) ; inline 
+    i-intersect tuck swap free-symbols i-intersect (replacements2) ; inline
 
 : (replace-macro) ( replacements macro -- macro )
     2dup dup >r emacro-symbols swap replace-s swap emacro-expr rot replace-s r> emacro-eager? <e-macro> ;
-    
+
 : (eval-macro) ( value macro -- macro )
     dup >r emacro-symbols dup -1 ++ swap ilast rot <i> r> dup >r emacro-expr e-replace r> emacro-eager? <e-macro> ;
 

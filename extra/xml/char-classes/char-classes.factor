@@ -5,7 +5,7 @@ IN: xml.char-classes
 
 CATEGORY: 1.0name-start* Ll Lu Lo Lt Nl \u000559\u0006E5\u0006E6_ ;
 : 1.0name-start? ( char -- ? )
-    dup 1.0name-start*? [ drop t ] 
+    dup 1.0name-start*? [ drop t ]
     [ HEX: 2BB HEX: 2C1 between? ] if ;
 
 CATEGORY: 1.0name-char Ll Lu Lo Lt Nl Mc Me Mn Lm Nd _-.\u000387 ;

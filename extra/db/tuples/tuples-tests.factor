@@ -35,7 +35,7 @@ SYMBOL: person4
     [ ] [ person create-table ] unit-test
     [ person create-table ] must-fail
     [ ] [ person ensure-table ] unit-test
-    
+
     [ ] [ person1 get insert-tuple ] unit-test
 
     [ 1 ] [ person1 get person-the-id ] unit-test
@@ -192,7 +192,7 @@ TUPLE: annotation n paste-id summary author mode contents ;
 
 : test-repeated-insert
     [ ] [ person ensure-table ] unit-test
-    
+
     [ ] [ person1 get insert-tuple ] unit-test
     [ person1 get insert-tuple ] must-fail ;
 
@@ -215,7 +215,7 @@ TUPLE: serialize-me id data ;
 [ test-serialize ] test-sqlite
 ! [ test-serialize ] test-postgresql
 
-TUPLE: exam id name score ; 
+TUPLE: exam id name score ;
 
 : test-ranges ( -- )
     exam "EXAM"

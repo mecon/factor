@@ -57,7 +57,7 @@ ARTICLE: { "xml-rpc" "intro" } "XML-RPC"
     $nl
     "The most important words that this library implements are:"
     { $subsection send-rpc }
-    { $subsection receive-rpc } 
+    { $subsection receive-rpc }
     "data types in XML-RPC"
     { $subsection base64 }
     { $subsection rpc-method }
@@ -69,4 +69,4 @@ ARTICLE: { "xml-rpc" "intro" } "XML-RPC"
     { $subsection <rpc-response> }
     { $subsection <rpc-fault> }
     "other words include"
-    { $subsection post-rpc } ; 
+    { $subsection post-rpc } ;

@@ -137,7 +137,7 @@ IN: minneapolis-talk
         "OpenGL 2.1 shaders, OpenAL 3D audio..."
     }
     { $slide "Live coding demo"
-        
+
     }
     { $slide "C library interface"
         "Efficient"
@@ -146,7 +146,7 @@ IN: minneapolis-talk
         "Function pointers, callbacks"
     }
     { $slide "Live coding demo"
-        
+
     }
     { $slide "Deployment"
         { "Let's play " { $vocab-link "tetris" } }

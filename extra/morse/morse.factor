@@ -118,7 +118,7 @@ PRIVATE>
 
 : morse> ( str -- str )
     'morse-words' parse car parse-result-parsed [
-        [ 
+        [
             >string morse>ch
         ] map >string
     ] map [ [ CHAR: \s , ] [ % ] interleave ] "" make ;

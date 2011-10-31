@@ -109,7 +109,7 @@ ARTICLE: "parsing-tokens" "Parsing raw tokens"
 "So far we have seen how to read individual tokens, or read a sequence of parsed objects until a delimiter. It is also possible to read raw tokens from the input and perform custom processing."
 $nl
 "One example is the " { $link POSTPONE: USING: } " parsing word."
-{ $see POSTPONE: USING: } 
+{ $see POSTPONE: USING: }
 "It reads a list of vocabularies terminated by " { $link POSTPONE: ; } ". However, the vocabulary names do not name words, except by coincidence; so " { $link parse-until } " cannot be used here. Instead, a lower-level word is called:"
 { $subsection parse-tokens } ;
 

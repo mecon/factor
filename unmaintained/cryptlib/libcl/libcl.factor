@@ -862,7 +862,7 @@ TYPEDEF: int CRYPT_KEYID_TYPE
 : CRYPT_CURSOR_NEXT         -202 ; inline
 : CRYPT_CURSOR_LAST         -203 ; inline
 
-! The type of information polling to perform to get random seed 
+! The type of information polling to perform to get random seed
 ! information.  These values have to be negative because they're used
 ! as magic length values for cryptAddRandom()
 : CRYPT_RANDOM_FASTPOLL     -300 ; inline

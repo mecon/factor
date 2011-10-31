@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "master.h"
 
-/* 
+/*
 	Windows CE argument parsing ported to work on
 	int main(int argc, wchar_t **argv).
 

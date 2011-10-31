@@ -14,12 +14,12 @@ IN: ldap.libldap
     { [ macosx? ] [ "libldap.dylib" "cdecl" ] }
     { [ unix? ]   [ "libldap.so" "cdecl" ] }
 } cond add-library >>
- 
+
 : LDAP_VERSION1     1 ; inline
-: LDAP_VERSION2     2 ; inline 
+: LDAP_VERSION2     2 ; inline
 : LDAP_VERSION3     3 ; inline
 
-: LDAP_VERSION_MIN  LDAP_VERSION2 ; inline  
+: LDAP_VERSION_MIN  LDAP_VERSION2 ; inline
 : LDAP_VERSION      LDAP_VERSION2 ; inline
 : LDAP_VERSION_MAX  LDAP_VERSION3 ; inline
 
@@ -73,7 +73,7 @@ IN: ldap.libldap
 
 : LDAP_OPT_PROTOCOL_VERSION HEX: 0011 ; inline
 
-C-STRUCT: ldap 
+C-STRUCT: ldap
     { "char" "ld_lberoptions" }
     { "int" "ld_deref" }
     { "int" "ld_timelimit" }
@@ -111,7 +111,7 @@ FUNCTION: int ldap_result2error ( void* ld, void* res, int freeit ) ;
 
 FUNCTION: char* ldap_err2string ( int err ) ;
 
-FUNCTION: int ldap_search ( void* ld, char* base, int scope, char* filter, 
+FUNCTION: int ldap_search ( void* ld, char* base, int scope, char* filter,
                            char* attrs, int attrsonly ) ;
 
 FUNCTION: int ldap_search_s ( void* ld, char* base, int scope, char* filter,
@@ -121,8 +121,8 @@ FUNCTION: int ldap_result ( void* ld, int msgid, int all, void* timeout,
                             void* result ) ;
 
 FUNCTION: int ldap_parse_result ( void* ld, void* result, int* errcodep,
-                                 char* matcheddnp, char* errmsgp, 
-                                 char* referralsp, void* serverctrlsp, 
+                                 char* matcheddnp, char* errmsgp,
+                                 char* referralsp, void* serverctrlsp,
                                  int freeit ) ;
 
 FUNCTION: int ldap_count_messages ( void* ld, void* result ) ;

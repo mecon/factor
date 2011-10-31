@@ -32,7 +32,7 @@ M: id equal? over id? [ [ obj>> ] bi@ eq? ] [ 2drop f ] if ;
     serialized get [ assoc-size swap <id> ] keep set-at ;
 
 : object-id ( obj -- id )
-    #! Return the id of an already serialized object 
+    #! Return the id of an already serialized object
     <id> serialized get at ;
 
 ! Serialize object
@@ -50,7 +50,7 @@ GENERIC: (serialize) ( obj -- )
         dup HEX: 7e <= [
             HEX: 80 bitor write1
         ] [
-            dup log2 8 /i 1+ 
+            dup log2 8 /i 1+
             dup HEX: 7f >= [
                 HEX: ff write1
                 dup serialize-cell

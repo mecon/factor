@@ -29,7 +29,7 @@
 	#ifdef __APPLE__
 		#include "os-macosx.h"
 		#include "mach_signal.h"
-		
+
 		#ifdef FACTOR_X86
 			#include "os-macosx-x86.32.h"
 		#elif defined(FACTOR_PPC)
@@ -45,7 +45,7 @@
 		#ifdef __FreeBSD__
 			#define FACTOR_OS_STRING "freebsd"
 			#include "os-freebsd.h"
-			
+
 			#if defined(FACTOR_X86)
 				#include "os-freebsd-x86.32.h"
 			#elif defined(FACTOR_AMD64)

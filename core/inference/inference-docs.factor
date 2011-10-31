@@ -104,7 +104,7 @@ $nl
 { $subsection "inference-simple" }
 { $subsection "inference-combinators" }
 { $subsection "inference-branches" }
-{ $subsection "inference-recursive" } 
+{ $subsection "inference-recursive" }
 { $subsection "inference-limitations" }
 { $subsection "inference-errors" }
 { $subsection "dataflow-graphs" }

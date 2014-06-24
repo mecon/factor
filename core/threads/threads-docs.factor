@@ -83,7 +83,7 @@ HELP: run-queue
 { $values { "queue" dlist } }
 { $var-description "Global variable holding the queue of runnable threads. Calls to " { $link yield } " switch to the thread which has been in the queue for the longest period of time."
 $nl
-"By convention, threads are queued with " { $link push-front } 
+"By convention, threads are queued with " { $link push-front }
 " and dequeued with " { $link pop-back } "." } ;
 
 HELP: resume

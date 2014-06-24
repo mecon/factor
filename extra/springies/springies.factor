@@ -73,12 +73,12 @@ C: <spring> spring
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Hooke
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! 
+!
 ! F = -kx
-! 
+!
 ! k :: spring constant
 ! x :: distance stretched beyond rest length
-! 
+!
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 : hooke-force-mag ( spring -- mag ) [ spring-k ] [ stretch-length ] bi * ;
@@ -95,12 +95,12 @@ C: <spring> spring
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! damping
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! 
+!
 ! F = -bv
-! 
+!
 ! b :: Damping constant
 ! v :: Velocity
-! 
+!
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ! : damping-force-a ( spring -- vec )
@@ -150,7 +150,7 @@ C: <spring> spring
 
 : above? ( node -- ? ) pos-y world-height >= ;
 
-: beyond-left? ( node -- ? ) pos-x 0 < ; 
+: beyond-left? ( node -- ? ) pos-x 0 < ;
 
 : beyond-right? ( node -- ? ) pos-x world-width >= ;
 

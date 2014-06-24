@@ -529,14 +529,14 @@ HELP: all?
 { $values { "seq" sequence } { "quot" "a quotation with stack effect " { $snippet "( elt -- ? )" } } { "?" "a boolean" } }
 { $description "Tests if all elements in the sequence satisfy the predicate by checking each element in turn. Given an empty sequence, vacuously outputs " { $link t } "." }
 { $notes
-    "The implementation makes use of a well-known logical identity:" 
+    "The implementation makes use of a well-known logical identity:"
     $nl
     { $snippet "P[x] for all x <==> not ((not P[x]) for some x)" }
 } ;
 
 HELP: push-if
 { $values { "elt" object } { "quot" "a quotation with stack effect " { $snippet "( elt -- ? )" } } { "accum" "a resizable mutable sequence" } }
-{ $description "Adds the element at the end of the sequence if the quotation yields a true value." } 
+{ $description "Adds the element at the end of the sequence if the quotation yields a true value." }
 { $notes "This word is a factor of " { $link subset } "." } ;
 
 HELP: subset
@@ -654,7 +654,7 @@ HELP: suffix
 HELP: prefix
 { $values { "seq" sequence } { "elt" object } { "newseq" sequence } }
 { $description "Outputs a new sequence obtained by adding " { $snippet "elt" } " at the beginning of " { $snippet "seq" } "." }
-{ $errors "Throws an error if the type of " { $snippet "elt" } " is not permitted in sequences of the same class as " { $snippet "seq1" } "." } 
+{ $errors "Throws an error if the type of " { $snippet "elt" } " is not permitted in sequences of the same class as " { $snippet "seq1" } "." }
 { $examples
 { $example "USING: prettyprint sequences ;" "{ 1 2 3 } 0 prefix ." "{ 0 1 2 3 }" }
 } ;

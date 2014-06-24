@@ -42,7 +42,7 @@ M: winnt available-virtual-mem ( -- n )
     ] [
         [ alien>u16-string ] keep free
     ] if ;
- 
+
 : username ( -- string )
     UNLEN 1+ [ malloc ] keep
     <int> dupd GetUserName zero? [

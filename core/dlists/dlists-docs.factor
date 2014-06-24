@@ -50,13 +50,13 @@ HELP: dlist-empty?
 
 HELP: push-front
 { $values { "obj" "an object" } { "dlist" dlist } }
-{ $description "Push the object onto the front of the " { $link dlist } "." } 
+{ $description "Push the object onto the front of the " { $link dlist } "." }
 { $notes "This operation is O(1)." }
 { $see-also push-back pop-front pop-front* pop-back pop-back* } ;
 
 HELP: push-back
 { $values { "obj" "an object" } { "dlist" dlist } }
-{ $description "Push the object onto the back of the " { $link dlist } "." } 
+{ $description "Push the object onto the back of the " { $link dlist } "." }
 { $notes "This operation is O(1)." }
 { $see-also push-front pop-front pop-front* pop-back pop-back* } ;
 

@@ -27,7 +27,7 @@ HOOK: db-close db ( handle -- )
 
 : dispose-statements ( seq -- ) [ dispose drop ] assoc-each ;
 
-: dispose-db ( db -- ) 
+: dispose-db ( db -- )
     dup db [
         dup insert-statements>> dispose-statements
         dup update-statements>> dispose-statements
@@ -102,7 +102,7 @@ M: nonthrowable-statement execute-statement ( statement -- )
         swap >>out-params
         swap >>in-params
         swap >>sql ;
-    
+
 : sql-row ( result-set -- seq )
     dup #columns [ row-column ] with map ;
 

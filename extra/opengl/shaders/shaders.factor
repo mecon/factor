@@ -66,7 +66,7 @@ PREDICATE: fragment-shader < gl-shader (fragment-shader?) ;
     [ dupd glAttachShader ] each
     [ glLinkProgram ] keep
     gl-error ;
-    
+
 : (gl-program?) ( object -- ? )
     dup integer? [ glIsProgram c-bool> ] [ drop f ] if ;
 

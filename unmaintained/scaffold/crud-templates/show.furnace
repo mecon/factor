@@ -1,4 +1,4 @@
-<% USING: namespaces io kernel words generic sequences 
+<% USING: namespaces io kernel words generic sequences
 prettyprint furnace parser ; %>
 
 <% "model" get [ %>
@@ -7,7 +7,7 @@ prettyprint furnace parser ; %>
     word-vocabulary use+ "slot-names" word-prop %>
 
 <table>
-    
+
 <% [ %><tr><td><% write %>:</td><td><% write %></td></tr><% ] 2each %>
 
 </table>

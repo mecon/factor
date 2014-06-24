@@ -5,64 +5,64 @@ USING: kernel tools.test peg peg.ebnf words math math.parser sequences ;
 IN: peg.ebnf.tests
 
 { T{ ebnf-non-terminal f "abc" } } [
-  "abc" 'non-terminal' parse parse-result-ast 
+  "abc" 'non-terminal' parse parse-result-ast
 ] unit-test
 
 { T{ ebnf-terminal f "55" } } [
-  "'55'" 'terminal' parse parse-result-ast 
+  "'55'" 'terminal' parse parse-result-ast
 ] unit-test
 
 {
-  T{ ebnf-rule f 
+  T{ ebnf-rule f
      "digit"
      T{ ebnf-choice f
         V{ T{ ebnf-terminal f "1" } T{ ebnf-terminal f "2" } }
      }
-  } 
+  }
 } [
   "digit = '1' | '2'" 'rule' parse parse-result-ast
 ] unit-test
 
 {
-  T{ ebnf-rule f 
-     "digit" 
+  T{ ebnf-rule f
+     "digit"
      T{ ebnf-sequence f
         V{ T{ ebnf-terminal f "1" } T{ ebnf-terminal f "2" } }
      }
-  }   
+  }
 } [
   "digit = '1' '2'" 'rule' parse parse-result-ast
 ] unit-test
 
 {
   T{ ebnf-choice f
-     V{ 
+     V{
        T{ ebnf-sequence f
           V{ T{ ebnf-non-terminal f "one" } T{ ebnf-non-terminal f "two" } }
        }
        T{ ebnf-non-terminal f "three" }
      }
-  } 
+  }
 } [
   "one two | three" 'choice' parse parse-result-ast
 ] unit-test
 
 {
   T{ ebnf-sequence f
-     V{ 
+     V{
        T{ ebnf-non-terminal f "one" }
        T{ ebnf-choice f
           V{ T{ ebnf-non-terminal f "two" } T{ ebnf-non-terminal f "three" } }
        }
      }
-  } 
+  }
 } [
   "one (two | three)" 'choice' parse parse-result-ast
 ] unit-test
 
 {
   T{ ebnf-sequence f
-     V{ 
+     V{
        T{ ebnf-non-terminal f "one" }
        T{ ebnf-repeat0 f
           T{ ebnf-sequence f
@@ -75,19 +75,19 @@ IN: peg.ebnf.tests
           }
         }
      }
-  } 
+  }
 } [
   "one ((two | three) four)*" 'choice' parse parse-result-ast
 ] unit-test
 
 {
   T{ ebnf-sequence f
-     V{ 
-         T{ ebnf-non-terminal f "one" } 
+     V{
+         T{ ebnf-non-terminal f "one" }
          T{ ebnf-optional f T{ ebnf-non-terminal f "two" } }
          T{ ebnf-non-terminal f "three" }
      }
-  } 
+  }
 } [
   "one ( two )? three" 'choice' parse parse-result-ast
 ] unit-test
@@ -109,39 +109,39 @@ IN: peg.ebnf.tests
 ] unit-test
 
 { V{ "a" "b" } } [
-  "ab" [EBNF foo='a' 'b' EBNF] call parse-result-ast 
+  "ab" [EBNF foo='a' 'b' EBNF] call parse-result-ast
 ] unit-test
 
 { V{ 1 "b" } } [
-  "ab" [EBNF foo=('a')[[ drop 1 ]] 'b' EBNF] call parse-result-ast 
+  "ab" [EBNF foo=('a')[[ drop 1 ]] 'b' EBNF] call parse-result-ast
 ] unit-test
 
 { V{ 1 2 } } [
-  "ab" [EBNF foo=('a') [[ drop 1 ]] ('b') [[ drop 2 ]] EBNF] call parse-result-ast 
+  "ab" [EBNF foo=('a') [[ drop 1 ]] ('b') [[ drop 2 ]] EBNF] call parse-result-ast
 ] unit-test
 
 { CHAR: A } [
-  "A" [EBNF foo=[A-Z] EBNF] call parse-result-ast 
+  "A" [EBNF foo=[A-Z] EBNF] call parse-result-ast
 ] unit-test
 
 { CHAR: Z } [
-  "Z" [EBNF foo=[A-Z] EBNF] call parse-result-ast 
+  "Z" [EBNF foo=[A-Z] EBNF] call parse-result-ast
 ] unit-test
 
 { f } [
-  "0" [EBNF foo=[A-Z] EBNF] call  
+  "0" [EBNF foo=[A-Z] EBNF] call
 ] unit-test
 
 { CHAR: 0 } [
-  "0" [EBNF foo=[^A-Z] EBNF] call parse-result-ast 
+  "0" [EBNF foo=[^A-Z] EBNF] call parse-result-ast
 ] unit-test
 
 { f } [
-  "A" [EBNF foo=[^A-Z] EBNF] call  
+  "A" [EBNF foo=[^A-Z] EBNF] call
 ] unit-test
 
 { f } [
-  "Z" [EBNF foo=[^A-Z] EBNF] call  
+  "Z" [EBNF foo=[^A-Z] EBNF] call
 ] unit-test
 
 { V{ "1" "+" "foo" } } [
@@ -173,7 +173,7 @@ IN: peg.ebnf.tests
 ] unit-test
 
 { f } [
-  { "a" 2 3 4 } [EBNF num=. ?[ number? ]? list=list:x num:y => [[ drop x y + ]] | num EBNF] call 
+  { "a" 2 3 4 } [EBNF num=. ?[ number? ]? list=list:x num:y => [[ drop x y + ]] | num EBNF] call
 ] unit-test
 
 { 3 } [
@@ -181,7 +181,7 @@ IN: peg.ebnf.tests
 ] unit-test
 
 { f } [
-  "ab" [EBNF -=" " | "\t" | "\n" foo="a" - "b" EBNF] call 
+  "ab" [EBNF -=" " | "\t" | "\n" foo="a" - "b" EBNF] call
 ] unit-test
 
 { V{ "a" " " "b" } } [
@@ -189,7 +189,7 @@ IN: peg.ebnf.tests
 ] unit-test
 
 { V{ "a" "\t" "b" } } [
-  "a\tb" [EBNF -=" " | "\t" | "\n" foo="a" - "b" EBNF] call parse-result-ast 
+  "a\tb" [EBNF -=" " | "\t" | "\n" foo="a" - "b" EBNF] call parse-result-ast
 ] unit-test
 
 { V{ "a" "\n" "b" } } [
@@ -226,24 +226,24 @@ IN: peg.ebnf.tests
 ] unit-test
 
 { f } [
-  "axb" [EBNF -=(" " | "\t" | "\n")? => [[ drop ignore ]] foo="a" - "b" EBNF] call 
+  "axb" [EBNF -=(" " | "\t" | "\n")? => [[ drop ignore ]] foo="a" - "b" EBNF] call
 ] unit-test
 
-{ V{ V{ 49 } "+" V{ 49 } } } [ 
-  #! Test direct left recursion. 
-  #! Using packrat, so first part of expr fails, causing 2nd choice to be used  
+{ V{ V{ 49 } "+" V{ 49 } } } [
+  #! Test direct left recursion.
+  #! Using packrat, so first part of expr fails, causing 2nd choice to be used
   "1+1" [EBNF num=([0-9])+ expr=expr "+" num | num EBNF] call parse-result-ast
 ] unit-test
 
-{ V{ V{ V{ 49 } "+" V{ 49 } } "+" V{ 49 } } } [ 
-  #! Test direct left recursion. 
-  #! Using packrat, so first part of expr fails, causing 2nd choice to be used  
+{ V{ V{ V{ 49 } "+" V{ 49 } } "+" V{ 49 } } } [
+  #! Test direct left recursion.
+  #! Using packrat, so first part of expr fails, causing 2nd choice to be used
   "1+1+1" [EBNF num=([0-9])+ expr=expr "+" num | num EBNF] call parse-result-ast
 ] unit-test
 
-{ V{ V{ V{ 49 } "+" V{ 49 } } "+" V{ 49 } } } [ 
-  #! Test indirect left recursion. 
-  #! Using packrat, so first part of expr fails, causing 2nd choice to be used  
+{ V{ V{ V{ 49 } "+" V{ 49 } } "+" V{ 49 } } } [
+  #! Test indirect left recursion.
+  #! Using packrat, so first part of expr fails, causing 2nd choice to be used
   "1+1+1" [EBNF num=([0-9])+ x=expr expr=x "+" num | num EBNF] call parse-result-ast
 ] unit-test
 
@@ -251,7 +251,7 @@ IN: peg.ebnf.tests
   "abcd='9' | ('8'):x => [[ drop x ]]" 'ebnf' parse parse-result-remaining empty?
 ] unit-test
 
-EBNF: primary 
+EBNF: primary
 Primary = PrimaryNoNewArray
 PrimaryNoNewArray =  ClassInstanceCreationExpression
                    | MethodInvocation
@@ -263,8 +263,8 @@ ClassInstanceCreationExpression =  "new" ClassOrInterfaceType "(" ")"
 MethodInvocation =  Primary "." MethodName "(" ")"
                   | MethodName "(" ")"
 FieldAccess =  Primary "." Identifier
-             | "super" "." Identifier  
-ArrayAccess =  Primary "[" Expression "]" 
+             | "super" "." Identifier
+ArrayAccess =  Primary "[" Expression "]"
              | ExpressionName "[" Expression "]"
 ClassOrInterfaceType = ClassName | InterfaceTypeName
 ClassName = "C" | "D"
@@ -274,7 +274,7 @@ MethodName = "m" | "n"
 ExpressionName = Identifier
 Expression = "i" | "j"
 main = Primary
-;EBNF 
+;EBNF
 
 { "this" } [
   "this" primary parse-result-ast

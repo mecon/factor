@@ -17,7 +17,7 @@ IN: asn1.ldap
                      }
                 }
                 { "constructed"
-                    H{ 
+                    H{
                         { 0 "array" }   ! BindRequest
                         { 1 "array" }   ! BindResponse
                         { 2 "array" }   ! UnbindRequest

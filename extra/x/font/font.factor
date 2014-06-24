@@ -1,5 +1,5 @@
 
-USING: kernel namespaces arrays sequences math x11.xlib 
+USING: kernel namespaces arrays sequences math x11.xlib
        mortar slot-accessors x ;
 
 IN: x.font

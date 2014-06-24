@@ -63,7 +63,7 @@ unit-test
 
 [ "[ \\ + ]" ] [ [ \ + ] unparse ] unit-test
 [ "[ \\ [ ]" ] [ [ \ [ ] unparse ] unit-test
-    
+
 [ t ] [
     100 \ dup <array> unparse-short
     "{" head?
@@ -79,7 +79,7 @@ unit-test
 [ "USING: math ;\nIN: prettyprint.tests\n: bar ( x -- y ) 2 + ;\n" ]
 [ [ \ bar see ] with-string-writer ] unit-test
 
-: blah 
+: blah
     drop
     drop
     drop

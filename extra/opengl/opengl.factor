@@ -174,7 +174,7 @@ TUPLE: sprite loc dim dim2 dlist texture ;
             GL_UNSIGNED_BYTE r> glTexImage2D
         ] do-attribs
     ] keep ;
-    
+
 : gen-dlist ( -- id ) 1 glGenLists ;
 
 : make-dlist ( type quot -- id )

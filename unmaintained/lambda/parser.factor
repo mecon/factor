@@ -10,11 +10,11 @@ USING: lazy-lists parser-combinators strings sequences kernel ;
 
 IN: lambda
 
-LAZY: <letter> 
+LAZY: <letter>
     #! parses an uppercase or lowercase letter
 	[ letter? ] satisfy [ 1string ] <@ ;
 
-LAZY: <LETTER> 
+LAZY: <LETTER>
     #! parses an uppercase or lowercase letter
     [ LETTER? ] satisfy [ 1string ] <@ ;
 
@@ -44,13 +44,13 @@ LAZY: <lambda> ( -- parser )
     #! parses (<id>.<expr>), the "lambda" expression
     #! all occurences of <id> are replaced with a pointer to this
     #! lambda expression.
-    "(" token <id> sp &> "." token sp <& 
+    "(" token <id> sp &> "." token sp <&
     <expr> sp <&> ")" token sp <&
     [ [ first var-node-name ] keep second <lambda-node> ] <@ ;
 
 LAZY: <apply> ( -- parser )
     #! parses (<expr> <expr>), the function application
-    "(" token <expr> sp &> <expr> sp <&> ")" token sp <& 
+    "(" token <expr> sp &> <expr> sp <&> ")" token sp <&
     [ [ first ] keep second <apply-node> ] <@ ;
 
 LAZY: <alien> ( -- parser )
@@ -63,7 +63,7 @@ LAZY: <expr>
     <name> [ <var-node> ] <@ <|> <alien> <|> ;
 
 LAZY: <line>
-    ":" token <name> &> <expr> sp <&> f succeed <expr> <&> 
+    ":" token <name> &> <expr> sp <&> f succeed <expr> <&>
     <|> "." token <name> &> f succeed <&> <|> ;
 
 : lambda-parse

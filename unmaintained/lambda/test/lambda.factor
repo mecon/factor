@@ -4,8 +4,8 @@ USING: lambda test hashtables sequences kernel ;
 [ "(A. A)" ] [ "(b.b)" lambda-parse second bound-vars swap expr>string ] unit-test
 
 #! test name replacement
-[ "(A. A)" ] [ 
+[ "(A. A)" ] [
                 "(b.b)" lambda-parse second "OK" H{ } clone [ set-hash ] keep
                 "OK" lambda-parse second replace-names bound-vars
-                swap expr>string 
+                swap expr>string
              ] unit-test

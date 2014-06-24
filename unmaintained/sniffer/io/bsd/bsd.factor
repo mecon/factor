@@ -46,7 +46,7 @@ C: <sniffer-spec> sniffer-spec
 
 : BIOCGBLEN ( -- n ) "B" 102 "uint" ior ; inline
 : BIOCSETIF ( -- n ) "B" 108 "ifreq" iow ; inline
-: BIOCPROMISC ( -- n ) "B" 105 io ; inline 
+: BIOCPROMISC ( -- n ) "B" 105 io ; inline
 : BIOCIMMEDIATE ( -- n ) "B" 112 "uint" iow ; inline
 
 : make-ifreq-props ( ifname -- ifreq )

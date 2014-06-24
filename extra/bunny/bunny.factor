@@ -57,7 +57,7 @@ M: bunny-gadget draw-gadget* ( gadget -- )
 
 M: bunny-gadget pref-dim* ( gadget -- dim )
     drop { 640 480 } ;
-    
+
 bunny-gadget H{
     { T{ key-down f f "TAB" } [ bunny-gadget-next-draw ] }
 } set-gestures

@@ -49,12 +49,12 @@ M: jamshred-gadget ungraft* ( gadget -- )
     over jamshred-gadget-jamshred >r
     [ first swap x>radians ] 2keep second swap y>radians
     r> mouse-moved ;
-    
+
 : handle-mouse-motion ( jamshred-gadget -- )
     hand-loc get [
         over jamshred-gadget-last-hand-loc [
-            v- (handle-mouse-motion) 
-        ] [ 2drop ] if* 
+            v- (handle-mouse-motion)
+        ] [ 2drop ] if*
     ] 2keep swap set-jamshred-gadget-last-hand-loc ;
 
 USE: vocabs.loader

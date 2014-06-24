@@ -21,7 +21,7 @@ PRIVATE>
 
 : unpublish ( id -- )
     remote-channels delete-at ;
-    
+
 <PRIVATE
 
 MATCH-VARS: ?from ?tag ?id ?value ;
@@ -42,23 +42,23 @@ PRIVATE>
 
 : start-channel-node ( -- )
     "remote-channels" get-process [
-        "remote-channels" 
+        "remote-channels"
         [ channel-process t ] "Remote channels" spawn-server
-        register-process 
+        register-process
     ] unless ;
 
 TUPLE: remote-channel node id ;
 
-C: <remote-channel> remote-channel 
+C: <remote-channel> remote-channel
 
 M: remote-channel to ( value remote-channel -- )
     [ [ \ to , remote-channel-id , , ] { } make ] keep
-    remote-channel-node "remote-channels" <remote-process> 
+    remote-channel-node "remote-channels" <remote-process>
     send-synchronous no-channel = [ no-channel throw ] when ;
 
 M: remote-channel from ( remote-channel -- value )
     [ [ \ from , remote-channel-id , ] { } make ] keep
-    remote-channel-node "remote-channels" <remote-process> 
+    remote-channel-node "remote-channels" <remote-process>
     send-synchronous dup no-channel = [ no-channel throw ] when* ;
 
 [

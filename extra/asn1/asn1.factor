@@ -15,7 +15,7 @@ IN: asn1
         { "universal"
             H{
                 { "primitive"
-                    H{ 
+                    H{
                         { 1 "boolean" }
                         { 2 "integer" }
                         { 4 "string" }
@@ -60,7 +60,7 @@ TUPLE: element syntax id tag tagclass encoding contentlength newobj objtype ;
     elements get element-id 31 bitand
     dup elements get set-element-tag
     31 < [
-        [ "unsupported tag encoding: #{" % 
+        [ "unsupported tag encoding: #{" %
           get-id # "}" %
         ] "" make throw
     ] unless ;
@@ -76,7 +76,7 @@ TUPLE: element syntax id tag tagclass encoding contentlength newobj objtype ;
 
 : set-content-length ( -- )
     read1
-    dup 127 <= [ 
+    dup 127 <= [
         127 bitand read be>
     ] unless elements get set-element-contentlength ;
 
@@ -89,7 +89,7 @@ TUPLE: element syntax id tag tagclass encoding contentlength newobj objtype ;
         elements get element-tagclass swap at
         elements get element-encoding swap at
         elements get element-tag
-        swap at [ 
+        swap at [
             elements get set-element-objtype
         ] when*
     ] each ;

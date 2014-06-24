@@ -10,10 +10,10 @@ TUPLE: imin left right ;
 : <i-min> ( left right -- imin )
     2dup [ i-length ] 2apply min dup rot
     swap ihead -rot ihead swap <imin> ; inline
-    
+
 : imin-unpack ( imin -- left right )
     dup imin-left swap imin-right ; inline
-    
+
 : imin-v ( v1 v2 -- v )
     2dup [ left-side ] 2apply i-cmp dup zero?
     [ drop [ right-side ] 2apply 2dup i-cmp 0 < [ 2drop 0 ] [ nip :v: ] if ]
@@ -25,7 +25,7 @@ TUPLE: imin left right ;
 
 : imin-iright ( imin -- imin )
     imin-unpack dup ileft i-length rot swap itail swap iright <i-min> ; inline
-    
+
 : &&g++ ( s1 s2 -- imax )
     <i-min> ; inline
 
@@ -37,7 +37,7 @@ TUPLE: imin left right ;
 
 : &&g-- ( s1 s2 -- imax )
     [ -- `` ] 2apply 2dup [ i-length ] 2apply roll || -rot || && `` -- ; inline
-    
+
 : &&g ( s1 s2 -- imin )
     2dup [ neg? ] 2apply [ [ &&g-- ] [ &&g+- ] if ]
     [ [ &&g-+ ] [ &&g++ ] if ] if ; inline

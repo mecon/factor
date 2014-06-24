@@ -67,7 +67,7 @@ SYMBOL: ns-stack
 !   -- Parsing strings
 
 : (parse-entity) ( string -- )
-    dup entities at [ , ] [ 
+    dup entities at [ , ] [
         prolog-data get prolog-standalone
         [ <no-entity> throw ] [
             dup extra-entities get at
@@ -163,7 +163,7 @@ SYMBOL: ns-stack
         T{ name f "" "encoding" f }
         T{ name f "" "standalone" f }
     } swap seq-diff
-    dup empty? [ drop ] [ <extra-attrs> throw ] if ; 
+    dup empty? [ drop ] [ <extra-attrs> throw ] if ;
 
 : good-version ( version -- version )
     dup { "1.0" "1.1" } member? [ <bad-version> throw ] unless ;
@@ -193,7 +193,7 @@ SYMBOL: ns-stack
 : make-tag ( -- tag )
     {
         { [ get-char dup CHAR: ! = ] [ drop next direct ] }
-        { [ CHAR: ? = ] [ next instruct ] } 
+        { [ CHAR: ? = ] [ next instruct ] }
         [
             start-tag [ dup add-ns pop-ns <closer> ]
             [ middle-tag end-tag ] if

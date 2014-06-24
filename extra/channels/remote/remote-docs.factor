@@ -5,14 +5,14 @@ IN: channels.remote
 
 HELP: <remote-channel>
 { $values { "node" "a node object" }
-          { "id" "the id of the published channel on the node" } 
+          { "id" "the id of the published channel on the node" }
 }
 { $description "Create a remote channel that acts as a proxy for a "
 "channel on another node. The remote node's channel must have been "
 "published using " { $link publish } " and the id should be the id "
 "returned by " { $link publish }
 }
-{ $examples 
+{ $examples
   { $code "\"localhost\" 9000 <node> \"ID123456\" <remote-channel> \"foo\" over to" }
 }
 { $see-also publish unpublish } ;
@@ -23,7 +23,7 @@ HELP: unpublish
 { $description "Stop a previously published channel from being "
 "accessible by remote nodes."
 }
-{ $examples 
+{ $examples
   { $code "<channel> publish unpublish" }
 }
 { $see-also <remote-channel> publish } ;
@@ -33,10 +33,10 @@ HELP: publish
           { "id" "a string" }
 }
 { $description "Make a channel accessible via remote Factor nodes. "
-"An id is returned that can be used by another node to use " 
+"An id is returned that can be used by another node to use "
 { $link to } " and " { $link from } " to access the channel."
 }
-{ $examples 
+{ $examples
   { $code "<channel> publish" }
 }
 { $see-also <remote-channel> unpublish } ;
@@ -46,7 +46,7 @@ ARTICLE: { "remote-channels" "remote-channels" } "Remote Channels"
 $nl
 "To start a remote node, distributed concurrency must have been started. This can be done using " { $link start-node } "."
 $nl
-{ $snippet "\"myhost.com\" 9001 start-node" } 
+{ $snippet "\"myhost.com\" 9001 start-node" }
 $nl
 "Once the node is started, channels can be published using " { $link publish }
 " to be accessed remotely. " { $link publish } " returns an id which a remote node "
@@ -56,7 +56,7 @@ $nl
 $nl
 "Given the id from the snippet above, a remote node can put items in the channel."
 $nl
-{ $snippet "\"myhost.com\" 9001 <node> \"ID123456\" <remote-channel>\n\"hello\" over to" } 
+{ $snippet "\"myhost.com\" 9001 <node> \"ID123456\" <remote-channel>\n\"hello\" over to" }
 ;
 
 ABOUT: { "remote-channels" "remote-channels" }

@@ -85,7 +85,7 @@ def-hash get-global [
         dup first2 [ number? ] both?
         swap third \ shift = and not
     ] [ drop t ] if
-] assoc-subset 
+] assoc-subset
 
 ! Remove [ n slot ]
 [
@@ -131,7 +131,7 @@ M: word lint ( word -- seq )
 
 : lint. ( alist -- )
     [ (lint.) ] each ;
-    
+
 
 GENERIC: run-lint ( obj -- obj )
 

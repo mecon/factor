@@ -18,7 +18,7 @@ SYMBOL: last-drag-loc
 TUPLE: demo-gadget yaw pitch distance ;
 
 : <demo-gadget> ( yaw pitch distance -- gadget )
-    demo-gadget construct-gadget 
+    demo-gadget construct-gadget
     [ { set-demo-gadget-yaw set-demo-gadget-pitch set-demo-gadget-distance } set-slots ] keep ;
 
 : yaw-demo-gadget ( yaw gadget -- )
@@ -67,7 +67,7 @@ demo-gadget H{
     { T{ key-down f f "UP"    } [ KEY-ROTATE-STEP     swap pitch-demo-gadget ] }
     { T{ key-down f f "="     } [ KEY-DISTANCE-STEP neg swap zoom-demo-gadget ] }
     { T{ key-down f f "-"     } [ KEY-DISTANCE-STEP     swap zoom-demo-gadget ] }
-    
+
     { T{ button-down f f 1 }    [ drop reset-last-drag-rel ] }
     { T{ drag f 1 }             [ drag-yaw-pitch rot [ pitch-demo-gadget ] keep yaw-demo-gadget ] }
     { T{ mouse-scroll }         [ scroll-direction get second MOUSE-DISTANCE-SCALE * swap zoom-demo-gadget ] }

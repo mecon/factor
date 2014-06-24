@@ -47,7 +47,7 @@ SYMBOL: filename
 : (read-data-blocks) ( tar-header -- )
     512 read [
         over tar-header-size dup 512 <= [
-            head-slice 
+            head-slice
             >string write
             drop
         ] [
@@ -164,11 +164,11 @@ M: unknown-typeflag summary ( obj -- str )
 : typeflag-X ( header -- ) unknown-typeflag ;
 
 : (parse-tar) ( -- )
-    512 read 
+    512 read
     global [ dup hexdump. flush ] bind
     [
         parse-tar-header
-        ! global [ dup tar-header-name [ print flush ] when* ] bind 
+        ! global [ dup tar-header-name [ print flush ] when* ] bind
         dup tar-header-typeflag
         {
             { 0 [ typeflag-0 ] }
@@ -202,7 +202,7 @@ M: unknown-typeflag summary ( obj -- str )
         ! ] [
             ! dup tar-header-name
             ! dup parent-dir base-dir prepend-path
-            ! global [ dup [ . flush ] when* ] bind 
+            ! global [ dup [ . flush ] when* ] bind
             ! make-directories <file-writer>
             ! out-stream set
             ! read-tar-blocks

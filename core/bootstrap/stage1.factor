@@ -32,7 +32,7 @@ vocabs.loader system debugger continuations ;
     "io.streams.c" require
     "io.thread" require
     "vocabs.loader" require
-    
+
     "syntax" require
     "bootstrap.layouts" require
 

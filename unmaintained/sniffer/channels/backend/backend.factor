@@ -1,3 +1,3 @@
 USING: io.backend ;
 
-HOOK: sniff-channel io-backend ( -- channel ) 
+HOOK: sniff-channel io-backend ( -- channel )

@@ -42,6 +42,6 @@ PRIVATE>
 : base64> ( base64 -- str )
     #! input length must be a multiple of 4
     [
-        [ 4 <groups> [ decode4 % ] each ] keep [ CHAR: = = not ] count-end 
+        [ 4 <groups> [ decode4 % ] each ] keep [ CHAR: = = not ] count-end
     ] SBUF" " make swap [ dup pop* ] times >string ;
 

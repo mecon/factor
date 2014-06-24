@@ -132,7 +132,7 @@ SYMBOL: irc-client
 : irc-print ( s -- )
     irc-stream> [ stream-print ] keep stream-flush ;
 
-! Irc commands    
+! Irc commands
 
 : NICK ( nick -- )
     "NICK " irc-write irc-print ;
@@ -156,7 +156,7 @@ SYMBOL: irc-client
 : KICK ( channel who -- )
     [ "KICK " irc-write irc-write ] dip
     " " irc-write irc-print ;
-    
+
 : PRIVMSG ( nick line -- )
     [ "PRIVMSG " irc-write irc-write ] dip
     " :" irc-write irc-print ;
@@ -176,7 +176,7 @@ SYMBOL: irc-client
 : irc-connect ( irc-client -- )
     [ profile>> [ server>> ] keep port>> CONNECT ] keep
     swap >>stream t >>is-running drop ;
-    
+
 GENERIC: handle-irc ( obj -- )
 
 M: object handle-irc ( obj -- )
@@ -184,7 +184,7 @@ M: object handle-irc ( obj -- )
 
 M: logged-in handle-irc ( obj -- )
     name>>
-    irc-client> [ nick>> swap >>name drop ] keep 
+    irc-client> [ nick>> swap >>name drop ] keep
     profile>> default-channels>> [ join-channel ] each ;
 
 M: ping handle-irc ( obj -- )
@@ -275,7 +275,7 @@ M: send-quit handle-command ( obj -- )
     [ [ controller-loop ] "controller-loop" spawn-irc-loop ]
     [ [ multiplexer-loop ] "multiplexer-loop" spawn-irc-loop ]
     tri ;
-    
+
 : do-irc ( irc-client -- )
     irc-client [
         irc-client>

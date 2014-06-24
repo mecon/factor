@@ -32,7 +32,7 @@ C-STRUCT: addrinfo
     { "int" "socktype" }
     { "int" "protocol" }
 ! #ifdef __sparcv9
-!         int _ai_pad;            
+!         int _ai_pad;
 ! #endif
     { "int" "addrlen" }
     { "char*" "canonname" }

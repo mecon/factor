@@ -58,7 +58,7 @@ SYMBOL: WM_DELETE_WINDOW
 "fit-to-child" !( wm-frame -- wm-frame )
   [ dup $child <- size { 10 20 } v+ <-- resize ]
 
-"position-child" !( wm-frame -- wm-frame ) 
+"position-child" !( wm-frame -- wm-frame )
   [ dup $child { 5 15 } <-- move drop ]
 
 "set-child-size" !( wm-frame size -- frame )
@@ -153,7 +153,7 @@ SYMBOL: WM_DELETE_WINDOW
 { 0 0 } <-- move
 dup $dpy $default-root <- size
   <-- resize
-<- adjust-child 
+<- adjust-child
 <- raise ;
 
 : wm-frame-maximize-vertical ( wm-frame -- wm-frame )

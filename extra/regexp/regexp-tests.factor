@@ -195,7 +195,7 @@ IN: regexp-tests
 [ t ] [ "c" "[A-Z]" t <regexp> matches? ] unit-test
 [ f ] [ "3" "[A-Z]" t <regexp> matches? ] unit-test
 
-[ ] [ 
+[ ] [
     "(0[lL]?|[1-9]\\d{0,9}(\\d{0,9}[lL])?|0[xX]\\p{XDigit}{1,8}(\\p{XDigit}{0,8}[lL])?|0[0-7]{1,11}([0-7]{0,11}[lL])?|([0-9]+\\.[0-9]*|\\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?|[0-9]+([eE][+-]?[0-9]+[fFdD]?|([eE][+-]?[0-9]+)?[fFdD]))"
     f <regexp> drop
 ] unit-test

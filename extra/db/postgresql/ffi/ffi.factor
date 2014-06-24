@@ -54,10 +54,10 @@ IN: db.postgresql.ffi
 
 TYPEDEF: int size_t
 TYPEDEF: int ConnStatusType
-TYPEDEF: int ExecStatusType 
+TYPEDEF: int ExecStatusType
 TYPEDEF: int PostgresPollingStatusType
-TYPEDEF: int PGTransactionStatusType 
-TYPEDEF: int PGVerbosity 
+TYPEDEF: int PGTransactionStatusType
+TYPEDEF: int PGVerbosity
 
 TYPEDEF: void* PGconn*
 TYPEDEF: void* PGresult*
@@ -238,7 +238,7 @@ FUNCTION: int    PQisnonblocking ( PGconn* conn ) ;
 ! Force the write buffer to be written (or at least try)
 FUNCTION: int    PQflush ( PGconn* conn ) ;
 
-! 
+!
 ! * "Fast path" interface --- not really recommended for application
 ! * use
 !
@@ -311,17 +311,17 @@ FUNCTION: void PQprint ( FILE* fout, PGresult* res, PQprintOpt* ps ) ;
 
 ! really old printing routines
 FUNCTION: void PQdisplayTuples ( PGresult* res,
-                                FILE* fp,               
+                                FILE* fp,
                                 int fillAlign,
                                 char* fieldSep,
                                 int printHeader,
                                 int quiet ) ;
 
 FUNCTION: void PQprintTuples ( PGresult* res,
-                          FILE* fout,           
+                          FILE* fout,
                           int printAttName,
-                          int terseOutput,      
-                          int width ) ; 
+                          int terseOutput,
+                          int width ) ;
 ! === in fe-lobj.c ===
 
 ! Large-object access routines

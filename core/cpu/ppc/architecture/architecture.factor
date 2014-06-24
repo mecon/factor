@@ -56,7 +56,7 @@ M: int-regs vregs
     } ;
 
 M: float-regs return-reg drop 1 ;
-M: float-regs param-regs 
+M: float-regs param-regs
     drop os H{
         { macosx { 1 2 3 4 5 6 7 8 9 10 11 12 13 } }
         { linux { 1 2 3 4 5 6 7 8 } }

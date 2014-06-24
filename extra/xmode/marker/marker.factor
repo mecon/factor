@@ -229,7 +229,7 @@ M: mark-previous-rule handle-rule-start
 
 : (check-word-break) ( -- )
     check-rule
-    
+
     1 current-rule-set rule-set-default next-token, ;
 
 : rule-set-empty? ( ruleset -- ? )

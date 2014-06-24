@@ -1,4 +1,4 @@
-USING: unicode.data kernel math sequences parser bit-arrays namespaces 
+USING: unicode.data kernel math sequences parser bit-arrays namespaces
 sequences.private arrays quotations classes.predicate assocs ;
 IN: unicode.syntax
 
@@ -27,7 +27,7 @@ IN: unicode.syntax
 
 : [category] ( categories -- quot )
     [
-        [ [ categories member? not ] subset as-string ] keep 
+        [ [ categories member? not ] subset as-string ] keep
         [ categories member? ] subset >category-array
         [ dup category# ] % , [ nth-unsafe [ drop t ] ] %
         \ member? 2array >quotation ,

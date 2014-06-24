@@ -38,7 +38,7 @@ SYMBOL: current-side
 
 : node-link@ ( node ? -- node )
     go-left? xor [ node-left ] [ node-right ] if ;
-: set-node-link@ ( left parent ? -- ) 
+: set-node-link@ ( left parent ? -- )
     go-left? xor [ set-node-left ] [ set-node-right ] if ;
 
 : node-link ( node -- child ) f node-link@  ;
@@ -102,7 +102,7 @@ M: tree set-at ( value key tree -- )
 
 : tree-call ( node call -- )
     >r [ node-key ] keep node-value r> call ; inline
- 
+
 : find-node ( node quot -- key value ? )
     {
         { [ over not ] [ 2drop f f f ] }

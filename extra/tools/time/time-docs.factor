@@ -7,7 +7,7 @@ ARTICLE: "timing" "Timing code"
 "A lower-level word puts timings on the stack, intead of printing:"
 { $subsection benchmark }
 "You can also read the system clock and total garbage collection time directly:"
-{ $subsection millis } 
+{ $subsection millis }
 { $subsection gc-time }
 { $see-also "profiling" } ;
 

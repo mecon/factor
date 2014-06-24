@@ -2,11 +2,11 @@
 ! See http://factorcode.org/license.txt for BSD license.
 
 USING: help.markup help.syntax sequences strings ;
-IN: lazy-lists 
+IN: lazy-lists
 
 { car cons cdr nil nil? list? uncons } related-words
 
-HELP: cons 
+HELP: cons
 { $values { "car" "the head of the lazy list" } { "cdr" "the tail of the lazy list" } { "cons" "a cons object" } }
 { $description "Constructs a cons cell." } ;
 
@@ -18,11 +18,11 @@ HELP: cdr
 { $values { "cons" "a cons object" } { "cdr" "a cons object" } }
 { $description "Returns the tail of the list." } ;
 
-HELP: nil 
+HELP: nil
 { $values { "cons" "An empty cons" } }
 { $description "Returns a representation of an empty list" } ;
 
-HELP: nil? 
+HELP: nil?
 { $values { "cons" "a cons object" } { "?" "a boolean" } }
 { $description "Return true if the cons object is the nil cons." } ;
 
@@ -46,7 +46,7 @@ HELP: 3list
 
 HELP: lazy-cons
 { $values { "car" "a quotation with stack effect ( -- X )" } { "cdr" "a quotation with stack effect ( -- cons )" } { "promise" "the resulting cons object" } }
-{ $description "Constructs a cons object for a lazy list from two quotations. The " { $snippet "car" } " quotation should return the head of the list, and the " { $snippet "cons" } " quotation the tail when called. When " { $link cons } " or " { $link cdr } " are called on the lazy-cons object then the appropriate quotation is called." } 
+{ $description "Constructs a cons object for a lazy list from two quotations. The " { $snippet "car" } " quotation should return the head of the list, and the " { $snippet "cons" } " quotation the tail when called. When " { $link cons } " or " { $link cdr } " are called on the lazy-cons object then the appropriate quotation is called." }
 { $see-also cons car cdr nil nil? } ;
 
 { 1lazy-list 2lazy-list 3lazy-list } related-words
@@ -65,17 +65,17 @@ HELP: 3lazy-list
 
 HELP: <memoized-cons>
 { $values { "cons" "a cons object" } { "memoized-cons" "the resulting memoized-cons object" } }
-{ $description "Constructs a cons object that wraps an existing cons object. Requests for the car, cdr and nil? will be remembered after the first call, and the previous result returned on subsequent calls." } 
+{ $description "Constructs a cons object that wraps an existing cons object. Requests for the car, cdr and nil? will be remembered after the first call, and the previous result returned on subsequent calls." }
 { $see-also cons car cdr nil nil? } ;
 
 HELP: lnth
 { $values { "n" "an integer index" } { "list" "a cons object" } { "elt" "the element at the nth index" } }
-{ $description "Outputs the nth element of the list." } 
+{ $description "Outputs the nth element of the list." }
 { $see-also llength cons car cdr } ;
 
 HELP: llength
 { $values { "list" "a cons object" } { "n" "a non-negative integer" } }
-{ $description "Outputs the length of the list. This should not be called on an infinite list." } 
+{ $description "Outputs the length of the list. This should not be called on an infinite list." }
 { $see-also lnth cons car cdr } ;
 
 HELP: uncons
@@ -118,12 +118,12 @@ HELP: luntil
 
 HELP: list>vector
 { $values { "list" "a cons object" } { "vector" "the list converted to a vector" } }
-{ $description "Convert a list to a vector. If the list is a lazy infinite list then this will enter an infinite loop." } 
+{ $description "Convert a list to a vector. If the list is a lazy infinite list then this will enter an infinite loop." }
 { $see-also list>array } ;
 
 HELP: list>array
 { $values { "list" "a cons object" } { "array" "the list converted to an array" } }
-{ $description "Convert a list to an array. If the list is a lazy infinite list then this will enter an infinite loop." } 
+{ $description "Convert a list to an array. If the list is a lazy infinite list then this will enter an infinite loop." }
 { $see-also list>vector } ;
 
 HELP: lappend
@@ -140,12 +140,12 @@ HELP: lfrom
 
 HELP: seq>list
 { $values { "index" "an integer 0 or greater" } { "seq" "a sequence" } { "list" "a list" } }
-{ $description "Convert the sequence into a list, starting from the 'index' offset into the sequence." } 
+{ $description "Convert the sequence into a list, starting from the 'index' offset into the sequence." }
 { $see-also >list } ;
 
 HELP: >list
 { $values { "object" "an object" } { "list" "a list" } }
-{ $description "Convert the object into a list. Existing lists are passed through intact, sequences are converted using " { $link seq>list } " and other objects cause an error to be thrown." } 
+{ $description "Convert the object into a list. Existing lists are passed through intact, sequences are converted using " { $link seq>list } " and other objects cause an error to be thrown." }
 { $see-also seq>list } ;
 
 HELP: lconcat
@@ -173,18 +173,18 @@ HELP: lcomp*
 
 HELP: lmerge
 { $values { "list1" "a list" } { "list2" "a list" } { "result" "lazy list merging list1 and list2" } }
-{ $description "Return the result of merging the two lists in a lazy manner." } 
+{ $description "Return the result of merging the two lists in a lazy manner." }
 { $examples
   { $example "USING: lazy-lists prettyprint ;" "{ 1 2 3 } >list { 4 5 6 } >list lmerge list>array ." "{ 1 4 2 5 3 6 }" }
 } ;
 
 HELP: lcontents
 { $values { "stream" "a stream" } { "result" string } }
-{ $description "Returns a lazy list of all characters in the file. " { $link car } " returns the next character in the file, " { $link cdr } " returns the remaining characters as a lazy list. " { $link nil? } " indicates end of file." } 
+{ $description "Returns a lazy list of all characters in the file. " { $link car } " returns the next character in the file, " { $link cdr } " returns the remaining characters as a lazy list. " { $link nil? } " indicates end of file." }
 { $see-also llines } ;
 
 HELP: llines
 { $values { "stream" "a stream" } { "result" "a list" } }
-{ $description "Returns a lazy list of all lines in the file. " { $link car } " returns the next lines in the file, " { $link cdr } " returns the remaining lines as a lazy list. " { $link nil? } " indicates end of file." } 
+{ $description "Returns a lazy list of all lines in the file. " { $link car } " returns the next lines in the file, " { $link cdr } " returns the remaining lines as a lazy list. " { $link nil? } " indicates end of file." }
 { $see-also lcontents } ;
 

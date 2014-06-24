@@ -1,4 +1,4 @@
-USING: cocoa.application cocoa.messages cocoa.classes cocoa.runtime 
+USING: cocoa.application cocoa.messages cocoa.classes cocoa.runtime
 kernel cocoa core-foundation alien.c-types ;
 IN: cocoa.nibs
 

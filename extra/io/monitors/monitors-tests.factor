@@ -33,20 +33,20 @@ os { winnt linux macosx } member? [
         [ ] [ "m" get dispose ] unit-test
     ] with-monitors
 
-    
+
     [
         [ "monitor-test" temp-file delete-tree ] ignore-errors
-        
+
         [ ] [ "monitor-test/xyz" temp-file make-directories ] unit-test
-        
+
         [ ] [ "monitor-test" temp-file t <monitor> "m" set ] unit-test
-        
+
         [ ] [ 1 <count-down> "b" set ] unit-test
-        
+
         [ ] [ 1 <count-down> "c1" set ] unit-test
-        
+
         [ ] [ 1 <count-down> "c2" set ] unit-test
-        
+
         [ ] [
             [
                 "b" get count-down
@@ -59,7 +59,7 @@ os { winnt linux macosx } member? [
                 ] [ ] [ ] while
 
                 "c1" get count-down
-                
+
                 [
                     "m" get next-change drop
                     dup print flush
@@ -70,13 +70,13 @@ os { winnt linux macosx } member? [
                 "c2" get count-down
             ] "Monitor test thread" spawn drop
         ] unit-test
-        
+
         [ ] [ "b" get await ] unit-test
-        
+
         [ ] [ "monitor-test/xyz/test.txt" temp-file touch-file ] unit-test
 
         [ ] [ "c1" get 15 seconds await-timeout ] unit-test
-        
+
         [ ] [ "monitor-test/subdir/blah/yxy" temp-file make-directories ] unit-test
 
         [ ] [ "monitor-test/subdir/blah/yxy/test.txt" temp-file touch-file ] unit-test

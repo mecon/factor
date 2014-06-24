@@ -28,7 +28,7 @@ M: link summary
 SYMBOL: articles
 
 articles global [ H{ } assoc-like ] change-at
-    
+
 SYMBOL: article-xref
 
 article-xref global [ H{ } assoc-like ] change-at

@@ -23,7 +23,7 @@ M: unix-io sniffer-loop ( stream -- )
     sniffer-loop ;
 
 
-! Mac 
+! Mac
 : sniff-wired ( -- )
     "/dev/bpf0" "en0" <sniffer-spec> <sniffer> sniffer-loop ;
 

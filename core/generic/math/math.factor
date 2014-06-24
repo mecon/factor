@@ -21,7 +21,7 @@ PREDICATE: math-class < class
         { [ dup math-class? ] [ class-types last/first ] }
         [ drop { 100 100 } ]
     } cond ;
-    
+
 : math-class-max ( class class -- class )
     [ [ math-precedence ] compare 0 > ] most ;
 

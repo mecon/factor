@@ -239,7 +239,7 @@ FUNCTION: cairo_status_t cairo_status ( cairo_t* cr ) ;
 
 : cairo_image_surface_create_for_data ( data format width height stride -- cairo_surface_t )
     "void*" "cairo" "cairo_image_surface_create_for_data" [ "void*" "uint" "int" "int" "int" ] alien-invoke ;
-    
+
 
 : cairo_set_antialias ( cairo_t cairo_antialias_t -- )
     "void" "cairo" "cairo_set_antialias" [ "cairo_t*" "int" ] alien-invoke ;
@@ -290,7 +290,7 @@ FUNCTION: cairo_status_t cairo_status ( cairo_t* cr ) ;
 
 : cairo_new_sub_path ( cairo_t -- )
     "void" "cairo" "cairo_new_sub_path" [ "cairo_t*" ] alien-invoke ;
-    
+
 : cairo_line_to ( cairo_t x y -- )
     "void" "cairo" "cairo_line_to" [ "cairo_t*" "double" "double" ] alien-invoke ;
 
@@ -302,10 +302,10 @@ FUNCTION: cairo_status_t cairo_status ( cairo_t* cr ) ;
 
 : cairo_arc_negative ( cairo_t xc yc radius angle1 angle2 -- )
     "void" "cairo" "cairo_arc_negative" [ "cairo_t*" "double" "double" "double" "double" "double" ] alien-invoke ;
-    
+
 : cairo_rel_move_to ( cairo_t dx dy -- )
     "void" "cairo" "cairo_rel_move_to" [ "cairo_t*" "double" "double" ] alien-invoke ;
-    
+
 : cairo_rel_line_to ( cairo_t dx dy -- )
     "void" "cairo" "cairo_rel_line_to" [ "cairo_t*" "double" "double" ] alien-invoke ;
 

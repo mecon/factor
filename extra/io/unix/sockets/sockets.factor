@@ -1,4 +1,4 @@
-! Copyright (C) 2004, 2008 Slava Pestov, Ivan Tikhonov. 
+! Copyright (C) 2004, 2008 Slava Pestov, Ivan Tikhonov.
 ! See http://factorcode.org/license.txt for BSD license.
 
 ! We need to fiddle with the exact search order here, since

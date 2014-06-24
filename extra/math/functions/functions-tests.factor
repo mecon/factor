@@ -29,13 +29,13 @@ IN: math.functions.tests
 
 [ 1.0 ] [ 0 cosh ] unit-test
 [ 0.0 ] [ 1 acosh ] unit-test
-            
+
 [ 1.0 ] [ 0 cos ] unit-test
 [ 0.0 ] [ 1 acos ] unit-test
-            
+
 [ 0.0 ] [ 0 sinh ] unit-test
 [ 0.0 ] [ 0 asinh ] unit-test
-            
+
 [ 0.0 ] [ 0 sin ] unit-test
 [ 0.0 ] [ 0 asin ] unit-test
 
@@ -65,7 +65,7 @@ IN: math.functions.tests
 
 : verify-gcd
     2dup gcd
-    >r rot * swap rem r> = ; 
+    >r rot * swap rem r> = ;
 
 [ t ] [ 123 124 verify-gcd ] unit-test
 [ t ] [ 50 120 verify-gcd ] unit-test

@@ -1,6 +1,6 @@
 ! Copyright (C) 2007 Daniel Ehrenberg
 ! See http://factorcode.org/license.txt for BSD license.
-USING: delegate sequences.private sequences assocs prettyprint.sections 
+USING: delegate sequences.private sequences assocs prettyprint.sections
 io definitions kernel continuations ;
 IN: delegate.protocols
 

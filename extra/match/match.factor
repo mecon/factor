@@ -75,16 +75,16 @@ MACRO: match-cond ( assoc -- )
         2dup length head over match
         [ nip swap ?1-tail ] [ >r 1 tail r> (match-first) ] if*
     ] if ;
-    
+
 : match-first ( seq pattern-seq -- bindings )
     (match-first) drop ;
 
 : (match-all) ( seq pattern-seq -- )
-    tuck (match-first) swap 
-    [ 
-        , [ swap (match-all) ] [ drop ] if* 
+    tuck (match-first) swap
+    [
+        , [ swap (match-all) ] [ drop ] if*
     ] [ 2drop ] if* ;
 
 : match-all ( seq pattern-seq -- bindings-seq )
     [ (match-all) ] { } make ;
-    
+

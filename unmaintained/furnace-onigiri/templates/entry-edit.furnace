@@ -1,4 +1,4 @@
-<% USING: namespaces io kernel sequences furnace:onigiri html 
+<% USING: namespaces io kernel sequences furnace:onigiri html
 furnace ; %>
 
 <script type="text/javascript">
@@ -23,12 +23,12 @@ function transformHtml() {
     <table><tr><td>Title:</td><td><input type="text" name="title" value="<% "title" get write %>"/></td></tr>
     <tr><td>Body:</td><td><textarea id="wiky" rows="10" cols="60" name="wiky" onkeyup="transformWiky();"></textarea></td></tr>
     <tr><td></td><td><input type="submit" name="post" value="<% "stub" get "update" "post" ? write %>"/>
-    
-    <% "stub" get [  [ entry-delete ] curry "Delete" render-link ] when* %> 
+
+    <% "stub" get [  [ entry-delete ] curry "Delete" render-link ] when* %>
     (preview below)</td></tr>
     <tr><td></td><td><input id="html" type="hidden" name="body" value=""/><div id="preview"><% "body" get [ write-html ] when* %></div></td></tr>
     </table>
 </form>
 <script type="text/javascript">
-transformHtml();  
+transformHtml();
 </script>

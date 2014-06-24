@@ -146,7 +146,7 @@ static CELL frame_count;
 
 void count_stack_frame(F_STACK_FRAME *frame)
 {
-	frame_count += 2; 
+	frame_count += 2;
 }
 
 static CELL frame_index;

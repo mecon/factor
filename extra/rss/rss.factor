@@ -21,7 +21,7 @@ TUPLE: entry title link description pub-date ;
 C: <entry> entry
 
 : rss1.0-entry ( tag -- entry )
-    [ "title" tag-named children>string ] keep   
+    [ "title" tag-named children>string ] keep
     [ "link" tag-named children>string ] keep
     [ "description" tag-named children>string ] keep
     f "date" "http://purl.org/dc/elements/1.1/" <name>
@@ -44,7 +44,7 @@ C: <entry> entry
     "pubDate" tag-named children>string <entry> ;
 
 : rss2.0 ( xml -- feed )
-    "channel" tag-named 
+    "channel" tag-named
     [ "title" tag-named children>string ] keep
     [ "link" tag-named children>string ] keep
     "item" tags-named [ rss2.0-entry ] map <feed> ;

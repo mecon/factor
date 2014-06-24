@@ -6,13 +6,13 @@ IN: crypto.common
 
 : (nth-int) ( string n -- int )
     2 shift dup 4 + rot <slice> ; inline
-    
+
 : nth-int ( string n -- int ) (nth-int) le> ; inline
-    
+
 : nth-int-be ( string n -- int ) (nth-int) be> ; inline
 
 : update ( num var -- ) [ w+ ] change ; inline
-    
+
 : calculate-pad-length ( length -- pad-length )
     dup 56 < 55 119 ? swap - ;
 

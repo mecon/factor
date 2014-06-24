@@ -37,9 +37,9 @@ IN: sequences.tests
 [ t ]
 [ [ "hello" "world" ] [ second ] keep memq? ] unit-test
 
-[ 4 ] [ CHAR: x "tuvwxyz" >vector index ] unit-test 
+[ 4 ] [ CHAR: x "tuvwxyz" >vector index ] unit-test
 
-[ f ] [ CHAR: x 5 "tuvwxyz" >vector index* ] unit-test 
+[ f ] [ CHAR: x 5 "tuvwxyz" >vector index* ] unit-test
 
 [ f ] [ CHAR: a 0 "tuvwxyz" >vector index* ] unit-test
 

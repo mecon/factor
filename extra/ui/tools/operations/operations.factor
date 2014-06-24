@@ -184,7 +184,7 @@ source-editor
 "These commands operate on the Factor word named by the token at the caret position."
 \ selected-word
 [ selected-word ]
-[ dup search [ ] [ no-word ] ?if ] 
+[ dup search [ ] [ no-word ] ?if ]
 define-operation-map
 
 interactor

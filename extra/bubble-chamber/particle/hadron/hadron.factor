@@ -36,7 +36,7 @@ METHOD: move { hadron }
 
   { 1 0.11 } stroke
   dup pos>> 1 v-y point
-  
+
   { 0 0.11 } stroke
   dup pos>> 1 v+y point
 

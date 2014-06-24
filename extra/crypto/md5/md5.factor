@@ -165,7 +165,7 @@ SYMBOLS: a b c d old-a old-b old-c old-d ;
         f bytes-read get pad-last-block
         [ (process-md5-block) ] each
     ] if ;
-    
+
 : (stream>md5) ( -- )
     64 read [ process-md5-block ] keep
     length 64 = [ (stream>md5) ] when ;

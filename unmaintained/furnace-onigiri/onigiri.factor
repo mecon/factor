@@ -2,8 +2,8 @@
 ! See http://factorcode.org/license.txt for BSD license.
 !
 
-USING: httpd threads kernel namespaces furnace sequences 
-html strings math assocs crypto io file-responder calendar 
+USING: httpd threads kernel namespaces furnace sequences
+html strings math assocs crypto io file-responder calendar
 prettyprint parser errors sha2 basic-authentication arrays
 serialize ;
 
@@ -20,8 +20,8 @@ TUPLE: meta key value ;
     " " split [ [ alpha? ] subset ] map "" swap remove "-" join ;
 
 C: entry ( title body stub -- entry )
-    tuck set-entry-stub 
-    tuck set-entry-body 
+    tuck set-entry-stub
+    tuck set-entry-body
     dup entry-stub [ over title>stub over set-entry-stub ] unless
     now over set-entry-created tuck set-entry-title ;
 
@@ -39,7 +39,7 @@ C: user ( name password -- user )
     "entry-show?stub=" swap append action>url ;
 
 : stub>entry ( stub -- entry )
-    entry get-global [ entry-stub = ] subset-with 
+    entry get-global [ entry-stub = ] subset-with
     dup empty? [ drop f ] [ first ] if ;
 
 : atom ( -- )
@@ -69,7 +69,7 @@ DEFER: key>meta*
 DEFER: key>meta
 : entry-show ( stub -- )
     stub>entry
-    [ 
+    [
         "title" key>meta* meta-value
         " - " pick entry-title 3append
         serving-html [
@@ -77,10 +77,10 @@ DEFER: key>meta
             "entry-show" render-template
             f "footer" render-template
         ] with-html-stream
-    ] [ 
+    ] [
         "title" key>meta* meta-value " - Entry not found" append
-        serving-html [ 
-            [ 
+        serving-html [
+            [
                 <p> "The entry you are searching for could not be found" write </p>
                 <p> [ entry-list ] "Back to " "title" key>meta
                 [ meta-value ] [ "the main page" ] if* append render-link
@@ -103,12 +103,12 @@ DEFER: key>meta
         dup stub>entry [
             nip tuck set-entry-body tuck set-entry-title
         ] [
-            <entry> dup entry get-global swap add entry set-global 
+            <entry> dup entry get-global swap add entry set-global
     	] if* entry-stub entry-show
     ] with-basic-authentication ;
 
 : entry-delete ( stub -- )
-    "onigiri-realm" [ 
+    "onigiri-realm" [
         stub>entry entry get-global remove entry set-global entry-list
     ] with-basic-authentication ;
 
@@ -116,7 +116,7 @@ DEFER: name>user
 : onigiri-realm ( name password -- bool )
     swap name>user [ user-password = ] [ drop f ] if*
     user get-global empty? or ;
-    
+
 : register-actions ( -- )
     \ entry-list { } define-action
     \ entry-show { { "stub" } } define-action
@@ -125,19 +125,19 @@ DEFER: name>user
     \ entry-delete { { "stub" } } define-action
     \ atom { } define-action
     \ sitemap { } define-action
-    "onigiri" "entry-list" "apps/furnace-onigiri/templates/" web-app 
-    "onigiri-resources" [ 
+    "onigiri" "entry-list" "apps/furnace-onigiri/templates/" web-app
+    "onigiri-resources" [
         [
             "apps/furnace-onigiri/resources/" resource-path "doc-root" set
             file-responder
         ] with-scope
-    ] add-simple-responder 
+    ] add-simple-responder
     [ onigiri-realm ] "onigiri-realm" add-realm
-    ! and finally, use scaffolding for metadata and user data 
-    [ 
+    ! and finally, use scaffolding for metadata and user data
+    [
         "furnace:onigiri" set-in
         meta "key" "onigiri-realm" scaffold
-        user "name" "onigiri-realm" scaffold 
+        user "name" "onigiri-realm" scaffold
     ] with-scope ;
 
 : onigiri ( -- )

@@ -94,7 +94,7 @@ M: frame-buffer layout* ( fb -- )
      { [ t ] [ drop ] }
    }
    cond ;
-   
+
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 M: frame-buffer draw-gadget* ( fb -- )

@@ -7,7 +7,7 @@ HELP: track
 
 HELP: <track>
 { $values { "orientation" "an orientation specifier" } { "track" "a new " { $link track } } }
-{ $description "Creates a new track which lays out children along the given axis. Children are laid out vertically if the orientation is " { $snippet "{ 0 1 }" } " and horizontally if the orientation is " { $snippet "{ 1 0 }" } "." } ; 
+{ $description "Creates a new track which lays out children along the given axis. Children are laid out vertically if the orientation is " { $snippet "{ 0 1 }" } " and horizontally if the orientation is " { $snippet "{ 1 0 }" } "." } ;
 
 { <track> make-track build-track } related-words
 

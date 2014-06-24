@@ -531,7 +531,7 @@ HELP: bi
         "[ p ] [ q ] bi"
         "[ p ] keep q"
     }
-    
+
 } ;
 
 HELP: 2bi
@@ -764,7 +764,7 @@ HELP: die
 { $notes
     "The term FEP originates from the Lisp machines of old. According to the Jargon File,"
     $nl
-    { $strong "fepped out" } " /fept owt/ " { $emphasis "adj." }  " The Symbolics 3600 LISP Machine has a Front-End Processor called a `FEP' (compare sense 2 of box). When the main processor gets wedged, the FEP takes control of the keyboard and screen. Such a machine is said to have `fepped out' or `dropped into the fep'." 
+    { $strong "fepped out" } " /fept owt/ " { $emphasis "adj." }  " The Symbolics 3600 LISP Machine has a Front-End Processor called a `FEP' (compare sense 2 of box). When the main processor gets wedged, the FEP takes control of the keyboard and screen. Such a machine is said to have `fepped out' or `dropped into the fep'."
     $nl
     { $url "http://www.jargon.net/jargonfile/f/feppedout.html" }
 } ;
@@ -842,7 +842,7 @@ HELP: with
 { $description "Partial application on the left. The following two lines are equivalent:"
     { $code "swap [ swap A ] curry B" }
     { $code "[ A ] with B" }
-    
+
 }
 { $notes "This operation is efficient and does not copy the quotation." }
 { $examples

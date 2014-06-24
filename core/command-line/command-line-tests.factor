@@ -7,6 +7,6 @@ IN: command-line.tests
 
     [ f ] [ "-user-init" cli-arg ] unit-test
     [ t ] [ "user-init" get ] unit-test
-    
+
     [ "sdl.factor" ] [ "sdl.factor" cli-arg ] unit-test
 ] with-scope

@@ -5,7 +5,7 @@
 USING: kernel channels io io.backend io.sniffer
 io.sniffer.backend system vocabs.loader ;
 
-: (sniff-channel) ( stream channel -- ) 
+: (sniff-channel) ( stream channel -- )
   4096 pick stream-read-partial over to (sniff-channel) ;
 
 bsd? [ "channels.sniffer.bsd" require ] when

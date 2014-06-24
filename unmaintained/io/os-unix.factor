@@ -20,13 +20,13 @@ FUNCTION: off_t lseek ( int fildes, off_t offset, int whence ) ;
     [ 0 SEEK_END lseek io-error ] keep ;
 
 : touch-mode
-    O_WRONLY O_APPEND O_CREAT O_EXCL bitor bitor bitor ; foldable    
+    O_WRONLY O_APPEND O_CREAT O_EXCL bitor bitor bitor ; foldable
 
 : open-touch ( path -- fd )
     touch-mode file-mode open
     [ io-error close t ]
     [ 2drop err_no EEXIST = [ err_no io-error ] unless -1 ] recover ;
-    
+
 : <file-appender> ( path -- stream ) open-append <writer> ;
 
 FUNCTION: int unlink ( char* path ) ;

@@ -21,7 +21,7 @@ IN: windows.kernel32
 : OPEN_EXISTING     3 ; inline
 : OPEN_ALWAYS       4 ; inline
 : TRUNCATE_EXISTING 5 ; inline
-              
+
 : FILE_LIST_DIRECTORY       HEX: 00000001 ; inline
 : FILE_READ_DAT             HEX: 00000001 ; inline
 : FILE_ADD_FILE             HEX: 00000002 ; inline
@@ -685,7 +685,7 @@ FUNCTION: HANDLE CreateRemoteThread ( HANDLE hProcess,
                                       LPVOID lpStartAddress,
                                       LPVOID lpParameter,
                                       DWORD dwCreationFlags,
-                                      LPDWORD lpThreadId ) ; 
+                                      LPDWORD lpThreadId ) ;
 ! FUNCTION: CreateSemaphoreA
 ! FUNCTION: CreateSemaphoreW
 ! FUNCTION: CreateSocketHandle

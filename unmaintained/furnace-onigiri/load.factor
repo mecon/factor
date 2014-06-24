@@ -2,7 +2,7 @@
 ! See http://factorcode.org/license.txt for BSD license.
 !
 
-REQUIRES: libs/calendar libs/crypto libs/basic-authentication 
+REQUIRES: libs/calendar libs/crypto libs/basic-authentication
 libs/furnace libs/serialize ;
 
 PROVIDE: apps/furnace-onigiri

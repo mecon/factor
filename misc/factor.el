@@ -70,7 +70,7 @@
     (modify-syntax-entry ?\" "\"    " factor-mode-syntax-table)))
 
 (defvar factor-mode-map (make-sparse-keymap))
-    
+
 (defcustom factor-mode-hook nil
   "Hook run when entering Factor mode."
   :type 'hook
@@ -184,7 +184,7 @@
 (defun factor-clear ()
   (interactive)
   (factor-send-string "clear"))
-  
+
 (defun factor-comment-line ()
   (interactive)
   (beginning-of-line)

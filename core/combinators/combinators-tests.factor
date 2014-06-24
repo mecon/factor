@@ -107,7 +107,7 @@ IN: combinators.tests
 ] unit-test
 
 [ { } cond ] [ class \ no-cond = ] must-fail-with
- 
+
 [ "early" ] [
     2 {
         { [ dup 2 mod 1 = ] [ drop "odd" ] }
@@ -183,9 +183,9 @@ IN: combinators.tests
     {
         { case-const-1 [ "uno" ] }
         { case-const-2 [ "dos" ] }
-        { 3 [ "tres" ] } 
-        { 4 [ "cuatro" ] } 
-        { 5 [ "cinco" ] } 
+        { 3 [ "tres" ] }
+        { 4 [ "cuatro" ] }
+        { 5 [ "cinco" ] }
         [ drop "demasiado" ]
     } case ;
 
@@ -200,9 +200,9 @@ IN: combinators.tests
     {
         { case-const-1 [ "uno" print ] }
         { case-const-2 [ "dos" print ] }
-        { 3 [ "tres" print ] } 
-        { 4 [ "cuatro" print ] } 
-        { 5 [ "cinco" print ] } 
+        { 3 [ "tres" print ] }
+        { 4 [ "cuatro" print ] }
+        { 5 [ "cinco" print ] }
         [ drop "demasiado" print ]
     } case ;
 
@@ -215,9 +215,9 @@ IN: combinators.tests
     1 {
         { case-const-1 [ "uno" ] }
         { case-const-2 [ "dos" ] }
-        { 3 [ "tres" ] } 
-        { 4 [ "cuatro" ] } 
-        { 5 [ "cinco" ] } 
+        { 3 [ "tres" ] }
+        { 4 [ "cuatro" ] }
+        { 5 [ "cinco" ] }
         [ drop "demasiado" ]
     } case
 ] unit-test
@@ -226,9 +226,9 @@ IN: combinators.tests
     2 {
         { case-const-1 [ "uno" ] }
         { case-const-2 [ "dos" ] }
-        { 3 [ "tres" ] } 
-        { 4 [ "cuatro" ] } 
-        { 5 [ "cinco" ] } 
+        { 3 [ "tres" ] }
+        { 4 [ "cuatro" ] }
+        { 5 [ "cinco" ] }
         [ drop "demasiado" ]
     } case
 ] unit-test
@@ -237,9 +237,9 @@ IN: combinators.tests
     3 {
         { case-const-1 [ "uno" ] }
         { case-const-2 [ "dos" ] }
-        { 3 [ "tres" ] } 
-        { 4 [ "cuatro" ] } 
-        { 5 [ "cinco" ] } 
+        { 3 [ "tres" ] }
+        { 4 [ "cuatro" ] }
+        { 5 [ "cinco" ] }
         [ drop "demasiado" ]
     } case
 ] unit-test
@@ -248,9 +248,9 @@ IN: combinators.tests
     100 {
         { case-const-1 [ "uno" ] }
         { case-const-2 [ "dos" ] }
-        { 3 [ "tres" ] } 
-        { 4 [ "cuatro" ] } 
-        { 5 [ "cinco" ] } 
+        { 3 [ "tres" ] }
+        { 4 [ "cuatro" ] }
+        { 5 [ "cinco" ] }
         [ drop "demasiado" ]
     } case
 ] unit-test

@@ -150,7 +150,7 @@ M: freetype-renderer string-height ( open-font string -- h )
 : copy-bitmap ( glyph texture -- )
     over glyph-bitmap-rows >r
     over glyph-bitmap-width dup next-power-of-2 2 *
-    >r >r >r glyph-bitmap-buffer alien-address r> r> r> r> 
+    >r >r >r glyph-bitmap-buffer alien-address r> r> r> r>
     [ copy-row ] times 2drop 2drop ;
 
 : bitmap>texture ( glyph sprite -- id )

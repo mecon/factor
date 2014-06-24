@@ -19,7 +19,7 @@ IN: opengl.framebuffers
     dup GL_FRAMEBUFFER_COMPLETE_EXT = f rot ? ;
 
 : framebuffer-error ( status -- * )
-    { 
+    {
         { GL_FRAMEBUFFER_COMPLETE_EXT [ "framebuffer complete" ] }
         { GL_FRAMEBUFFER_UNSUPPORTED_EXT [ "framebuffer configuration unsupported" ] }
         { GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT_EXT [ "framebuffer incomplete (incomplete attachment)" ] }

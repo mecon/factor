@@ -21,7 +21,7 @@ TUPLE: right-cursor ;
 
 : cursor-index ( cursor -- i ) cursor-i ;
 
-: add-cursor ( cursortree cursor -- ) dup cursor-index rot insert-at ; 
+: add-cursor ( cursortree cursor -- ) dup cursor-index rot insert-at ;
 
 : remove-cursor ( cursortree cursor -- )
     tuck cursor-index swap cursortree-cursors at* [ delete ] [ 2drop ] if ;

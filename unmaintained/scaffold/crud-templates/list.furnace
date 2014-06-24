@@ -12,9 +12,9 @@ prettyprint furnace parser ; %>
 <tr><% [ %><th><% write %></th><% ] each %></tr>
 
 <% [ %>
-    
+
 <tr><% dup tuple-slots [ %><td><% write %></td><% ] each %>
-    
+
     <% dup crud-index swap class dup "crud-index" word-prop swap unparse %>
     <td><a href="<% 3dup write %>-show?<% write %>=<% write %>">Show</a></td>
     <td><a href="<% 3dup write %>-edit?<% write %>=<% write %>">Edit</a></td>

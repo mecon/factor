@@ -50,9 +50,9 @@ IN: vocabs.loader.tests
 
 2 [
     [ "vocabs.loader.test.a" require ] must-fail
-    
+
     [ f ] [ "vocabs.loader.test.a" vocab-source-loaded? ] unit-test
-    
+
     [ t ] [
         "resource:core/vocabs/loader/test/a/a.factor"
         source-file source-file-definitions dup USE: prettyprint .

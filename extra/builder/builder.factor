@@ -117,7 +117,7 @@ SYMBOL: build-status
 
 : (build) ( -- )
 
-  builds-check  
+  builds-check
 
   build-status off
 
@@ -152,10 +152,10 @@ SYMBOL: build-status
       "Test time: " write "test-time" eval-file milli-seconds>time print nl
 
       "Did not pass load-everything: " print "load-everything-vocabs" cat
-      
+
       "Did not pass test-all: "        print "test-all-vocabs"        cat
                                              "test-failures"          cat
-      
+
       "help-lint results:"             print "help-lint"              cat
 
       "Benchmarks: " print "benchmarks" eval-file benchmarks.

@@ -19,7 +19,7 @@ IN: raptor
     "/etc/cron.daily/sysklogd"	      fork-exec-arg
     "/etc/cron.daily/tetex-bin"	      fork-exec-arg
 ] cron-jobs-daily set-global
-    
+
 [
   "/etc/cron.weekly/cvs"                fork-exec-arg
   "/etc/cron.weekly/man-db"		fork-exec-arg

@@ -362,7 +362,7 @@ bignum_remainder(bignum_type numerator, bignum_type denominator)
       return (result);                                                 \
     }                                                                  \
   }
-  
+
 /* all below allocate memory */
 FOO_TO_BIGNUM(cell,CELL,CELL)
 FOO_TO_BIGNUM(fixnum,F_FIXNUM,CELL)
@@ -512,7 +512,7 @@ bignum_add_unsigned(bignum_type x, bignum_type y, int negative_p)
     }
   {
     bignum_length_type x_length = (BIGNUM_LENGTH (x));
-    
+
     REGISTER_BIGNUM(x);
     REGISTER_BIGNUM(y);
     bignum_type r = (allot_bignum ((x_length + 1), negative_p));
@@ -593,7 +593,7 @@ bignum_subtract_unsigned(bignum_type x, bignum_type y)
     }
   {
     bignum_length_type x_length = (BIGNUM_LENGTH (x));
-    
+
     REGISTER_BIGNUM(x);
     REGISTER_BIGNUM(y);
     bignum_type r = (allot_bignum (x_length, negative_p));
@@ -1573,7 +1573,7 @@ bignum_magnitude_ash(bignum_type arg1, long n)
     scanr = BIGNUM_START_PTR (result) + digit_offset;
     scan1 = BIGNUM_START_PTR (arg1);
     end = scan1 + BIGNUM_LENGTH (arg1);
-    
+
     while (scan1 < end) {
       *scanr = *scanr | (*scan1 & BIGNUM_DIGIT_MASK) << bit_offset;
       *scanr = *scanr & BIGNUM_DIGIT_MASK;
@@ -1589,26 +1589,26 @@ bignum_magnitude_ash(bignum_type arg1, long n)
   else if (n < 0) {
     digit_offset = -n / BIGNUM_DIGIT_LENGTH;
     bit_offset =   -n % BIGNUM_DIGIT_LENGTH;
-    
+
     REGISTER_BIGNUM(arg1);
     result = allot_bignum_zeroed (BIGNUM_LENGTH (arg1) - digit_offset,
                                      BIGNUM_NEGATIVE_P(arg1));
     UNREGISTER_BIGNUM(arg1);
-    
+
     scanr = BIGNUM_START_PTR (result);
     scan1 = BIGNUM_START_PTR (arg1) + digit_offset;
     end = scanr + BIGNUM_LENGTH (result) - 1;
-    
+
     while (scanr < end) {
       *scanr =  (*scan1++ & BIGNUM_DIGIT_MASK) >> bit_offset ;
-      *scanr = (*scanr | 
+      *scanr = (*scanr |
         *scan1 << (BIGNUM_DIGIT_LENGTH - bit_offset)) & BIGNUM_DIGIT_MASK;
       scanr++;
     }
     *scanr =  (*scan1++ & BIGNUM_DIGIT_MASK) >> bit_offset ;
   }
   else if (n == 0) result = arg1;
-  
+
   return (bignum_trim (result));
 }
 
@@ -1696,12 +1696,12 @@ bignum_posneg_bitwise_op(int op, bignum_type arg1, bignum_type arg2)
         digit2 = (digit2 - BIGNUM_RADIX);
         carry2 = 1;
       }
-    
+
     *scanr++ = (op == AND_OP) ? digit1 & digit2 :
                (op == IOR_OP) ? digit1 | digit2 :
                                 digit1 ^ digit2;
   }
-  
+
   if (neg_p)
     bignum_negate_magnitude(result);
 
@@ -1751,7 +1751,7 @@ bignum_negneg_bitwise_op(int op, bignum_type arg1, bignum_type arg2)
         digit1 = (digit1 - BIGNUM_RADIX);
         carry1 = 1;
       }
-    
+
     if (digit2 < BIGNUM_RADIX)
       carry2 = 0;
     else
@@ -1759,7 +1759,7 @@ bignum_negneg_bitwise_op(int op, bignum_type arg1, bignum_type arg2)
         digit2 = (digit2 - BIGNUM_RADIX);
         carry2 = 1;
       }
-    
+
     *scanr++ = (op == AND_OP) ? digit1 & digit2 :
                (op == IOR_OP) ? digit1 | digit2 :
                                 digit1 ^ digit2;
@@ -1794,7 +1794,7 @@ bignum_negate_magnitude(bignum_type arg)
         digit = (digit - BIGNUM_RADIX);
         carry = 1;
       }
-    
+
     *scan++ = digit;
   }
 }
@@ -1805,11 +1805,11 @@ bignum_integer_length(bignum_type bignum)
 {
   bignum_length_type index = ((BIGNUM_LENGTH (bignum)) - 1);
   bignum_digit_type digit = (BIGNUM_REF (bignum, index));
-  
+
   REGISTER_BIGNUM(bignum);
   bignum_type result = (allot_bignum (2, 0));
   UNREGISTER_BIGNUM(bignum);
-  
+
   (BIGNUM_REF (result, 0)) = index;
   (BIGNUM_REF (result, 1)) = 0;
   bignum_destructive_scale_up (result, BIGNUM_DIGIT_LENGTH);
@@ -1825,7 +1825,7 @@ bignum_integer_length(bignum_type bignum)
 int
 bignum_logbitp(int shift, bignum_type arg)
 {
-  return((BIGNUM_NEGATIVE_P (arg)) 
+  return((BIGNUM_NEGATIVE_P (arg))
          ? !bignum_unsigned_logbitp (shift, bignum_bitwise_not (arg))
          : bignum_unsigned_logbitp (shift,arg));
 }

@@ -11,31 +11,31 @@ MATCH-VARS: ?a ?b ;
  { ?a ?b } { 1 2 } match
 ] unit-test
 
-[ { 1 2 } ] [ 
-  { 1 2 } 
+[ { 1 2 } ] [
+  { 1 2 }
   {
     { { ?a ?b } [ ?a ?b 2array ] }
   } match-cond
 ] unit-test
 
-[ t ] [ 
-  { 1 2 } 
+[ t ] [
+  { 1 2 }
   {
     { { 1 2 } [ t ] }
     { f [ f ] }
   } match-cond
 ] unit-test
 
-[ t ] [ 
-  { 1 3 } 
+[ t ] [
+  { 1 3 }
   {
     { { 1 2 } [ t ] }
     { { 1 3 } [ t ] }
   } match-cond
 ] unit-test
 
-[ f ] [ 
-  { 1 5 } 
+[ f ] [
+  { 1 5 }
   {
     { { 1 2 } [ t ] }
     { { 1 3 } [ t ] }
@@ -59,11 +59,11 @@ C: <foo> foo
   ] bind
 ] unit-test
 
-{ H{ { ?a ?a } } } [ 
-  \ ?a \ ?a match 
+{ H{ { ?a ?a } } } [
+  \ ?a \ ?a match
 ] unit-test
 
-[ "match" ] [ 
+[ "match" ] [
   "abcd" {
     { ?a [ "match" ] }
   } match-cond

@@ -11,7 +11,7 @@ USING: kernel namespaces threads combinators sequences arrays
        rewrite-closures fry accessors newfx
        processing.color
        processing.gadget ;
-       
+
 IN: processing
 
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -113,7 +113,7 @@ METHOD: set-color { rgba }
   fill-color> set-color
 
   6 ndup
-  
+
   GL_TRIANGLES glBegin
     glVertex2d
     glVertex2d
@@ -147,7 +147,7 @@ METHOD: set-color { rgba }
   fill-color> set-color
 
   quad-vertices
-  
+
   GL_FRONT_AND_BACK GL_LINE glPolygonMode
   stroke-color> set-color
 
@@ -395,13 +395,13 @@ SYMBOL: setup-called
       if
     ]
       closed-quot >>action
-    
+
     key-down-action get >>key-down
     key-up-action   get >>key-up
 
     button-down-action get >>button-down
     button-up-action   get >>button-up
-    
+
   processing-gadget set
 
   start-processing-thread ;

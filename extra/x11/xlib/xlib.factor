@@ -1088,7 +1088,7 @@ FUNCTION: Status XWithdrawWindow (
 : PAspect       1 7 shift ; inline
 : PBaseSize     1 8 shift ; inline
 : PWinGravity   1 9 shift ; inline
-: PAllHints 
+: PAllHints
     { PPosition PSize PMinSize PMaxSize PResizeInc PAspect } flags ; foldable
 
 C-STRUCT: XSizeHints
@@ -1249,7 +1249,7 @@ FUNCTION: Status XSetStandardProperties (
 : XA_WM_TRANSIENT_FOR 68 ; inline
 
 : XA_LAST_PREDEFINED 68 ; inline
-    
+
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! The rest of the stuff is not from the book.
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1332,7 +1332,7 @@ FUNCTION: XIC XCreateIC ( XIM im, char* key1, Window value1, char* key2, Window 
 FUNCTION: void XDestroyIC ( XIC ic ) ;
 
 FUNCTION: void XSetICFocus ( XIC ic ) ;
-        
+
 FUNCTION: void XUnsetICFocus ( XIC ic ) ;
 
 FUNCTION: int XwcLookupString ( XIC ic, XKeyPressedEvent* event, ulong* buffer_return, int bytes_buffer, KeySym* keysym_return, Status* status_return ) ;

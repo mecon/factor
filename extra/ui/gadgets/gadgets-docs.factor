@@ -250,7 +250,7 @@ HELP: build-gadget
 { $description "Delegates the tuple to the gadget, and calls the quotation in a new scope with the tuple stored in the " { $link make-gadget } " and " { $link gadget } " variables." } ;
 
 HELP: with-gadget
-{ $values { "gadget" gadget } { "quot" quotation } } 
+{ $values { "gadget" gadget } { "quot" quotation } }
 { $description "Calls the quotation in a new scope with the " { $link gadget } " and " { $link make-gadget } " variables set to " { $snippet "gadget" } ". The quotation can call " { $link g } " and " { $link g-> } " to access the gadget." } ;
 
 HELP: g

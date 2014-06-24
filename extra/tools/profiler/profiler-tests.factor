@@ -10,7 +10,7 @@ alien tools.profiler.private sequences ;
 
 [ ] [ [ 10 [ gc ] times ] profile ] unit-test
 
-[ ] [ [ 1000 sleep ] profile ] unit-test 
+[ ] [ [ 1000 sleep ] profile ] unit-test
 
 [ ] [ profile. ] unit-test
 

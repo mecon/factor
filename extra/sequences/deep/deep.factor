@@ -27,7 +27,7 @@ IN: sequences.deep
     [ call ] 2keep rot [ drop t ] [
         over branch? [
             f -rot [ >r nip r> deep-find* ] curry find drop >boolean
-        ] [ 2drop f f ] if  
+        ] [ 2drop f f ] if
     ] if ; inline
 
 : deep-find ( obj quot -- elt ) deep-find* drop ; inline

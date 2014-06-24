@@ -30,7 +30,7 @@ C-STRUCT: yuv_buffer
 : OC_CS_ITU_REC_470BG ( -- number ) 2 ; inline
 : OC_CS_NSPACES ( -- number ) 3 ; inline
 
-TYPEDEF: int theora_colorspace 
+TYPEDEF: int theora_colorspace
 
 : OC_PF_420 ( -- number ) 0 ; inline
 : OC_PF_RSVD ( -- number ) 1 ; inline
@@ -55,7 +55,7 @@ C-STRUCT: theora_info
     { "int" "quality" }
     { "int" "quick_p" }
     { "uchar" "version_major" }
-    { "uchar" "version_minor" } 
+    { "uchar" "version_minor" }
     { "uchar" "version_subminor" }
     { "void*" "codec_setup" }
     { "int" "dropframes_p" }

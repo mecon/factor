@@ -23,7 +23,7 @@ USING: math.matrices math.vectors tools.test math ;
     { { 1 0 0 }
        { 0 2 0 }
        { 0 0 3 } }
-       
+
     { { 0 0 4 }
        { 0 5 0 }
        { 6 0 0 } }
@@ -39,7 +39,7 @@ USING: math.matrices math.vectors tools.test math ;
     { { 1 0 0 }
        { 0 2 0 }
        { 0 0 3 } }
-       
+
     { { 0 0 -4 }
        { 0 -5 0 }
        { -6 0 0 } }
@@ -95,7 +95,7 @@ USING: math.matrices math.vectors tools.test math ;
     { { 1 }
        { 2 }
        { 3 } }
-    
+
     m.
 ] unit-test
 

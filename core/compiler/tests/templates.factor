@@ -124,9 +124,9 @@ unit-test
 ! Regression
 : hellish-bug-1 2drop ;
 
-: hellish-bug-2 ( i array x -- x ) 
-    2dup 1 slot eq? [ 2drop ] [ 
-        2dup array-nth tombstone? [ 
+: hellish-bug-2 ( i array x -- x )
+    2dup 1 slot eq? [ 2drop ] [
+        2dup array-nth tombstone? [
             [
                 [ array-nth ] 2keep >r 1 fixnum+fast r> array-nth
                 pick 2dup hellish-bug-1 3drop
@@ -134,7 +134,7 @@ unit-test
         ] unless >r 2 fixnum+fast r> hellish-bug-2
     ] if ; inline
 
-: hellish-bug-3 ( hash array -- ) 
+: hellish-bug-3 ( hash array -- )
     0 swap hellish-bug-2 drop ;
 
 [ ] [

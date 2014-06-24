@@ -38,7 +38,7 @@ SYMBOLS: h0 h1 h2 h3 h4 A B C D E w K ;
 ! f(t;B,C,D) = B XOR C XOR D                        (60 <= t <= 79)
 : sha1-f ( B C D t -- f_tbcd )
     20 /i
-    {   
+    {
         { 0 [ >r over bitnot r> bitand >r bitand r> bitor ] }
         { 1 [ bitxor bitxor ] }
         { 2 [ 2dup bitand >r pick bitand >r bitand r> r> bitor bitor ] }

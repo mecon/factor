@@ -31,7 +31,7 @@ M: world configure-event
         { C+ HEX: 4 }
         { A+ HEX: 8 }
     } ;
-    
+
 : key-codes
     H{
         { HEX: FF08 "BACKSPACE" }
@@ -218,7 +218,7 @@ M: x-clipboard paste-clipboard
 M: x11-ui-backend set-title ( string world -- )
     world-handle x11-handle-window swap dpy get -rot
     3dup set-title-old set-title-new ;
-    
+
 M: x11-ui-backend set-fullscreen* ( ? world -- )
     world-handle x11-handle-window "XClientMessageEvent" <c-object>
     tuck set-XClientMessageEvent-window

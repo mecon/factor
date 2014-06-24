@@ -44,7 +44,7 @@ M: directive process
     add-child ;
 
 M: contained process
-    [ contained-name ] keep contained-attrs 
+    [ contained-name ] keep contained-attrs
     <contained-tag> add-child ;
 
 M: opener process push-xml ;
@@ -85,7 +85,7 @@ M: closer process
 
 : no-post-tags ( post -- post/* )
     ! this does *not* affect the contents of the stack
-    dup [ tag? ] contains? [ <multitags> throw ] when ; 
+    dup [ tag? ] contains? [ <multitags> throw ] when ;
 
 : assure-tags ( seq -- seq )
     ! this does *not* affect the contents of the stack

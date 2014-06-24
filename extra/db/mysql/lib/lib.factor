@@ -37,7 +37,7 @@ TUPLE: mysql-result-set ;
     >r mysql-db-handle r> mysql_query ;
 
 ! : (mysql-result) ( mysql-connection -- ret )
-    ! [ mysql-db-handle mysql_use_result ] keep 
+    ! [ mysql-db-handle mysql_use_result ] keep
     ! [ set-mysql-connection-resulthandle ] keep ;
 
 ! : (mysql-affected-rows) ( mysql-connection -- n )
@@ -51,7 +51,7 @@ TUPLE: mysql-result-set ;
 
 ! : (mysql-num-cols) ( mysql-connection -- n )
     ! mysql-connection-resulthandle mysql_num_fields ;
-   
+
 ! : mysql-char*-nth ( index object -- str )
     ! #! Utility based on 'char*-nth' to perform an additional sanity check on the value
     ! #! extracted from the array of strings.
@@ -61,11 +61,11 @@ TUPLE: mysql-result-set ;
     ! [ swap mysql-char*-nth ] map-with ;
 
 ! : (mysql-result>seq) ( seq -- seq )
-    ! my-conn get (mysql-row) dup [       
+    ! my-conn get (mysql-row) dup [
         ! my-conn get (mysql-num-cols) mysql-row>seq
         ! over push
         ! (mysql-result>seq)
-    ! ] [ drop ] if 
+    ! ] [ drop ] if
     ! ! Perform needed cleanup on fetched results
     ! my-conn get (mysql-free-result) ;
 

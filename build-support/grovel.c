@@ -151,7 +151,7 @@ void unix_constants()
 	grovel(pid_t);
 
 }
-	
+
 int main() {
 #ifdef FREEBSD
 	grovel(blkcnt_t);

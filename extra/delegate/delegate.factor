@@ -88,7 +88,7 @@ M: tuple-class group-words
 ! Mimic still needs to be updated
 
 : mimic-method ( mimicker mimicked generic -- )
-    tuck method 
+    tuck method
     [ [ create-method-in ] [ word-def ] bi* define ]
     [ 2drop ] if* ;
 

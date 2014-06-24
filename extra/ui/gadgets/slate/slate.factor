@@ -59,7 +59,7 @@ USING: combinators ui.gestures accessors ;
 !      {
 !        [ dup key-down? ]
 !        [
-       
+
 !          key-down-sym key-value set
 !          key-pressed-value on
 !          t

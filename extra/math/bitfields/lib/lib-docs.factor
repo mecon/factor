@@ -1,7 +1,7 @@
 USING: help.markup help.syntax kernel math sequences ;
 IN: math.bitfields.lib
 
-HELP: bits 
+HELP: bits
 { $values { "m" integer } { "n" integer } { "m'" integer } }
 { $description "Keep only n bits from the integer m." }
 { $example "USING: math.bitfields.lib prettyprint ;" "HEX: 123abcdef 16 bits .h" "cdef" } ;

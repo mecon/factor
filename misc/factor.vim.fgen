@@ -128,7 +128,7 @@ syn match factorMultiStringContents /.*/ contained
 syn region factorStackEffect start=/\<(\>/ end=/\<)\>/ contained
 
 "adapted from lisp.vim
-if exists("g:factor_norainbow") 
+if exists("g:factor_norainbow")
     syn region factorQuotation matchgroup=factorDelimiter start=/\<\[\>/ matchgroup=factorDelimiter end=/\<\]\>/ contains=ALL
 else
     syn region factorQuotation0           matchgroup=hlLevel0 start=/\<\[\>/ end=/\<\]\>/ contains=@factorCluster,factorQuotation1,factorArray1
@@ -143,7 +143,7 @@ else
     syn region factorQuotation9 contained matchgroup=hlLevel9 start=/\<\[\>/ end=/\<\]\>/ contains=@factorCluster,factorQuotation0,factorArray0
 endif
 
-if exists("g:factor_norainbow") 
+if exists("g:factor_norainbow")
     syn region factorArray    matchgroup=factorDelimiter start=/\<\(V\|H\|T\|W\|F\|B\)\?{\>/  matchgroup=factorDelimiter end=/\<}\>/ contains=ALL
 else
     syn region factorArray0           matchgroup=hlLevel0 start=/\<\(V\|H\|T\|W\|F\|B\)\?{\>/ end=/\<}\>/ contains=@factorCluster,factorArray1,factorQuotation1

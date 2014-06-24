@@ -76,7 +76,7 @@ C: <index-out-of-bounds> index-out-of-bounds
     ] if ;
 
 M: gb virtual@ ( n gb -- n seq ) [ position>index ] keep gb-seq ;
-    
+
 M: gb nth ( n gb -- elt ) bounds-check virtual@ nth-unsafe ;
 
 M: gb nth-unsafe ( n gb -- elt ) virtual@ nth-unsafe ;

@@ -35,7 +35,7 @@ TUPLE: promise quot forced? value ;
 : make-lazy-quot ( word quot -- quot )
   [
     dup ,
-    swap stack-effect-in \ curry <repetition> % 
+    swap stack-effect-in \ curry <repetition> %
     \ promise ,
   ] [ ] make ;
 

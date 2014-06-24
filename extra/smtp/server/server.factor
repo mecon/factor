@@ -34,20 +34,20 @@ SYMBOL: data-mode
 
 : process ( -- )
     readln {
-        { [ [ dup "HELO" head? ] keep "EHLO" head? or ] [ 
+        { [ [ dup "HELO" head? ] keep "EHLO" head? or ] [
             "220 and..?\r\n" write flush t
           ] }
-        { [ dup "QUIT" = ] [ 
+        { [ dup "QUIT" = ] [
             "bye\r\n" write flush f
           ] }
-        { [ dup "MAIL FROM:" head? ] [ 
+        { [ dup "MAIL FROM:" head? ] [
             "220 OK\r\n" write flush t
           ] }
-        { [ dup "RCPT TO:" head? ] [ 
+        { [ dup "RCPT TO:" head? ] [
             "220 OK\r\n" write flush t
           ] }
         { [ dup "DATA" = ] [
-            data-mode on 
+            data-mode on
             "354 Enter message, ending with \".\" on a line by itself\r\n"
             write flush t
           ] }
@@ -56,7 +56,7 @@ SYMBOL: data-mode
             "220 OK\r\n" write flush t
           ] }
         { [ data-mode get ] [ dup global [ print ] bind t ] }
-        [ 
+        [
             "500 ERROR\r\n" write flush t
         ]
     } cond nip [ process ] when ;

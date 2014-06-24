@@ -9,17 +9,17 @@ TUPLE: idiv sequence div offset size ;
 
 : n-cut ( seq pos -- seq )
     2dup ihead -rot itail <isequence> ; inline
-    
+
 : n-div ( seq div -- seq )
     swap dup i-length 2/ dup roll mod - n-cut ; inline
 
 : <i-div> ( sequence div offset size -- idiv )
-    pick 1 = 
+    pick 1 =
     [ 3drop ] [ >r >r tuck n-div swap r> r> <idiv> ] if ; inline
 
 : idiv-unpack ( idiv -- sequence div offset size )
     dup idiv-sequence swap dup idiv-div swap dup idiv-offset swap idiv-size ; inline
-    
+
 : (idiv-offset) ( pos idiv -- offset-pos )
     tuck dup idiv-offset swap idiv-div
     dup * -rot + * swap idiv-size 2dup
@@ -34,7 +34,7 @@ TUPLE: idiv sequence div offset size ;
 
 : idiv-ileft ( idiv -- idiv )
     dup idiv-sequence ileft swap dup idiv-div
-    pick i-length swap tuck = 
+    pick i-length swap tuck =
     [ drop nip 0 i-at <i> ]
     [ swap dup idiv-offset swap idiv-size <i-div> ]
     if ;
@@ -47,8 +47,8 @@ TUPLE: idiv sequence div offset size ;
     pick i-length swap tuck =
     [ drop nip dup ileft i-length i-at <i> ]
     [ swap dup (idiv-newoffset) swap idiv-size <i-div> ]
-    if ; inline 
-   
+    if ; inline
+
 M: idiv i-length dup idiv-sequence i-length swap idiv-div /i ;
 M: idiv i-at idiv-nth ;
 M: idiv ileft idiv-ileft ;
@@ -61,7 +61,7 @@ M: idiv $$
 
 : gcd_0 ( n1 n2 -- n )
     dup zero? [ 2drop 1 ] [ gcd ] if ; inline
-    
+
 : /_g++ ( s1 n -- idiv )
     i-length over i-length tuck gcd_0 0 rot <i-div> ; inline
 
@@ -73,7 +73,7 @@ M: idiv $$
 
 : /_g ( s1 s2 -- s )
     2dup [ neg? ] 2apply [ [ /_g-- ] [ /_g+- ] if ] [ [ /_g-+ ] [ /_g++ ] if ] if ; inline
- 
+
 M: object /_ /_g ;
 
 

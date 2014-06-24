@@ -90,7 +90,7 @@ M: string b, ( n string -- ) heap-size b, ;
     read1
     [ >r 7 shift r> 7 clear-bit bitor ] keep
     7 bit? [ (read-128-ber) ] when ;
-    
+
 : read-128-ber ( -- n )
     0 (read-128-ber) ;
 

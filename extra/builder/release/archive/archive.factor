@@ -12,7 +12,7 @@ IN: builder.release.archive
 
 : extension ( -- extension )
   {
-    { [ os winnt?  ] [ ".zip"    ] }  
+    { [ os winnt?  ] [ ".zip"    ] }
     { [ os macosx? ] [ ".dmg"    ] }
     { [ os unix?   ] [ ".tar.gz" ] }
   }

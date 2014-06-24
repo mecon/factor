@@ -18,7 +18,7 @@ TUPLE: board width height rows ;
     [ second swap board-rows nth ] keep first swap ;
 
 : board-set-block ( board block colour -- ) -rot board@block set-nth ;
-  
+
 : board-block ( board block -- colour ) board@block nth ;
 
 : block-free? ( board block -- ? ) board-block not ;

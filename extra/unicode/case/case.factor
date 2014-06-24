@@ -38,7 +38,7 @@ SYMBOL: locale ! Just casing locale, or overall?
     [ [ lithuanian-ch>lower ] each-next ] "" make ;
 
 : turk-ch>upper ( ch -- )
-    dup CHAR: i = 
+    dup CHAR: i =
     [ drop CHAR: I , dot-over , ] [ , ] if ;
 
 : turk>upper ( string -- upper-i )
@@ -94,7 +94,7 @@ SYMBOL: locale ! Just casing locale, or overall?
     CHAR: \s swap
     [ tuck word-boundary swapd
         [ code-point-title ] [ code-point-lower ] if ]
-    [ tuck word-boundary swapd 
+    [ tuck word-boundary swapd
         [ ch>title ] [ ch>lower ] if ]
     map-case nip ;
 

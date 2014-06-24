@@ -257,7 +257,7 @@ TYPEDEF: void* PAINTSTRUCT
 
 C-STRUCT: POINT
     { "LONG" "x" }
-    { "LONG" "y" } ; 
+    { "LONG" "y" } ;
 
 C-STRUCT: MSG
     { "HWND" "hWnd" }

@@ -1,5 +1,5 @@
 
-USING: kernel parser math quotations namespaces sequences namespaces.lib 
+USING: kernel parser math quotations namespaces sequences namespaces.lib
        inference.transforms ;
 
 IN: rewrite-closures

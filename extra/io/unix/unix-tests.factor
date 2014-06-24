@@ -47,7 +47,7 @@ yield
         "Receive 1" print
 
         "d" get receive >r reverse r>
-        
+
         "Send 1" print
         dup .
 
@@ -56,7 +56,7 @@ yield
         "Receive 2" print
 
         "d" get receive >r " world" append r>
-        
+
         "Send 1" print
         dup .
 

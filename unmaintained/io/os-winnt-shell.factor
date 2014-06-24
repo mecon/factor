@@ -28,7 +28,7 @@ M: winnt-shell directory* ( path -- seq )
 
 : WIN32_FIND_DATA>file-size ( WIN32_FILE_ATTRIBUTE_DATA -- n )
     [ WIN32_FIND_DATA-nFileSizeLow ] keep
-    WIN32_FIND_DATA-nFileSizeHigh 32 shift + ; 
+    WIN32_FIND_DATA-nFileSizeHigh 32 shift + ;
 
 M: winnt-shell make-file ( WIN32_FIND_DATA -- file )
     [ WIN32_FIND_DATA-cFileName alien>u16-string ] keep

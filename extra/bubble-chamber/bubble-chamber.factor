@@ -63,7 +63,7 @@ VAR: boom
   [
     1 background
     no-stroke
-  
+
     1789 [ drop <muon>   ] map >muons
     1300 [ drop <quark>  ] map >quarks
     1000 [ drop <hadron> ] map >hadrons

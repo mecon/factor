@@ -5,7 +5,7 @@ IN: unix
 
 C-STRUCT: addrinfo
     { "int" "flags" }
-    { "int" "family" } 
+    { "int" "family" }
     { "int" "socktype" }
     { "int" "protocol" }
     { "socklen_t" "addrlen" }

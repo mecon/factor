@@ -164,13 +164,13 @@ M: email clone
 !
 ! and the rest of the code was as follows:
 ! : (cram-md5-auth) ( -- response )
-!     swap challenge get 
-!     string>md5-hmac hex-string 
-!     " " prepend append 
+!     swap challenge get
+!     string>md5-hmac hex-string
+!     " " prepend append
 !     >base64 ;
-! 
+!
 ! : cram-md5-auth ( key login  -- )
-!     "AUTH CRAM-MD5\r\n" get-ok 
+!     "AUTH CRAM-MD5\r\n" get-ok
 !     (cram-md5-auth) "\r\n" append get-ok ;
 
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -64,7 +64,7 @@ IN: db.postgresql.lib
 
 : malloc-byte-array/length
     [ malloc-byte-array dup free-always ] [ length ] bi ;
-    
+
 
 : param-values ( statement -- seq seq2 )
     [ statement-bind-params ]
@@ -143,7 +143,7 @@ M: postgresql-malloc-destructor dispose ( obj -- )
                 ] if
             ] keep
             *uint memory>byte-array
-        ] with-destructors 
+        ] with-destructors
     ] [
         drop pq-get-is-null nip [ f ] [ B{ } clone ] if
     ] if ;

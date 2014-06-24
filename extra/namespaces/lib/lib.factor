@@ -18,7 +18,7 @@ IN: namespaces.lib
 
 : set* ( val var -- ) namestack* set-assoc-stack ;
 
-SYMBOL: building-seq 
+SYMBOL: building-seq
 : get-building-seq ( n -- seq )
     building-seq get nth ;
 

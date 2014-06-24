@@ -40,8 +40,8 @@ C-ENUM:
      { HEX: 1005  "HPDF_CANNOT_GET_PALLET\nCannot get a pallet data from PNG image." }
      { HEX: 1007  "HPDF_DICT_COUNT_ERR\nThe count of elements of a dictionary exceeds HPDF_LIMIT_MAX_DICT_ELEMENT" }
      { HEX: 1008  "HPDF_DICT_ITEM_NOT_FOUND\nInternal error. The consistency of the data was lost." }
-     { HEX: 1009  "HPDF_DICT_ITEM_UNEXPECTED_TYPE\nInternal error. The consistency of the data was lost." }  
-     { HEX: 100A  "HPDF_DICT_STREAM_LENGTH_NOT_FOUND\nInternal error. The consistency of the data was lost." }  
+     { HEX: 1009  "HPDF_DICT_ITEM_UNEXPECTED_TYPE\nInternal error. The consistency of the data was lost." }
+     { HEX: 100A  "HPDF_DICT_STREAM_LENGTH_NOT_FOUND\nInternal error. The consistency of the data was lost." }
      { HEX: 100B  "HPDF_DOC_ENCRYPTDICT_NOT_FOUND\nHPDF_SetPermission() OR HPDF_SetEncryptMode() was called before a password is set." }
      { HEX: 100C  "HPDF_DOC_INVALID_OBJECT\nInternal error. The consistency of the data was lost." }
      { HEX: 100E  "HPDF_DUPLICATE_REGISTRATION\nTried to register a font that has been registered." }

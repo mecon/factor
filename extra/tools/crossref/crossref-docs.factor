@@ -1,7 +1,7 @@
 USING: help.markup help.syntax words definitions ;
 IN: tools.crossref
 
-ARTICLE: "tools.crossref" "Cross-referencing tools" 
+ARTICLE: "tools.crossref" "Cross-referencing tools"
 { $subsection usage. }
 { $subsection apropos }
 { $see-also "definitions" "words" } ;

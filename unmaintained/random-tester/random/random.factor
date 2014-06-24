@@ -19,13 +19,13 @@ IN: random-tester
     [ max-length random [ max-value random , ] times ] "" make ;
 
 : special-integers ( -- seq ) \ special-integers get ;
-[ { -1 0 1 } % most-negative-fixnum , most-positive-fixnum , first-bignum , ] 
+[ { -1 0 1 } % most-negative-fixnum , most-positive-fixnum , first-bignum , ]
 { } make \ special-integers set-global
 : special-floats ( -- seq ) \ special-floats get ;
 [ { 0.0 -0.0 } % e , pi , 1./0. , -1./0. , 0./0. , epsilon , epsilon neg , ]
 { } make \ special-floats set-global
 : special-complexes ( -- seq ) \ special-complexes get ;
-[ 
+[
     { -1 0 1 C{ 0 1 } C{ 0 -1 } } %
     e , e neg , pi , pi neg ,
     0 pi rect> , 0 pi neg rect> , pi neg 0 rect> , pi pi rect> ,
@@ -38,7 +38,7 @@ IN: random-tester
 
 : random-bignum ( -- bignum )
      400 random-bits first-bignum + 50% [ neg ] when ;
-    
+
 : random-integer ( -- n )
     50% [
         random-fixnum

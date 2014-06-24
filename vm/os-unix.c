@@ -183,13 +183,13 @@ void dealloc_segment(F_SEGMENT *block)
 
 	int retval = munmap((void*)(block->start - pagesize),
 		pagesize + block->size + pagesize);
-	
+
 	if(retval)
 		fatal_error("dealloc_segment failed",0);
 
 	free(block);
 }
-  
+
 INLINE F_STACK_FRAME *uap_stack_pointer(void *uap)
 {
 	/* There is a race condition here, but in practice a signal

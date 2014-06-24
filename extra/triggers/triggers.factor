@@ -15,7 +15,7 @@ IN: triggers
 : add-trigger ( key quot trigger -- )
     #! trigger should be a symbol. Note that symbols with the same name but
     #! different vocab are not equal
-    trigger-graph add-vertex ; 
+    trigger-graph add-vertex ;
 
 : before ( key1 key2 trigger -- )
     trigger-graph add-edge ;

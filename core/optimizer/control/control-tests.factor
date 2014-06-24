@@ -25,7 +25,7 @@ optimizer ;
 
 : loop-test-1 ( a -- )
     dup [ 1+ loop-test-1 ] [ drop ] if ; inline
-                          
+
 [ t ] [
     [ loop-test-1 ] dataflow dup detect-loops
     \ loop-test-1 label-is-loop?

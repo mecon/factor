@@ -4,7 +4,7 @@ USING: help.syntax help.markup ;
 IN: channels
 
 HELP: <channel>
-{ $values { "channel" "a channel object" } 
+{ $values { "channel" "a channel object" }
 }
 { $description "Create a channel that can be used for communicating between "
 "concurrent processes and threads. " { $link to } " and " { $link from }
@@ -15,21 +15,21 @@ HELP: <channel>
 { $see-also from to } ;
 
 HELP: to
-{ $values { "value" "an object" } 
-          { "channel" "a channel object" } 
+{ $values { "value" "an object" }
+          { "channel" "a channel object" }
 }
 { $description "Sends an object to a channel. The send operation is synchronous."
 " It will block the calling thread until there is a receiver waiting "
 "for data on the channel. It will return when the receiver has received "
-"the data successfully." 
+"the data successfully."
 }
 { $see-also <channel> from } ;
 
 HELP: from
-{ $values  { "channel" "a channel object" } 
+{ $values  { "channel" "a channel object" }
            { "value" "an object" }
 }
 { $description "Receives an object from a channel. The operation is synchronous."
-" It will block the calling thread until there is data in the channel." 
+" It will block the calling thread until there is data in the channel."
 }
 { $see-also <channel> to } ;

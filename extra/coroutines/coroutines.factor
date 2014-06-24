@@ -10,13 +10,13 @@ TUPLE: coroutine resumecc exitcc ;
 : cocreate ( quot -- co )
   coroutine construct-empty
   dup current-coro associate
-  [ swapd , , \ bind , 
+  [ swapd , , \ bind ,
     "Coroutine has terminated illegally." , \ throw ,
   ] [ ] make
   over set-coroutine-resumecc ;
 
 : coresume ( v co -- result )
-  [ 
+  [
     over set-coroutine-exitcc
     coroutine-resumecc call
     #! At this point, the coroutine quotation must have terminated
@@ -29,9 +29,9 @@ TUPLE: coroutine resumecc exitcc ;
 
 : coyield ( v -- result )
   current-coro get
-  [  
+  [
     [ continue-with ] curry
-    over set-coroutine-resumecc  
+    over set-coroutine-resumecc
     coroutine-exitcc continue-with
   ] callcc1 2nip ;
 

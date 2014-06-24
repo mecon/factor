@@ -26,7 +26,7 @@ Modified for Factor by Slava Pestov */
 	#define MACH_STACK_POINTER(thr_state) (thr_state)->esp
 	#define MACH_PROGRAM_COUNTER(thr_state) (thr_state)->eip
 	#define UAP_PROGRAM_COUNTER(ucontext) \
-		MACH_PROGRAM_COUNTER(&(((ucontext_t *)(ucontext))->uc_mcontext->ss))	
+		MACH_PROGRAM_COUNTER(&(((ucontext_t *)(ucontext))->uc_mcontext->ss))
 #endif
 
 INLINE CELL fix_stack_pointer(CELL sp)

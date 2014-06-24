@@ -1,8 +1,8 @@
 ! Copyright (C) 2007, 2008 Chris Double, Doug Coleman.
 ! See http://factorcode.org/license.txt for BSD license.
-USING: kernel sequences strings namespaces math assocs shuffle 
-     vectors arrays combinators.lib math.parser 
-     unicode.categories sequences.deep peg peg.private 
+USING: kernel sequences strings namespaces math assocs shuffle
+     vectors arrays combinators.lib math.parser
+     unicode.categories sequences.deep peg peg.private
      peg.search math.ranges words memoize ;
 IN: peg.parsers
 
@@ -88,12 +88,12 @@ MEMO: pack ( begin body end -- parser )
 : (range-pattern) ( pattern -- string )
   #! Given a range pattern, produce a string containing
   #! all characters within that range.
-  [ 
-    any-char , 
-    [ CHAR: - = ] satisfy hide , 
-    any-char , 
+  [
+    any-char ,
+    [ CHAR: - = ] satisfy hide ,
+    any-char ,
   ] seq* [
-    first2 [a,b] >string    
+    first2 [a,b] >string
   ] action
   replace ;
 
@@ -107,7 +107,7 @@ MEMO: pack ( begin body end -- parser )
   #! range of characters from the first to the second,
   #! inclusive.
   dup first CHAR: ^ = [
-    1 tail (range-pattern) [ member? not ] curry satisfy 
+    1 tail (range-pattern) [ member? not ] curry satisfy
   ] [
     (range-pattern) [ member? ] curry satisfy
   ] if ;

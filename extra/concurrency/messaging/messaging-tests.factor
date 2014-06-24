@@ -9,7 +9,7 @@ IN: concurrency.messaging.tests
 
 [ ] [ my-mailbox mailbox-data dlist-delete-all ] unit-test
 
-[ "received" ] [ 
+[ "received" ] [
     [
         receive "received" swap reply-synchronous
     ] "Synchronous test" spawn

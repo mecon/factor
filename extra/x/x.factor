@@ -23,7 +23,7 @@ VAR: dpy
     "default-gc"
     "black-pixel"
     "white-pixel"
-    "colormap" 
+    "colormap"
     "window-table" } accessors
 define-independent-class
 
@@ -36,7 +36,7 @@ define-independent-class
   dup $ptr over $default-screen XDefaultGC >>default-gc
   dup $ptr over $default-screen XBlackPixel >>black-pixel
   dup $ptr over $default-screen XWhitePixel >>white-pixel
-  dup $ptr over $default-screen XDefaultColormap >>colormap 
+  dup $ptr over $default-screen XDefaultColormap >>colormap
   H{ } clone >>window-table
   [ <- start-event-loop ] in-thread
 ] add-class-method
@@ -133,7 +133,7 @@ add-method
   over <- y 2array <-- move
 ] add-method
 
-<window> "set-y" !( window y -- window ) [ 
+<window> "set-y" !( window y -- window ) [
   over <- x swap 2array <-- move
 ] add-method
 
@@ -212,7 +212,7 @@ add-method
 ! -rot >r >r <- raw r> r> XChangeWindowAttributes drop ;
 
 <window> "change-attributes" !( window valuemask attr -- window ) [
->r >r dup <- raw r> r> XChangeWindowAttributes drop 
+>r >r dup <- raw r> r> XChangeWindowAttributes drop
 ] add-method
 
 DEFER: lookup-color
@@ -393,7 +393,7 @@ SYMBOL: error-handler-quot
 
 : error-handler-callback ( -- xt )
 "void" { "Display*" "XErrorEvent*" } "cdecl"
-[ error-handler-quot get call ] alien-callback ; 
+[ error-handler-quot get call ] alien-callback ;
 
 : set-error-handler ( quot -- )
 error-handler-quot set error-handler-callback XSetErrorHandler drop ;

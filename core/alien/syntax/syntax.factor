@@ -18,7 +18,7 @@ IN: alien.syntax
 : define-function ( return library function parameters -- )
     >r pick r> parse-arglist
     pick create-in dup reset-generic
-    >r >r function-quot r> r> 
+    >r >r function-quot r> r>
     -rot define-declared ;
 
 PRIVATE>

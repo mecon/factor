@@ -16,10 +16,10 @@ TUPLE: imax left right ;
 
 : <i-max> ( s1 s2 -- imax )
     dup i-length pick swap nmax -rot swap nmax <imax> ; inline
-    
+
 : min## ( s1 s2 -- minimum )
     [ i-length ] 2apply min ; inline
-    
+
 : ||g++ ( s1 s2 -- imax )
     2dup [ i-length ] 2apply zero? [ 2drop ] [ zero? [ nip ] [ <i-max> ] if ] if ; inline
 
@@ -34,8 +34,8 @@ TUPLE: imax left right ;
 
 : mcut-point ( imax -- i )
     imax-unpack [ ileft i-length ] 2apply 2dup < [ drop ] [ nip ] if ; inline
-    
-: imax-ileft ( imax -- imax ) 
+
+: imax-ileft ( imax -- imax )
     dup i-length 1 =
     [ drop 0 ]
     [ dup mcut-point swap imax-unpack pick ihead -rot swap ihead swap || ]

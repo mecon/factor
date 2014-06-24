@@ -123,7 +123,7 @@ f <history> "history" set
 ] unit-test
 
 [ ] [
-    H{ { "one" 3 } { "two" 4 } } 
+    H{ { "one" 3 } { "two" 4 } }
     "m" get set-model
 ] unit-test
 
@@ -138,7 +138,7 @@ f <history> "history" set
 
 [ ] [ "m" get deactivate-model ] unit-test
 
-! Test <range> 
+! Test <range>
 : setup-range 0 0 0 255 <range> ;
 
 ! clamp-value should not go past range ends
@@ -166,9 +166,9 @@ f <history> "history" set
 [ 0 ] [ setup-range 30 over move-by -30 over move-by range-value ] unit-test
 
 ! should be able to move by a page of 10
-[ 10 ] [ 
-  setup-range 10 over set-range-page-value 
-  1 over move-by-page range-value 
+[ 10 ] [
+  setup-range 10 over set-range-page-value
+  1 over move-by-page range-value
 ] unit-test
 
 

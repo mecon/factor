@@ -3,5 +3,5 @@ LIBS = -lm
 PLAF_DLL_OBJS += vm/os-windows.o
 EXE_EXTENSION=.exe
 DLL_EXTENSION=.dll
-LINKER = $(CC) -shared -mno-cygwin -o 
+LINKER = $(CC) -shared -mno-cygwin -o
 LINK_WITH_ENGINE = -l$(DLL_PREFIX)factor$(DLL_SUFFIX)

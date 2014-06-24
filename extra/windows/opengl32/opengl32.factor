@@ -29,7 +29,7 @@ IN: windows.opengl32
 ! pixel types
 : PFD_TYPE_RGBA        0 ; inline
 : PFD_TYPE_COLORINDEX  1 ; inline
- 
+
 ! layer types
 : PFD_MAIN_PLANE       0 ; inline
 : PFD_OVERLAY_PLANE    1 ; inline

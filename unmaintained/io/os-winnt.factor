@@ -80,7 +80,7 @@ IN: libs-io
 
 : (archive?) ( mode -- ? )
     FILE_ATTRIBUTE_ARCHIVE bit-set? ;
-    
+
 : archive? ( path -- ? )
     attrib (archive?) ;
 

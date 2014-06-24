@@ -36,7 +36,7 @@ M: tuple-array new tuple-array-example >tuple <tuple-array> ;
         0 over first <tuple-array> clone-like
     ] unless ;
 
-M: tuple-array like 
+M: tuple-array like
     drop dup tuple-array? [ >tuple-array ] unless ;
 
 INSTANCE: tuple-array sequence

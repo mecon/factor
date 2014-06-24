@@ -71,13 +71,13 @@ UNION: explicit-inverse normal-inverse math-inverse pop-inverse ;
     [ 1quotation with-datastack ] [ >r % r> , { } ] if ;
 
 : fold ( quot -- folded-quot )
-    [ { } swap [ fold-word ] each % ] [ ] make ; 
+    [ { } swap [ fold-word ] each % ] [ ] make ;
 
 : flattenable? ( object -- ? )
     { [ word? ] [ primitive? not ] [
         { "inverse" "math-inverse" "pop-inverse" }
         [ word-prop ] with contains? not
-    ] } <-&& ; 
+    ] } <-&& ;
 
 : (flatten) ( quot -- )
     [ dup flattenable? [ word-def (flatten) ] [ , ] if ] each ;

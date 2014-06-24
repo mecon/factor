@@ -97,7 +97,7 @@ LAZY: e-macro-expression ( -- parser )
     "=" token "=" token <?> <&> sp e-expression <&> [ dup 1 tail swap first second [ t ] [ f ] if add ] <@ ;
 
 LAZY: e-macro ( -- parser )
-    "{" token sp e-symbol-list &> e-macro-expression <?> <&> "}" token sp <& 
+    "{" token sp e-symbol-list &> e-macro-expression <?> <&> "}" token sp <&
     [ dup first swap second dup [ first ] [ drop { 0 f } ] if dup first swap second <e-macro> ] <@ ;
 
 LAZY: e-right-expression ( -- parser )
@@ -105,7 +105,7 @@ LAZY: e-right-expression ( -- parser )
 
 : create-e-item ( pair -- e-item )
     dup first swap second dup [ first ] [ drop 0 ] if <i-dual-sided> <i> ;
- 
+
 LAZY: e-item ( -- parser )
 e-expression e-right-expression <?> <&> [ create-e-item ] <@ ;
 

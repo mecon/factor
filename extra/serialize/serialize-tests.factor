@@ -1,6 +1,6 @@
 ! Copyright (C) 2006 Chris Double.
 ! See http://factorcode.org/license.txt for BSD license.
-! 
+!
 USING: tools.test kernel serialize io io.streams.byte-array math
 alien arrays byte-arrays sequences math prettyprint parser
 classes math.constants io.encodings.binary random
